@@ -36,6 +36,7 @@ Tương tự như trong toán học, trong Python cũng có 4 phép tính cơ b�
 ```
 
 6. Trong trường hợp chỉ cần lấy phần dư trong phép chia (ví dụ `7 / 3 = 2 dư 1`) thì cần sử dụng toán tử % . Trong lập trình thì toán tử này được gọi là **Modulo**.
+
 ```
 7 % 3 = 1
 
@@ -53,11 +54,13 @@ Tương tự như trong toán học, trong Python cũng có 4 phép tính cơ b�
 Để biểu diễn phép luỹ thừa trong Python thì ta dùng `**`
 
 Để thực hiện phép tính **4<sup>2</sup>** trong Python ta viết như sau:
+
 ```
 4 ** 2
 ```
 
 Để thực hiện phép tính **2<sup>3</sup>** trong Python ta viết như sau:
+
 ```
 2 ** 3
 ```
