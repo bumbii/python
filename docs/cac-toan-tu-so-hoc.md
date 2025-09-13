@@ -66,6 +66,7 @@ Tương tự như trong toán học, trong Python cũng có 4 phép tính cơ b�
 ```
 
 ## Bảng tóm tắt các toán tử trong Python
+
 | Tên Toán tử          | Ký hiệu trong Python | Ví dụ                   | Giải thích                                   |
 |-----------------------|-----------------------|-------------------------|----------------------------------------------|
 | Cộng                  | `+`                  | `5 + 7 = 12`            | Cộng hai số, hoặc nối chuỗi/danh sách        |
