@@ -64,3 +64,42 @@ Tương tự như trong toán học, trong Python cũng có 4 phép tính cơ b�
 ```
 2 ** 3
 ```
+
+## Bảng tóm tắt các toán tử trong Python
+| Tên Toán tử          | Ký hiệu trong Python | Ví dụ                   | Giải thích                                   |
+|-----------------------|-----------------------|-------------------------|----------------------------------------------|
+| Cộng                  | `+`                  | `5 + 7 = 12`            | Cộng hai số, hoặc nối chuỗi/danh sách        |
+| Trừ                   | `-`                  | `10 - 5 = 5`            | Trừ hai số                                   |
+| Nhân                  | `*`                  | `3 * 5 = 15`            | Nhân hai số, hoặc lặp chuỗi/danh sách        |
+| Chia                  | `/`                  | `10 / 5 = 2.0`          | Chia hai số, luôn trả về kiểu `float`        |
+| Chia lấy phần nguyên  | `//`                 | `13 // 5 = 2`           | Chia và lấy phần nguyên (bỏ phần thập phân)  |
+| Chia lấy phần dư      | `%`                  | `13 % 5 = 3`            | Lấy số dư sau khi chia                       |
+| Lũy thừa (mũ)         | `**`                 | `2**3 = 2 * 2 * 2 = 8`  | Tính lũy thừa (mũ)                           |
+
+
+---
+
+Ngoài việc sử dụng các toán tử số học (arithmetic operators) cho các con số, Python còn cho phép sử dụng phép cộng  + và phép nhân *  cho các loại dữ liệu khác như chuỗi ký tự (string), danh sách (list), tuple.
+
+1. Toán tử cộng  + 
+- Với chuỗi (string): + thực hiện nối chuỗi.
+```
+"Hello" + " " + "Python"   # "Hello Python"
+```
+
+- Với list, tuple: + nối 2 danh sách/tuple.
+```
+[1, 2] + [3, 4]     # [1, 2, 3, 4]
+(1, 2) + (3, 4)     # (1, 2, 3, 4)
+```
+
+2. Toán tử nhân * 
+- Với chuỗi (string): lặp lại chuỗi nhiều lần.
+```
+"ha" * 3     # "hahaha"
+```
+- Với list, tuple: lặp lại phần tử trong list/tuple.
+```
+[1, 2] * 3   # [1, 2, 1, 2, 1, 2]
+(1, 2) * 2   # (1, 2, 1, 2)
+```
