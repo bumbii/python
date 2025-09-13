@@ -83,6 +83,7 @@ Tương tự như trong toán học, trong Python cũng có 4 phép tính cơ b�
 Ngoài việc sử dụng các toán tử số học (arithmetic operators) cho các con số, Python còn cho phép sử dụng phép cộng  + và phép nhân *  cho các loại dữ liệu khác như chuỗi ký tự (string), danh sách (list), tuple.
 
 1. Toán tử cộng `+` 
+
 - Với chuỗi (string): + thực hiện nối chuỗi.
 ```
 "Hello" + " " + "Python"   # "Hello Python"
@@ -95,6 +96,7 @@ Ngoài việc sử dụng các toán tử số học (arithmetic operators) cho 
 ```
 
 2. Toán tử nhân `*` 
+
 - Với chuỗi (string): lặp lại chuỗi nhiều lần.
 ```
 "ha" * 3     # "hahaha"
