@@ -36,6 +36,7 @@
 * [Vòng lặp for với hàm range()](ngon-ngu-python/vong-lap-for-voi-ham-range.md)
 * [Vòng lặp while](ngon-ngu-python/vong-lap-while.md)
 * [Danh sách (List)](ngon-ngu-python/danh-sach-list.md)
+* [Từ điển (Dictionary)](ngon-ngu-python/tu-dien-dictionary.md)
 * [List comprehension](ngon-ngu-python/list-comprehension.md)
 * [Kiểu dữ liệu Số (number)](ngon-ngu-python/kieu-du-lieu-so.md)
 * [Chuỗi ký tự (string)](ngon-ngu-python/kieu-du-lieu-so-1.md)
