@@ -1,0 +1,58 @@
+---
+description: Định nghĩa hàm và Cách tạo ra một hàm mới trong Python
+icon: pen-to-square
+---
+
+# Định nghĩa / Tạo một hàm
+
+Hàm (function) là tập hợp một hoặc nhiều (thường là nhiều) dòng lệnh để thực hiện một công việc cụ thể nào đó. Hàm sẽ được định nghĩa một lần, với một cái tên và sau đó được gọi nhiều lần trong chương trình. Code trong hàm chỉ chạy khi hàm được gọi.
+
+Python có sẵn rất nhiều hàm, ví dụ hàm `print()` để in dữ liệu ra màn hình hoặc `input()` để yêu cầu người dùng nhập vào thông tin.&#x20;
+
+Cú pháp để tạo ra một hàm:
+
+```python
+def function_name(parameter1, parameter2, parameter3...): 
+    # Function body: có thể chứa một hoặc nhiều dòng code
+    code_1
+    code_2
+    ...
+    
+    return value
+```
+
+* Dòng đầu tiên `def function_name(parameter1, parameter2, parameter3...):` được gọi là **Function signature** (dịch ra Tiếng Việt là **chữ ký hàm**, nhưng nghe không tự nhiên lắm). Function signature bắt đầu bằng từ khóa `def` theo sau là khoảng trắng, rồi đến tên hàm, các tham số nằm trong dấu ngoặc đơn và kết thúc bằng dấu 2 chấm.
+* Các dòng còn lại dưới **funciton signature** là **function body** (thân hàm).
+* `def`  - [từ khóa](https://bumbii-academy.gitbook.io/laptrinh/ngon-ngu-python/tu-khoa-keyword) **bắt buộc** phải dùng để khai báo một hàm.
+* `function_name`  - tên hàm, ví dụ: `start_game` , `count_students` .
+* `parameterX`  - danh sách các tham số truyền vào, <mark style="color:red;">**có thể có hoặc không có**</mark> tùy mỗi hàm.
+* `return`  - giá trị hàm sẽ trả về, <mark style="color:red;">**có thể có hoặc không có.**</mark>
+
+**Ví dụ 1: Hàm tính tổng 2 số.**&#x20;
+
+```python
+def sum(first_number, second_number):
+    return first_number + second_number
+    
+# Sử dụng hàm:
+print(sum(5, 8) # 13
+print(sum(10, 20) # 30
+```
+
+Trong ví dụ này: tên hàm là `sum` , hàm có 2 tham số `first_number` , `second_number` , hàm trả về giá trị là tổng 2 số: `first_number + second_number` .
+
+**Ví dụ 2: Hàm in ra lời chào**
+
+```python
+def say_hello():
+    print('Hello. Welcome to Bumbii Academy')
+    
+# Sử dụng hàm:
+say_hello()
+```
+
+Trong ví dụ này: tên hàm là `say_hello` , hàm không có tham số, hàm cũng không có giá trị trả về (không có `return`). Hàm chỉ có một dòng lệnh (`print()`).
+
+<mark style="color:red;">**Nội dung bài giảng trên YouTube**</mark>
+
+{% embed url="https://youtu.be/ih8S2XZiq4M" %}
