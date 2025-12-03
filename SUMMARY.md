@@ -32,9 +32,6 @@
 * [Toán tử logic (Logical Operators)](ngon-ngu-python/toan-tu-logic-logical-operators.md)
 * [Cấu trúc rẽ nhánh (Conditional Statement)](ngon-ngu-python/cau-truc-re-nhanh-conditional-statement.md)
 * [Từ khoá (keyword)](ngon-ngu-python/tu-khoa-keyword.md)
-
-### Hàm (Functions)
-
 * [Hàm (Function)](ngon-ngu-python/ham-function/README.md)
   * [Dành cho bạn nào đã học Scratch](ngon-ngu-python/ham-function/danh-cho-ban-nao-da-hoc-scratch.md)
   * [Định nghĩa / Tạo một hàm](ngon-ngu-python/ham-function/dinh-nghia-tao-mot-ham.md)
@@ -45,29 +42,17 @@
   * [Lambda Function](ngon-ngu-python/ham-function/lambda-function.md)
   * [*args và **kwargs](ngon-ngu-python/ham-function/args-kwargs.md)
   * [Đệ quy (Recursion)](ngon-ngu-python/ham-function/recursion.md)
-
-### Vòng lặp (Loops)
-
 * [Vòng lặp for với hàm range()](ngon-ngu-python/vong-lap-for-voi-ham-range.md)
 * [Vòng lặp while](ngon-ngu-python/vong-lap-while.md)
 * [Break, Continue và Pass](ngon-ngu-python/break-continue-pass.md)
 * [Enumerate và Zip](ngon-ngu-python/enumerate-zip.md)
-
-### Cấu trúc dữ liệu (Data Structures)
-
 * [Danh sách (List)](ngon-ngu-python/danh-sach-list.md)
 * [Bộ (Tuple)](ngon-ngu-python/tuple.md)
 * [Từ điển (Dictionary)](ngon-ngu-python/tu-dien-dictionary.md)
 * [Tập hợp (Set)](ngon-ngu-python/set.md)
-
-### Comprehensions
-
 * [List Comprehension](ngon-ngu-python/list-comprehension.md)
 * [Dictionary Comprehension](ngon-ngu-python/dictionary-comprehension.md)
 * [Set Comprehension](ngon-ngu-python/set-comprehension.md)
-
-### Xử lý lỗi (Error Handling)
-
 * [Exception Handling (Try/Except)](ngon-ngu-python/exception-handling.md)
 * [Các loại Exception phổ biến](ngon-ngu-python/common-exceptions.md)
 
