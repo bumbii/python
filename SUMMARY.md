@@ -5,7 +5,7 @@
 ## GIỚI THIỆU
 
 * [Python là gì?](gioi-thieu/tong-quan-ve-python.md)
-* [Python làm được gì?](gioi-thieu/tong-quan-ve-python-1.md)
+* [Python làm được gì?](gioi-thieu/python-lam-duoc-gi.md)
 
 ## Cài đặt & Công cụ
 

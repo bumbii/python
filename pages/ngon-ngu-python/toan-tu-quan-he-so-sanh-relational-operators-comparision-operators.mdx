@@ -1,0 +1,105 @@
+import YouTube from '../../components/YouTube'
+
+
+# Toán tử quan hệ/so sánh (Relational Operators/Comparision Operators)
+
+Khi bạn viết chương trình, chắc chắn sẽ có lúc cần **so sánh hai giá trị** — ví dụ như xem _điểm có lớn hơn 8 không_, _người dùng đã đủ tuổi đăng ký chưa (lớn hơn 18 tuổi chưa)_, hay _mật khẩu nhập vào có khớp không_.\
+Để làm được điều đó, Python cung cấp cho chúng ta một nhóm công cụ rất hữu ích: **toán tử quan hệ** (hay còn gọi là **toán tử so sánh**).
+
+Những toán tử này giúp chương trình **đưa ra quyết định** — nếu điều kiện đúng thì làm A, nếu sai thì làm B.\
+Vì thế, hiểu và sử dụng thành thạo toán tử quan hệ là **bước đầu quan trọng** để bạn nắm vững các cấu trúc điều kiện như **`if`**, **`elif`**, **`while`**, hay các phép so sánh phức tạp hơn sau này.
+
+## 1. Toán tử quan hệ là gì&#x20;
+
+**Toán tử quan hệ** (hay còn gọi là **toán tử so sánh**) là những ký hiệu đặc biệt giúp Python **so sánh hai giá trị hoặc hai biến hoặc hai biểu thức với nhau**. Khi bạn dùng chúng, Python sẽ trả về kết quả là **`True` (đúng)** hoặc **`False` (sai)** — tùy theo phép so sánh có đúng hay không. Ví dụ:
+
+```python
+5 > 3 # True
+2 == 4 # False
+```
+
+Trong ví dụ này, các ký hiệu lớn hơn `>` và `==` được gọi là các toán tử quan hệ.
+
+## 2. Cách hoạt động của toán tử quan hệ
+
+Mỗi khi bạn viết một phép so sánh, ví dụ như:
+
+```python
+a < b
+```
+
+Python sẽ thực hiện ba bước sau:
+
+1. **Lấy giá trị của hai vế** (ở đây là `a` và `b`)
+2. **So sánh chúng** theo toán tử bạn dùng (`<`, `>`, `==`, ...)
+3. **Trả về kết quả** là **`True`** nếu điều kiện đúng, hoặc **`False`** nếu sai
+
+Ví dụ:
+
+```python
+age = 18
+if age >= 18:
+    print("Bạn đã đủ tuổi trưởng thành!")
+else:
+    print("Bạn vẫn chưa đủ 18 tuổi.")
+```
+
+Khi chạy, Python sẽ kiểm tra điều kiện **`age >= 18`**.\
+Nếu đúng → thực hiện khối lệnh **`if`**.\
+Nếu sai → chuyển sang khối **`else`**.
+
+Trong ví dụ này: do age = 18 thỏa điều kiện age ≥ 18 nên sẽ in ra: "Bạn đã đủ tuổi trưởng thành!".
+
+## 3. Các toán tử quan hệ trong Python
+
+Python có **6 toán tử quan hệ cơ bản**, dùng để so sánh giữa hai giá trị (số, chuỗi, ...). Mỗi toán tử có một ý nghĩa riêng, nhưng tất cả đều **trả về giá trị `True` hoặc `False`** sau khi so sánh.
+
+<table><thead><tr><th width="111" align="center">Toán tử</th><th width="172">Ý nghĩa</th><th width="120">Ví dụ</th><th width="141">Kết quả</th></tr></thead><tbody><tr><td align="center"><code>==</code></td><td>Bằng nhau</td><td><code>5 == 5</code></td><td><code>True</code></td></tr><tr><td align="center"><code>!=</code></td><td>Khác nhau</td><td><code>5 != 3</code></td><td><code>True</code></td></tr><tr><td align="center"><code>></code></td><td>Lớn hơn</td><td><code>7 > 4</code></td><td><code>True</code></td></tr><tr><td align="center"><code>&#x3C;</code></td><td>Nhỏ hơn</td><td><code>2 &#x3C; 10</code></td><td><code>True</code></td></tr><tr><td align="center"><code>>=</code></td><td>Lớn hơn hoặc bằng</td><td><code>8 >= 8</code></td><td><code>True</code></td></tr><tr><td align="center"><code>&#x3C;=</code></td><td>Nhỏ hơn hoặc bằng</td><td><code>3 &#x3C;= 1</code></td><td><code>False</code></td></tr></tbody></table>
+
+### Chú ý: các bạn mới lập trình hay nhầm lẫn phép so sánh bằng, để so sánh bằng phải dùng <mark style="color:red;">HAI (2) dấu bằng ( = )</mark>. Một dấu bằng được dùng để gán.
+
+Ví dụ:
+
+```python
+a = 10
+b = 20
+
+print(a == b)   # False, vì 10 không bằng 20
+print(a != b)   # True, vì 10 khác 20
+print(a > b)    # False, vì 10 không lớn hơn 20
+print(a < b)    # True, vì 10 nhỏ hơn 20
+print(a >= 10)  # True, vì 10 bằng 10
+print(b <= 15)  # False, vì 20 không nhỏ hơn hoặc bằng 15
+```
+
+***
+
+## Nội dung bài giảng trên YouTube
+
+<YouTube id="T9cO0nm4b-Q" title="Toán tử quan hệ/so sánh" />
+
+***
+
+## 3. So sánh chuỗi (String - str) trong Python
+
+Không chỉ có số mới so sánh được — trong Python, **chuỗi ký tự (string)** cũng có thể đem ra so sánh.\
+Khi bạn so sánh hai chuỗi, Python sẽ **so sánh từng ký tự theo thứ tự bảng chữ cái Unicode** (giống như thứ tự trong từ điển). Ví dụ:
+
+```python
+print("apple" == "apple")   # True  vì hai chuỗi giống hệt nhau
+print("apple" != "banana")  # True  vì hai chuỗi khác nhau
+print("cat" > "ant")        # True  vì chữ 'c' đứng sau 'a' trong bảng chữ cái
+print("A" < "a")            # True  vì chữ hoa có mã Unicode nhỏ hơn chữ thường
+```
+
+### Cách Python thực hiện so sánh chuỗi
+
+```python
+"dog" < "door"
+```
+
+Python sẽ so sánh **từng ký tự từ trái sang phải**:
+
+1. So sánh `'d'` với `'d'` → giống nhau → tiếp tục
+2. So sánh `'o'` với `'o'` → giống nhau → tiếp tục
+3. So sánh `'g'` với `'o'` → `'g'` nhỏ hơn `'o'` → kết luận **"dog" < "door"** → `True`
