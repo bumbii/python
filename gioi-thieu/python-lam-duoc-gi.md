@@ -363,5 +363,3 @@ while True:
 ## Kết luận
 
 Python có thể làm được rất nhiều thứ! Từ phát triển web, game, ứng dụng desktop và mobile, đến phân tích dữ liệu và trí tuệ nhân tạo. Với sự đa dạng này, Python là một trong những ngôn ngữ lập trình đáng học nhất hiện nay.
-
-Bạn quan tâm đến lĩnh vực nào nhất? Hãy bắt đầu học Python và khám phá những khả năng vô tận!
