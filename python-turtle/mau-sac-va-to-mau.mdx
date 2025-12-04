@@ -1,0 +1,443 @@
+---
+title: Màu sắc và tô màu
+---
+
+# Màu sắc và tô màu trong Turtle
+
+Trong bài này, chúng ta sẽ học cách sử dụng màu sắc và tô màu cho các hình vẽ.
+
+## 1. Màu nền (Background Color)
+
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.bgcolor("lightblue")  # Đặt màu nền
+
+t = turtle.Turtle()
+t.forward(100)
+
+turtle.done()
+```
+
+## 2. Màu bút (Pen Color)
+
+### Dùng tên màu tiếng Anh
+
+```python
+import turtle
+
+t = turtle.Turtle()
+
+# Đổi màu bút
+t.pencolor("red")
+t.forward(100)
+
+t.pencolor("blue")
+t.left(90)
+t.forward(100)
+
+t.pencolor("green")
+t.left(90)
+t.forward(100)
+
+turtle.done()
+```
+
+### Các màu phổ biến
+
+- `"red"` - Đỏ
+- `"blue"` - Xanh dương
+- `"green"` - Xanh lá
+- `"yellow"` - Vàng
+- `"orange"` - Cam
+- `"purple"` - Tím
+- `"pink"` - Hồng
+- `"brown"` - Nâu
+- `"black"` - Đen
+- `"white"` - Trắng
+- `"gray"` - Xám
+
+## 3. Màu RGB
+
+RGB (Red, Green, Blue) - mỗi giá trị từ 0 đến 1
+
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.colormode(255)  # Cho phép dùng giá trị 0-255
+
+t = turtle.Turtle()
+
+# Màu đỏ thuần túy
+t.pencolor(255, 0, 0)
+t.forward(100)
+
+# Màu xanh lá thuần túy
+t.pencolor(0, 255, 0)
+t.left(90)
+t.forward(100)
+
+# Màu xanh dương thuần túy
+t.pencolor(0, 0, 255)
+t.left(90)
+t.forward(100)
+
+turtle.done()
+```
+
+### Một số màu RGB hay dùng
+
+```python
+# Màu hồng
+t.pencolor(255, 192, 203)
+
+# Màu cam
+t.pencolor(255, 165, 0)
+
+# Màu tím
+t.pencolor(128, 0, 128)
+
+# Màu vàng gold
+t.pencolor(255, 215, 0)
+```
+
+## 4. Tô màu hình (Fill Color)
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Bắt đầu tô màu
+t.fillcolor("yellow")
+t.begin_fill()
+
+# Vẽ hình vuông
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+
+# Kết thúc tô màu
+t.end_fill()
+
+turtle.done()
+```
+
+**Các bước tô màu:**
+1. `fillcolor(màu)` - Chọn màu tô
+2. `begin_fill()` - Bắt đầu tô
+3. Vẽ hình
+4. `end_fill()` - Kết thúc tô
+
+## 5. Đặt cả màu bút và màu tô cùng lúc
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Đặt màu bút là đỏ, màu tô là vàng
+t.color("red", "yellow")
+
+t.begin_fill()
+for i in range(5):
+    t.forward(100)
+    t.right(144)
+t.end_fill()
+
+turtle.done()
+```
+
+**Cú pháp**: `color(pencolor, fillcolor)`
+
+## 6. Vẽ nhiều hình với màu khác nhau
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+# Danh sách màu
+colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+
+# Vẽ 6 hình tròn
+for i in range(6):
+    t.color(colors[i])
+    t.begin_fill()
+    t.circle(50)
+    t.end_fill()
+
+    t.penup()
+    t.forward(120)
+    t.pendown()
+
+turtle.done()
+```
+
+## 7. Tạo gradient (chuyển màu dần)
+
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.colormode(255)
+screen.bgcolor("black")
+
+t = turtle.Turtle()
+t.speed(0)
+t.width(3)
+
+# Vẽ các hình tròn với màu chuyển dần
+for i in range(50):
+    # Màu đỏ tăng dần
+    t.pencolor(255 - i*5, i*5, 100)
+    t.circle(50 + i*2)
+    t.left(10)
+
+turtle.done()
+```
+
+## 8. Vẽ cầu vồng
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+t.width(10)
+screen = turtle.Screen()
+screen.bgcolor("lightblue")
+
+# Màu cầu vồng
+colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+
+# Vẽ 7 cung tròn
+for i in range(7):
+    t.pencolor(colors[i])
+    t.circle(100 - i*10)
+    t.penup()
+    t.goto(0, -10 * (i+1))
+    t.pendown()
+
+t.hideturtle()
+turtle.done()
+```
+
+## 9. Tô màu hình phức tạp
+
+### Vẽ mặt trời
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+screen = turtle.Screen()
+screen.bgcolor("skyblue")
+
+# Vẽ mặt trời
+t.color("orange", "yellow")
+t.begin_fill()
+t.circle(50)
+t.end_fill()
+
+# Vẽ tia nắng
+t.pencolor("orange")
+t.pensize(3)
+
+for i in range(12):
+    t.penup()
+    t.goto(0, 0)
+    t.pendown()
+    t.forward(80)
+    t.left(30)
+
+t.hideturtle()
+turtle.done()
+```
+
+### Vẽ bông hoa
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+screen = turtle.Screen()
+screen.bgcolor("lightgreen")
+
+# Vẽ 10 cánh hoa
+t.color("red", "pink")
+for i in range(10):
+    t.begin_fill()
+    t.circle(50, 60)
+    t.left(120)
+    t.circle(50, 60)
+    t.end_fill()
+    t.left(36)
+
+# Vẽ tâm hoa
+t.penup()
+t.goto(0, -10)
+t.pendown()
+t.color("yellow", "yellow")
+t.begin_fill()
+t.circle(10)
+t.end_fill()
+
+t.hideturtle()
+turtle.done()
+```
+
+## 10. Tạo màu ngẫu nhiên
+
+```python
+import turtle
+import random
+
+screen = turtle.Screen()
+screen.colormode(255)
+screen.bgcolor("white")
+
+t = turtle.Turtle()
+t.speed(0)
+
+# Vẽ 20 hình với màu ngẫu nhiên
+for i in range(20):
+    # Tạo màu ngẫu nhiên
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+
+    t.color(r, g, b)
+    t.begin_fill()
+
+    # Vẽ hình vuông
+    for j in range(4):
+        t.forward(100)
+        t.left(90)
+
+    t.end_fill()
+    t.left(18)
+
+t.hideturtle()
+turtle.done()
+```
+
+## 11. Ví dụ nâng cao: Vẽ lá cờ
+
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.bgcolor("white")
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ nền đỏ
+t.color("black", "red")
+t.begin_fill()
+for i in range(2):
+    t.forward(300)
+    t.left(90)
+    t.forward(200)
+    t.left(90)
+t.end_fill()
+
+# Vẽ ngôi sao vàng ở giữa
+t.penup()
+t.goto(150, 100)
+t.pendown()
+t.color("yellow", "yellow")
+t.begin_fill()
+
+for i in range(5):
+    t.forward(50)
+    t.right(144)
+
+t.end_fill()
+t.hideturtle()
+
+turtle.done()
+```
+
+## Bài tập thực hành
+
+### Bài 1: Vẽ đèn giao thông
+Vẽ 3 hình tròn (đỏ, vàng, xanh) xếp dọc
+
+### Bài 2: Vẽ Olympic
+Vẽ 5 vòng tròn Olympic (xanh, vàng, đen, xanh lá, đỏ)
+
+### Bài 3: Vẽ cờ Việt Nam
+Vẽ lá cờ Việt Nam (nền đỏ, ngôi sao vàng 5 cánh ở giữa)
+
+### Bài 4: Vẽ bầu trời đêm
+Vẽ nền đen, nhiều ngôi sao vàng ở vị trí ngẫu nhiên
+
+### Gợi ý Bài 1:
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ hộp đen
+t.color("black", "black")
+t.begin_fill()
+for i in range(2):
+    t.forward(100)
+    t.left(90)
+    t.forward(300)
+    t.left(90)
+t.end_fill()
+
+# Vẽ 3 đèn
+colors = ["red", "yellow", "green"]
+y_positions = [50, 150, 250]
+
+for i in range(3):
+    t.penup()
+    t.goto(50, y_positions[i])
+    t.pendown()
+    t.color("black", colors[i])
+    t.begin_fill()
+    t.circle(30)
+    t.end_fill()
+
+t.hideturtle()
+turtle.done()
+```
+
+## Bảng màu HTML thường dùng
+
+| Tên | Mã màu | RGB |
+|-----|--------|-----|
+| Red | #FF0000 | (255, 0, 0) |
+| Blue | #0000FF | (0, 0, 255) |
+| Green | #00FF00 | (0, 255, 0) |
+| Yellow | #FFFF00 | (255, 255, 0) |
+| Orange | #FFA500 | (255, 165, 0) |
+| Purple | #800080 | (128, 0, 128) |
+| Pink | #FFC0CB | (255, 192, 203) |
+| Gold | #FFD700 | (255, 215, 0) |
+
+## Tổng kết
+
+Trong bài này, bạn đã học:
+- ✅ Đổi màu nền với `bgcolor()`
+- ✅ Đổi màu bút với `pencolor()`
+- ✅ Sử dụng màu theo tên và RGB
+- ✅ Tô màu hình với `fillcolor()`, `begin_fill()`, `end_fill()`
+- ✅ Đặt cả màu bút và tô cùng lúc với `color()`
+- ✅ Tạo gradient và màu ngẫu nhiên
+- ✅ Vẽ các hình phức tạp có màu sắc
+
+Bài tiếp theo, chúng ta sẽ học vẽ các mẫu hoa văn đẹp mắt!

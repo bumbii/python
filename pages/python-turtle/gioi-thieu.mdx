@@ -1,0 +1,122 @@
+---
+title: Giới thiệu Python Turtle
+---
+
+# Giới thiệu Python Turtle
+
+## Python Turtle là gì?
+
+**Python Turtle** là một thư viện đồ họa được tích hợp sẵn trong Python, cho phép bạn vẽ hình và tạo các hình ảnh đồ họa một cách dễ dàng. Turtle được thiết kế đặc biệt cho người mới bắt đầu học lập trình.
+
+### Ý tưởng chính
+
+Turtle hoạt động như một con rùa ảo trên màn hình:
+- 🐢 Con rùa có thể di chuyển tiến, lùi, quay trái, quay phải
+- ✏️ Khi di chuyển, con rùa để lại vết bút vẽ
+- 🎨 Bạn có thể thay đổi màu sắc, độ dày của bút
+
+## Tại sao học Turtle?
+
+- ✅ **Dễ học**: Syntax đơn giản, dễ hiểu
+- ✅ **Trực quan**: Thấy ngay kết quả khi chạy code
+- ✅ **Thú vị**: Tạo ra các hình vẽ đẹp mắt
+- ✅ **Học logic**: Rèn luyện tư duy thuật toán
+- ✅ **Miễn phí**: Có sẵn trong Python
+
+## Cài đặt
+
+Turtle đã được tích hợp sẵn trong Python, bạn không cần cài đặt thêm gì cả!
+
+## Chương trình Turtle đầu tiên
+
+```python
+import turtle
+
+# Tạo một cửa sổ vẽ
+screen = turtle.Screen()
+screen.title("Chương trình Turtle đầu tiên")
+screen.bgcolor("white")
+
+# Tạo một con rùa
+t = turtle.Turtle()
+t.shape("turtle")  # Đổi con trỏ thành hình con rùa
+t.color("blue")
+
+# Vẽ một hình vuông
+for i in range(4):
+    t.forward(100)  # Tiến 100 pixels
+    t.right(90)     # Quay phải 90 độ
+
+# Giữ cửa sổ mở
+turtle.done()
+```
+
+### Giải thích code
+
+1. **`import turtle`**: Import thư viện turtle
+2. **`turtle.Screen()`**: Tạo cửa sổ để vẽ
+3. **`turtle.Turtle()`**: Tạo một con rùa để vẽ
+4. **`forward(100)`**: Di chuyển tiến 100 pixels
+5. **`right(90)`**: Quay phải 90 độ
+6. **`turtle.done()`**: Giữ cửa sổ mở cho đến khi đóng
+
+## Hệ tọa độ trong Turtle
+
+```
+        Y (90°)
+         |
+         |
+-X ------+------ X (0°)
+(180°)   |
+         |
+        -Y (270°)
+```
+
+- Điểm bắt đầu: **(0, 0)** - giữa màn hình
+- Hướng ban đầu: **Phải** (0 độ)
+- X dương: Bên phải
+- Y dương: Bên trên
+
+## Các khái niệm cơ bản
+
+### 1. Screen (Màn hình)
+Cửa sổ để vẽ - nơi con rùa di chuyển và vẽ
+
+### 2. Turtle (Con rùa)
+Đối tượng để vẽ - có thể di chuyển, quay, đổi màu
+
+### 3. Pen (Bút)
+Công cụ vẽ - có thể nhấc lên, hạ xuống, đổi màu, đổi độ dày
+
+## Ví dụ: Vẽ tam giác
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.color("red")
+
+# Vẽ tam giác đều
+for i in range(3):
+    t.forward(100)
+    t.left(120)  # Góc ngoài của tam giác đều là 120°
+
+turtle.done()
+```
+
+## Bài tập thực hành
+
+1. Chạy chương trình đầu tiên và quan sát kết quả
+2. Thay đổi màu sắc của con rùa
+3. Thay đổi kích thước hình vuông (thay 100 thành số khác)
+4. Thử vẽ một hình chữ nhật thay vì hình vuông
+
+## Tổng kết
+
+Trong bài này, bạn đã học:
+- ✅ Python Turtle là gì và tại sao nên học
+- ✅ Cách tạo chương trình Turtle đầu tiên
+- ✅ Các khái niệm cơ bản: Screen, Turtle, Pen
+- ✅ Hệ tọa độ trong Turtle
+
+Trong bài tiếp theo, chúng ta sẽ học các lệnh di chuyển và vẽ cơ bản!

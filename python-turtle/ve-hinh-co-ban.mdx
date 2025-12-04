@@ -1,0 +1,348 @@
+---
+title: Vẽ các hình cơ bản
+---
+
+# Vẽ các hình cơ bản với Turtle
+
+Trong bài này, chúng ta sẽ học cách vẽ các hình cơ bản như tam giác, hình vuông, ngũ giác, lục giác và các đa giác khác.
+
+## 1. Công thức vẽ đa giác đều
+
+Để vẽ một đa giác đều có **n** cạnh:
+- **Góc quay** = 360 / n
+- **Số lần lặp** = n
+
+```python
+# Công thức chung
+for i in range(n):
+    t.forward(canh)
+    t.left(360 / n)
+```
+
+## 2. Vẽ tam giác đều
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Tam giác đều có 3 cạnh
+# Góc quay = 360 / 3 = 120°
+for i in range(3):
+    t.forward(100)
+    t.left(120)
+
+turtle.done()
+```
+
+## 3. Vẽ hình vuông
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Hình vuông có 4 cạnh
+# Góc quay = 360 / 4 = 90°
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+
+turtle.done()
+```
+
+## 4. Vẽ ngũ giác đều
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Ngũ giác có 5 cạnh
+# Góc quay = 360 / 5 = 72°
+for i in range(5):
+    t.forward(100)
+    t.left(72)
+
+turtle.done()
+```
+
+## 5. Vẽ lục giác đều
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Lục giác có 6 cạnh
+# Góc quay = 360 / 6 = 60°
+for i in range(6):
+    t.forward(100)
+    t.left(60)
+
+turtle.done()
+```
+
+## 6. Hàm vẽ đa giác tổng quát
+
+```python
+import turtle
+
+def ve_da_giac(sides, length):
+    """
+    Vẽ đa giác đều
+    sides: Số cạnh
+    length: Độ dài cạnh
+    """
+    angle = 360 / sides
+    for i in range(sides):
+        t.forward(length)
+        t.left(angle)
+
+# Tạo turtle
+t = turtle.Turtle()
+t.speed(3)
+
+# Vẽ các đa giác khác nhau
+ve_da_giac(3, 100)   # Tam giác
+t.penup()
+t.goto(150, 0)
+t.pendown()
+
+ve_da_giac(5, 80)    # Ngũ giác
+t.penup()
+t.goto(-150, 0)
+t.pendown()
+
+ve_da_giac(8, 60)    # Bát giác
+
+turtle.done()
+```
+
+## 7. Vẽ hình ngôi sao 5 cánh
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+t.color("gold")
+
+# Vẽ ngôi sao 5 cánh
+# Góc nhọn = 144°
+for i in range(5):
+    t.forward(100)
+    t.right(144)
+
+turtle.done()
+```
+
+**Giải thích**: Để vẽ ngôi sao 5 cánh, ta quay phải 144° (= 360° / 5 * 2)
+
+## 8. Vẽ hình ngôi sao 6 cánh
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+t.color("blue")
+
+# Vẽ 2 tam giác chồng lên nhau
+# Tam giác 1
+for i in range(3):
+    t.forward(100)
+    t.left(120)
+
+# Quay 180° để vẽ tam giác ngược
+t.right(180)
+
+# Tam giác 2
+for i in range(3):
+    t.forward(100)
+    t.left(120)
+
+turtle.done()
+```
+
+## 9. Vẽ hình chữ nhật
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Chiều dài và chiều rộng
+width = 150
+height = 80
+
+# Vẽ hình chữ nhật
+for i in range(2):
+    t.forward(width)
+    t.left(90)
+    t.forward(height)
+    t.left(90)
+
+turtle.done()
+```
+
+## 10. Vẽ hình bình hành
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ hình bình hành
+for i in range(2):
+    t.forward(100)
+    t.left(60)   # Góc nghiêng
+    t.forward(100)
+    t.left(120)  # 180 - 60
+
+turtle.done()
+```
+
+## 11. Vẽ hình thang
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ hình thang
+t.forward(150)   # Đáy lớn
+t.left(60)
+t.forward(80)    # Cạnh bên
+t.left(60)
+t.forward(100)   # Đáy nhỏ
+t.left(60)
+t.forward(80)    # Cạnh bên còn lại
+
+turtle.done()
+```
+
+## 12. Vẽ nhiều hình xoay vòng
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+# Vẽ 36 hình vuông xoay quanh tâm
+for i in range(36):
+    # Vẽ hình vuông
+    for j in range(4):
+        t.forward(100)
+        t.left(90)
+
+    # Quay 10° để vẽ hình tiếp theo
+    t.left(10)
+
+turtle.done()
+```
+
+## Ví dụ tổng hợp: Vẽ nhiều hình cùng lúc
+
+```python
+import turtle
+
+def ve_hinh(sides, size, x, y, color):
+    """Vẽ một đa giác tại vị trí cho trước"""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.color(color)
+
+    angle = 360 / sides
+    for i in range(sides):
+        t.forward(size)
+        t.left(angle)
+
+# Khởi tạo
+t = turtle.Turtle()
+t.speed(0)
+screen = turtle.Screen()
+screen.bgcolor("lightyellow")
+
+# Vẽ nhiều hình
+ve_hinh(3, 80, -200, 100, "red")      # Tam giác
+ve_hinh(4, 80, 0, 100, "blue")        # Hình vuông
+ve_hinh(5, 80, 200, 100, "green")     # Ngũ giác
+ve_hinh(6, 60, -200, -100, "purple")  # Lục giác
+ve_hinh(8, 50, 0, -100, "orange")     # Bát giác
+ve_hinh(10, 40, 200, -100, "pink")    # Thập giác
+
+t.hideturtle()
+turtle.done()
+```
+
+## Bài tập thực hành
+
+### Bài 1: Vẽ đa giác tăng dần
+Vẽ các đa giác từ tam giác đến thập giác, xếp cạnh nhau
+
+### Bài 2: Vẽ kim tự tháp
+Vẽ một kim tự tháp bằng cách chồng các hình vuông giảm dần
+
+### Bài 3: Vẽ hoa văn
+Vẽ 12 hình vuông xoay quanh tâm (mỗi lần quay 30°)
+
+### Bài 4: Vẽ tổ ong
+Vẽ nhiều lục giác ghép lại tạo thành tổ ong
+
+### Gợi ý Bài 3:
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+t.color("blue")
+
+# Vẽ 12 hình vuông
+for i in range(12):
+    # Vẽ hình vuông
+    for j in range(4):
+        t.forward(100)
+        t.left(90)
+
+    # Quay 30°
+    t.left(30)
+
+turtle.done()
+```
+
+## Bảng công thức góc quay
+
+| Hình | Số cạnh | Góc quay |
+|------|---------|----------|
+| Tam giác đều | 3 | 120° |
+| Hình vuông | 4 | 90° |
+| Ngũ giác | 5 | 72° |
+| Lục giác | 6 | 60° |
+| Bát giác | 8 | 45° |
+| Thập giác | 10 | 36° |
+| Mười hai giác | 12 | 30° |
+
+**Công thức**: Góc quay = 360° / số cạnh
+
+## Tổng kết
+
+Trong bài này, bạn đã học:
+- ✅ Công thức vẽ đa giác đều: góc quay = 360 / n
+- ✅ Vẽ các hình cơ bản: tam giác, hình vuông, ngũ giác, lục giác
+- ✅ Vẽ ngôi sao 5 cánh và 6 cánh
+- ✅ Vẽ hình chữ nhật, hình bình hành, hình thang
+- ✅ Tạo hoa văn bằng cách xoay hình
+- ✅ Viết hàm vẽ đa giác tổng quát
+
+Bài tiếp theo, chúng ta sẽ học về màu sắc và tô màu!

@@ -1,0 +1,573 @@
+---
+title: Dự án nâng cao
+---
+
+# Các dự án Turtle nâng cao
+
+Trong bài này, chúng ta sẽ làm các dự án thực tế và thú vị với Turtle!
+
+## 1. Dự án: Đồng hồ analog
+
+```python
+import turtle
+import time
+
+# Setup
+screen = turtle.Screen()
+screen.setup(width=600, height=600)
+screen.bgcolor("white")
+screen.title("Đồng hồ Analog")
+screen.tracer(0)
+
+# Vẽ mặt đồng hồ
+clock = turtle.Turtle()
+clock.hideturtle()
+clock.speed(0)
+clock.pensize(3)
+
+# Vẽ vòng tròn đồng hồ
+clock.penup()
+clock.goto(0, -210)
+clock.pendown()
+clock.circle(210)
+
+# Vẽ các số từ 1-12
+clock.penup()
+for hour in range(1, 13):
+    angle = 90 - (hour * 30)
+    x = 170 * turtle.cos(turtle.radians(angle))
+    y = 170 * turtle.sin(turtle.radians(angle))
+    clock.goto(x, y)
+    clock.write(str(hour), align="center", font=("Arial", 14, "bold"))
+
+# Tạo kim giây
+second_hand = turtle.Turtle()
+second_hand.speed(0)
+second_hand.color("red")
+second_hand.pensize(2)
+second_hand.hideturtle()
+
+# Tạo kim phút
+minute_hand = turtle.Turtle()
+minute_hand.speed(0)
+minute_hand.color("blue")
+minute_hand.pensize(4)
+minute_hand.hideturtle()
+
+# Tạo kim giờ
+hour_hand = turtle.Turtle()
+hour_hand.speed(0)
+hour_hand.color("black")
+hour_hand.pensize(6)
+hour_hand.hideturtle()
+
+def draw_hand(hand, angle, length):
+    """Vẽ kim đồng hồ"""
+    hand.clear()
+    hand.penup()
+    hand.goto(0, 0)
+    hand.setheading(90)
+    hand.right(angle)
+    hand.pendown()
+    hand.forward(length)
+
+# Vòng lặp cập nhật thời gian
+while True:
+    # Lấy thời gian hiện tại
+    current_time = time.localtime()
+    hour = current_time.tm_hour % 12
+    minute = current_time.tm_min
+    second = current_time.tm_sec
+
+    # Tính góc cho các kim
+    second_angle = second * 6
+    minute_angle = minute * 6 + second * 0.1
+    hour_angle = hour * 30 + minute * 0.5
+
+    # Vẽ các kim
+    draw_hand(second_hand, second_angle, 180)
+    draw_hand(minute_hand, minute_angle, 150)
+    draw_hand(hour_hand, hour_angle, 100)
+
+    screen.update()
+    time.sleep(1)
+
+turtle.done()
+```
+
+## 2. Dự án: Game đua rùa
+
+```python
+import turtle
+import random
+
+# Setup
+screen = turtle.Screen()
+screen.setup(width=800, height=600)
+screen.bgcolor("lightgreen")
+screen.title("Đua rùa")
+
+# Vẽ đường đua
+pen = turtle.Turtle()
+pen.speed(0)
+pen.hideturtle()
+pen.penup()
+pen.goto(-350, 200)
+pen.pendown()
+pen.pensize(3)
+
+# Vẽ 5 làn đua
+for i in range(6):
+    pen.penup()
+    pen.goto(-350, 200 - i * 80)
+    pen.pendown()
+    pen.forward(700)
+
+# Vẽ vạch đích
+pen.penup()
+pen.goto(350, 200)
+pen.pendown()
+pen.right(90)
+pen.forward(400)
+
+# Tạo 5 con rùa
+colors = ["red", "blue", "green", "yellow", "purple"]
+turtles = []
+
+for i in range(5):
+    racer = turtle.Turtle()
+    racer.shape("turtle")
+    racer.color(colors[i])
+    racer.penup()
+    racer.goto(-340, 160 - i * 80)
+    racer.pendown()
+    turtles.append(racer)
+
+# Bắt đầu đua
+race_on = True
+while race_on:
+    for racer in turtles:
+        # Mỗi rùa di chuyển ngẫu nhiên
+        distance = random.randint(1, 10)
+        racer.forward(distance)
+
+        # Kiểm tra xem có rùa nào về đích chưa
+        if racer.xcor() >= 340:
+            race_on = False
+            winner_color = racer.pencolor()
+            pen.penup()
+            pen.goto(0, 0)
+            pen.write(f"Rùa {winner_color} thắng!", align="center",
+                     font=("Arial", 24, "bold"))
+            break
+
+turtle.done()
+```
+
+## 3. Dự án: Vẽ mặt cười emoji
+
+```python
+import turtle
+
+# Setup
+screen = turtle.Screen()
+screen.bgcolor("lightyellow")
+
+t = turtle.Turtle()
+t.speed(3)
+
+# Vẽ mặt (hình tròn vàng)
+t.penup()
+t.goto(0, -100)
+t.pendown()
+t.color("black", "yellow")
+t.begin_fill()
+t.circle(100)
+t.end_fill()
+
+# Vẽ mắt trái
+t.penup()
+t.goto(-40, 20)
+t.pendown()
+t.color("black", "black")
+t.begin_fill()
+t.circle(10)
+t.end_fill()
+
+# Vẽ mắt phải
+t.penup()
+t.goto(40, 20)
+t.pendown()
+t.begin_fill()
+t.circle(10)
+t.end_fill()
+
+# Vẽ miệng cười
+t.penup()
+t.goto(-50, 0)
+t.pendown()
+t.color("black")
+t.pensize(3)
+t.right(90)
+t.circle(50, 180)
+
+t.hideturtle()
+turtle.done()
+```
+
+## 4. Dự án: Máy tính đơn giản (Interactive)
+
+```python
+import turtle
+
+# Setup
+screen = turtle.Screen()
+screen.setup(width=600, height=600)
+screen.bgcolor("lightblue")
+screen.title("Máy tính vẽ hình")
+
+t = turtle.Turtle()
+t.shape("turtle")
+t.speed(3)
+
+# Hướng dẫn
+instructions = turtle.Turtle()
+instructions.hideturtle()
+instructions.penup()
+instructions.goto(0, 250)
+instructions.write("Nhấn phím: w=tiến, s=lùi, a=trái, d=phải, c=xóa, q=thoát",
+                  align="center", font=("Arial", 12, "normal"))
+
+# Các hàm điều khiển
+def move_forward():
+    t.forward(10)
+
+def move_backward():
+    t.backward(10)
+
+def turn_left():
+    t.left(15)
+
+def turn_right():
+    t.right(15)
+
+def clear_screen():
+    t.clear()
+    t.penup()
+    t.home()
+    t.pendown()
+
+def quit_game():
+    screen.bye()
+
+# Đăng ký phím
+screen.listen()
+screen.onkey(move_forward, "w")
+screen.onkey(move_backward, "s")
+screen.onkey(turn_left, "a")
+screen.onkey(turn_right, "d")
+screen.onkey(clear_screen, "c")
+screen.onkey(quit_game, "q")
+
+turtle.done()
+```
+
+## 5. Dự án: Vẽ cờ các quốc gia
+
+### Cờ Nhật Bản
+
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.bgcolor("white")
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ viền cờ
+t.penup()
+t.goto(-200, 150)
+t.pendown()
+t.pensize(3)
+for i in range(2):
+    t.forward(400)
+    t.right(90)
+    t.forward(300)
+    t.right(90)
+
+# Vẽ hình tròn đỏ ở giữa
+t.penup()
+t.goto(0, -50)
+t.pendown()
+t.color("red", "red")
+t.begin_fill()
+t.circle(80)
+t.end_fill()
+
+t.hideturtle()
+turtle.done()
+```
+
+### Cờ Hàn Quốc (đơn giản hóa)
+
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.bgcolor("white")
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ hình chữ nhật trắng
+t.penup()
+t.goto(-200, 150)
+t.pendown()
+t.pensize(3)
+for i in range(2):
+    t.forward(400)
+    t.right(90)
+    t.forward(300)
+    t.right(90)
+
+# Vẽ hình tròn âm dương ở giữa
+# Nửa đỏ
+t.penup()
+t.goto(0, 0)
+t.pendown()
+t.color("red", "red")
+t.begin_fill()
+t.circle(50, 180)
+t.end_fill()
+
+# Nửa xanh
+t.color("blue", "blue")
+t.begin_fill()
+t.circle(50, 180)
+t.end_fill()
+
+t.hideturtle()
+turtle.done()
+```
+
+## 6. Dự án: Vẽ biểu đồ
+
+```python
+import turtle
+
+# Dữ liệu
+data = {
+    "Python": 85,
+    "Java": 70,
+    "JavaScript": 75,
+    "C++": 60,
+    "Ruby": 50
+}
+
+colors = ["red", "blue", "green", "orange", "purple"]
+
+# Setup
+screen = turtle.Screen()
+screen.bgcolor("white")
+screen.title("Biểu đồ cột")
+
+t = turtle.Turtle()
+t.speed(2)
+
+# Vẽ trục
+t.penup()
+t.goto(-300, -200)
+t.pendown()
+t.forward(600)
+t.backward(600)
+t.left(90)
+t.forward(400)
+
+# Vẽ các cột
+x = -250
+for i, (language, value) in enumerate(data.items()):
+    # Vẽ cột
+    t.penup()
+    t.goto(x, -200)
+    t.pendown()
+    t.color(colors[i], colors[i])
+    t.begin_fill()
+    for j in range(2):
+        t.forward(value * 2)
+        t.right(90)
+        t.forward(80)
+        t.right(90)
+    t.end_fill()
+
+    # Viết tên
+    t.penup()
+    t.goto(x + 10, -230)
+    t.color("black")
+    t.write(language, font=("Arial", 10, "normal"))
+
+    # Viết giá trị
+    t.goto(x + 20, value * 2 - 190)
+    t.write(str(value), font=("Arial", 10, "bold"))
+
+    x += 120
+
+t.hideturtle()
+turtle.done()
+```
+
+## 7. Dự án: Vẽ maze (mê cung)
+
+```python
+import turtle
+
+# Setup
+screen = turtle.Screen()
+screen.bgcolor("white")
+screen.title("Mê cung")
+
+t = turtle.Turtle()
+t.speed(0)
+t.pensize(3)
+t.color("blue")
+
+# Định nghĩa mê cung (1 = tường, 0 = đường)
+maze = [
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1]
+]
+
+# Kích thước ô
+cell_size = 40
+
+# Vẽ mê cung
+t.penup()
+for row in range(len(maze)):
+    for col in range(len(maze[row])):
+        if maze[row][col] == 1:
+            x = col * cell_size - 150
+            y = 150 - row * cell_size
+            t.goto(x, y)
+            t.pendown()
+            t.color("black", "gray")
+            t.begin_fill()
+            for i in range(4):
+                t.forward(cell_size)
+                t.right(90)
+            t.end_fill()
+            t.penup()
+
+# Đánh dấu điểm bắt đầu và kết thúc
+# Điểm bắt đầu (xanh lá)
+t.goto(-150 + cell_size, 150 - cell_size)
+t.dot(20, "green")
+
+# Điểm kết thúc (đỏ)
+t.goto(-150 + 6 * cell_size, 150 - 5 * cell_size)
+t.dot(20, "red")
+
+t.hideturtle()
+turtle.done()
+```
+
+## 8. Dự án: Xếp hình tetris
+
+```python
+import turtle
+
+def draw_square(x, y, size, color):
+    """Vẽ một ô vuông"""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.color("black", color)
+    t.begin_fill()
+    for i in range(4):
+        t.forward(size)
+        t.left(90)
+    t.end_fill()
+
+# Setup
+screen = turtle.Screen()
+screen.bgcolor("white")
+screen.title("Các khối Tetris")
+
+t = turtle.Turtle()
+t.speed(0)
+
+size = 30
+
+# Khối I (màu cyan)
+for i in range(4):
+    draw_square(-200 + i * size, 200, size, "cyan")
+
+# Khối O (màu vàng)
+for i in range(2):
+    for j in range(2):
+        draw_square(-50 + i * size, 200 - j * size, size, "yellow")
+
+# Khối T (màu tím)
+draw_square(100, 200, size, "purple")
+for i in range(3):
+    draw_square(70 + i * size, 170, size, "purple")
+
+# Khối L (màu cam)
+for i in range(3):
+    draw_square(-200, 50 - i * size, size, "orange")
+draw_square(-170, -10, size, "orange")
+
+# Khối Z (màu đỏ)
+for i in range(2):
+    draw_square(-50 + i * size, 50, size, "red")
+    draw_square(-20 + i * size, 20, size, "red")
+
+# Khối S (màu xanh lá)
+for i in range(2):
+    draw_square(100 + i * size, 50, size, "green")
+    draw_square(70 + i * size, 20, size, "green")
+
+t.hideturtle()
+turtle.done()
+```
+
+## Bài tập thử thách
+
+### Thử thách 1: Pong Game
+Tạo game Pong đơn giản với 2 thanh và một quả bóng
+
+### Thử thách 2: Snake Game
+Tạo game rắn săn mồi cổ điển
+
+### Thử thách 3: Tic-Tac-Toe
+Tạo game X-O với turtle
+
+### Thử thách 4: Vẽ nhân vật Cartoon
+Vẽ một nhân vật cartoon yêu thích (Pokemon, Doraemon, etc.)
+
+### Thử thách 5: Digital Art
+Tạo một tác phẩm nghệ thuật số độc đáo
+
+## Tips cho dự án lớn
+
+1. **Chia nhỏ vấn đề**: Chia dự án thành các hàm nhỏ
+2. **Test từng phần**: Kiểm tra từng hàm trước khi ghép lại
+3. **Comment code**: Ghi chú để dễ hiểu và maintain
+4. **Sử dụng hàm**: Tránh lặp code, viết hàm tái sử dụng
+5. **Tối ưu tốc độ**: Dùng `speed(0)` và `tracer(0)` cho animation phức tạp
+
+## Tổng kết
+
+Trong bài này, bạn đã học:
+- ✅ Tạo đồng hồ analog với kim đồng hồ động
+- ✅ Làm game đua rùa đơn giản
+- ✅ Vẽ các dự án có tính tương tác
+- ✅ Tạo biểu đồ và trực quan hóa dữ liệu
+- ✅ Vẽ các hình phức tạp (cờ, mê cung, tetris)
+- ✅ Kết hợp nhiều kỹ thuật tạo dự án hoàn chỉnh
+
+Chúc bạn thành công với các dự án Turtle của mình! 🐢🎨
