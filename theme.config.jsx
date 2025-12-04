@@ -9,9 +9,6 @@ export default {
       <span style={{ fontWeight: 600, fontSize: '18px' }}>Lập trình Python</span>
     </div>
   ),
-  project: {
-    link: 'https://github.com/your-username/python_gitbook'
-  },
   docsRepositoryBase: 'https://github.com/your-username/python_gitbook/tree/main',
   footer: {
     text: 'Lập trình Python - Bumbii Academy'
@@ -38,5 +35,11 @@ export default {
   },
   toc: {
     backToTop: true
+  },
+  feedback: {
+    content: null
+  },
+  editLink: {
+    component: null
   }
 }
