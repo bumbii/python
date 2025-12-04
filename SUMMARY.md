@@ -47,7 +47,7 @@
 * [Break, Continue và Pass](ngon-ngu-python/break-continue-pass.md)
 * [Enumerate và Zip](ngon-ngu-python/enumerate-zip.md)
 * [Danh sách (List)](ngon-ngu-python/danh-sach-list.md)
-* [Bộ (Tuple)](ngon-ngu-python/tuple.md)
+* [Tuple](ngon-ngu-python/tuple.md)
 * [Từ điển (Dictionary)](ngon-ngu-python/tu-dien-dictionary.md)
 * [Tập hợp (Set)](ngon-ngu-python/set.md)
 * [List Comprehension](ngon-ngu-python/list-comprehension.md)

@@ -2,7 +2,7 @@
 icon: layer-group
 ---
 
-# Bộ (Tuple)
+# Tuple
 
 ## 1. Tuple là gì?
 
