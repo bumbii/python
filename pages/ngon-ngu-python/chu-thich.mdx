@@ -1,0 +1,98 @@
+import YouTube from '../../components/YouTube'
+
+# Ghi chú / Chú thích (Comment)
+
+## 1. Comment là gì?
+
+Khi lập trình, các kỹ sư phần mềm  thường suy nghĩ tìm cách viết code sao cho dễ hiểu nhất. Mặc dù vậy, vẫn có những dòng code hoặc đoạn code mà dù có cố gắng viết rõ ràng thì khi đọc lại cũng sẽ khó hiểu. Hoặc một số đoạn code thì ngay lúc viết, các kỹ sư có thể hiểu nhưng sau một thời gian (khoảng vài tuần, vài tháng hoặc thậm chí có những dự án kéo dài hàng năm) thì khi đọc lại sẽ không nhớ được tại sao code ở thời điểm đó được viết ra như vậy.&#x20;
+
+Ngoài ra, trong các dự án thực tế, các lập trình viên thường phải làm việc nhóm, có những nhóm lên đến hàng chục, thậm chí hàng trăm người. Trong trường hợp đó, rất khó để hiểu được code của nhau vì khi lập trình, mỗi người sẽ có cách tư duy cũng như cách tiếp cận khác nhau cho cùng một vấn đề.
+
+Chính vì vậy, khi viết code, các lập trình viên không chỉ tạo ra những dòng code đẹp, rõ ràng mà họ còn phải viết lại những dòng giải thích đi kèm, để đồng nghiệp hoặc chính bản thân họ khi đọc lại code sẽ dễ hiểu hơn. Trong lập trình thì những dòng giải thích như vậy được gọi là chú thích hoặc phổ biến hơn thì dùng luôn từ Tiếng Anh là "comment". Chính vì comment được viết cho con người đọc nên <mark style="color:red;">**Python sẽ bỏ qua các dòng comment khi chạy code**</mark>.
+
+## 2. Cách viết comment
+
+Trong Python, một dòng chú thích/comment sẽ bắt đầu bằng một ký tự <mark style="color:red;">**`#`**</mark> . Chú thích có thể nằm phía trên hoặc nằm ở cùng dòng với code.
+
+Trong ví dụ dưới, comment được viết ngay ở phía trên dòng code.
+
+```python
+# A day has 24 hours, an hour has 60 minutes, a minute has 60 seconds 
+seconds_per_day = 24 * 60 * 60
+```
+
+Còn ở ví dụ dưới đây, comment được viết trên cùng dòng với code.
+
+```python
+seconds_per_hour = 60 * 60 # An hour has 60 minutes, a minute has 60 seconds 
+```
+
+Khi muốn viết comment trên nhiều dòng thì cứ thêm nhiều dấu `#` ở mỗi đầu dòng.
+
+```python
+# A day has 24 hours.
+# An hour has 60 minutes.
+# A minute has 60 seconds.
+seconds_per_day = 24 * 60 * 60
+```
+
+## 3. Khi nào nên viết comment?
+
+Comment là tốt và cần thiết, đặc biệt trong những dự án lớn và phức tạp, có sự tham gia của nhiều người. Khi đó, số lượng code nhiều và các kỹ sư không thể nhớ hết những gì mình đã viết ra. Hơn nữa, mỗi người sẽ có một suy nghĩ và phong cách viết code, nên rất khó để người khác đọc và hiểu được những đoạn code phức tạp. Tuy nhiên, không phải vì vậy mà chúng ta lạm dụng việc sử dụng comment, nghĩa là viết quá nhiều comment không cần thiết cho những đoạn code dễ hiểu.&#x20;
+
+Một nguyên tắc nên nhớ là cố gắng viết code thật dễ hiểu bắng cách đặt tên biến rõ ràng, sắp xếp code gọn gàng. Khi đó code sẽ tự giải thích cho bản thân nó (Tiếng Anh là self-explained, self-documenting). Và chỉ viết comment cho những đoạn code mà tự bản thân nó không thể hoặc khó thể hiện nó đang làm gì.&#x20;
+
+Dưới đây là một ví dụ về việc viết comment không cần thiết. Code bản thân nó đã rõ ràng, comment trong trường hợp này là dư thừa.
+
+```python
+first_number = 10 # First number
+second_number = 5 # Second number
+
+sum = first_number + second_number # Sum of 2 numbers
+```
+
+## 4. Một số nhầm lẫn về comment trong Python
+
+<mark style="color:red;">**Comment nhiều làm nặng chương trình khi chạy.**</mark>
+
+:hand\_splayed: Điều này không đúng vì Python sẽ bỏ qua tất cả comment nên comment sẽ không tồn tại trong chương trình. Và thực sự thì Python cũng không thể hiểu được những gì con người viết trong comment.
+
+<mark style="color:red;">**Phần giải thích đặt trong 3 dấu nháy kép đóng và 3 dấu nháy kép mở là comment trong Python.**</mark>
+
+:thumbsup: Nhiều bạn mới học Python hoặc thậm chí là một số giáo viên (có cả một số kênh nổi tiếng trên YouTube) nhầm lẫn việc đặt giải thích vào 3 dấu nháy kép sẽ tạo ra một comment trên nhiều dòng. Ví dụ:
+
+```python
+"""
+It's wrong that this is a multiple lines comment.
+In the next example let's see why it's wrong.
+"""
+```
+
+Phần giải thích ở trên không thực sự là một comment, mà là một chuỗi ký tự. Khi chạy chương trình, Python sẽ tạo ra chuỗi này, nhưng do nó không được sử dụng hay gán vào biến nào, nên sẽ lập tức bị hủy đi bởi trình dọn rác (gabage collector).&#x20;
+
+Để thuyết phục hơn, bạn thử copy và chạy đoạn code sau, bạn sẽ thấy lỗi khi chạy. Nghĩa là Python không bỏ qua phần giải thích nằm trong 3 dấu nháy kép. Do đó, nó hoàn toàn không phải là comment.
+
+```python
+"""
+Tôi không phải là comment vì tôi chứa \x
+"""
+print('hello')
+```
+
+Khi chạy đoạn code trên, bạn sẽ thấy lỗi vì Python không bỏ qua phần text trong 3 dấu nháy kép.
+
+***
+
+#### <mark style="color:red;">Tóm tắt</mark>
+
+1. Comment trong Python bắt đầu bằng ký tự `#` .
+2. Python sẽ bỏ qua comment khi chạy code nên comment không làm nặng chương trình.
+3. Comment có thể được viết phía trên hoặc ở cùng dòng với phần code cần được giải thích.
+4. Khi cần viết comment trên nhiều dòng, đặt dấu `#` ở đầu mỗi dòng.&#x20;
+5. Comment là cần thiết để code rõ ràng, nhưng chỉ comment khi thật sự cần thiết.&#x20;
+
+***
+
+## Nội dung bài giảng trên YouTube
+
+<YouTube id="Ff39rJD-aDk" title="Comment trong Python" />
