@@ -2,6 +2,10 @@ import YouTube from '../../components/YouTube'
 
 # Biến (Variable)
 
+
+
+<YouTube id="SGn5AqvHAQA" title="Biến (Variable) trong Python" />
+
 ## 1. Giới thiệu Biến số (Variables)
 
 * Biến số là gì?
@@ -12,13 +16,13 @@ import YouTube from '../../components/YouTube'
     * Để tạo một biến và gán giá trị cho nó, bạn chỉ cần dùng dấu bằng (`=`), hay còn gọi là phép gán (assign).
     *   Ví dụ:
 
-        ```python
-        year = 2025 # Gán số 25 vào biến year
-        next_year = year + 1 # Dùng biến year khi cần
-        print(year) # Dùng biến year khi cần
+    ```python
+    year = 2025 # Gán số 25 vào biến year
+    next_year = year + 1 # Dùng biến year khi cần
+    print(year) # Dùng biến year khi cần
 
-        message = 'Hello Python' # Gán chuỗi "Hello Python" vào biến message
-        ```
+    message = 'Hello Python' # Gán chuỗi "Hello Python" vào biến message
+    ```
 
     `print(year)` sẽ in ra giá trị mà biến `year` đang lưu trữ, trong trường hợp này là `2025`.
 
@@ -31,36 +35,36 @@ import YouTube from '../../components/YouTube'
   * Bạn có thể dùng hàm `type()` để kiểm tra kiểu dữ liệu của biến.
   *   Ví dụ:
 
-      ```python
-      fruit = "apple"
-      print(fruit)
-      type(fruit) # Kết quả sẽ là <class 'str'>
-      ```
+  ```python
+  fruit = "apple"
+  print(fruit)
+  type(fruit) # Kết quả sẽ là <class 'str'>
+  ```
 * Gán lại giá trị:
   * Bạn có thể thay đổi giá trị của một biến bất cứ lúc nào.
   *   Ví dụ:
 
-      ```python
-      fruit = "apple"
-      print(fruit)
-      fruit = "banana" # Gán lại giá trị mới
-      print(fruit) # Kết quả in ra sẽ là banana
-      ```
+  ```python
+  fruit = "apple"
+  print(fruit)
+  fruit = "banana" # Gán lại giá trị mới
+  print(fruit) # Kết quả in ra sẽ là banana
+  ```
 * Gán giá trị cho nhiều biến:
   * Bạn có thể gán nhiều giá trị cho nhiều biến trên cùng một dòng.
   *   Ví dụ:
 
-      ```python
-      apple, banana, orange = "apple", "banana", "orange"
-      print(apple, banana, orange)
-      ```
+  ```python
+  apple, banana, orange = "apple", "banana", "orange"
+  print(apple, banana, orange)
+  ```
   * Hoặc gán cùng một giá trị cho nhiều biến.
   *   Ví dụ:
 
-      ```python
-      apple = banana = orange = "fruit"
-      print(apple, banana, orange)
-      ```
+  ```python
+  apple = banana = orange = "fruit"
+  print(apple, banana, orange)
+  ```
 
 ***
 
@@ -86,23 +90,17 @@ import YouTube from '../../components/YouTube'
   * Bạn có thể dùng dấu `+` để nối hai chuỗi lại với nhau.
   *   Ví dụ:
 
-      ```python
-      message = "I love " + "Python."
-      print(message) # Kết quả là "I love Python."
-      ```
+  ```python
+  message = "I love " + "Python."
+  print(message) # Kết quả là "I love Python."
+  ```
   * Lưu ý quan trọng: Bạn không thể nối một chuỗi với một số bằng cách này, nó sẽ gây ra lỗi.
 * In nhiều biến:
   * Để in nhiều biến cùng lúc, bạn chỉ cần đặt chúng cách nhau bởi dấu phẩy.
   *   Ví dụ:
 
-      ```python
-      python = "Python"
-      year = 2025
-      print(python, year) # Kết quả là "Python 2025"
-      ```
-
-***
-
-## Nội dung bài giảng trên YouTube
-
-<YouTube id="SGn5AqvHAQA" title="Biến (Variable) trong Python" />
+    ```python
+    python = "Python"
+    year = 2025
+    print(python, year) # Kết quả là "Python 2025"
+    ```
