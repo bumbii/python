@@ -1,0 +1,9 @@
+{
+  "index": "Giới thiệu OOP",
+  "classes-objects": "Classes và Objects",
+  "constructor-methods": "Constructor và Methods",
+  "inheritance": "Kế thừa (Inheritance)",
+  "encapsulation": "Đóng gói (Encapsulation)",
+  "polymorphism": "Đa hình (Polymorphism)",
+  "special-methods": "Special Methods (Magic Methods)"
+}

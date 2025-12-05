@@ -1,0 +1,559 @@
+# Đóng gói (Encapsulation)
+
+## Encapsulation là gì?
+
+**Encapsulation (Đóng gói)** là việc:
+1. **Gom nhóm** dữ liệu (thuộc tính) và các hành động (phương thức) liên quan vào một đơn vị (class)
+2. **Che giấu** chi tiết bên trong, chỉ hiển thị những gì cần thiết ra bên ngoài
+3. **Bảo vệ** dữ liệu khỏi việc truy cập và thay đổi trực tiếp không mong muốn
+
+## Tại sao cần Encapsulation?
+
+### 1. **Bảo vệ dữ liệu**
+Ngăn chặn việc thay đổi dữ liệu một cách tùy tiện từ bên ngoài.
+
+### 2. **Dễ bảo trì**
+Thay đổi cách thức hoạt động bên trong mà không ảnh hưởng code bên ngoài.
+
+### 3. **Kiểm soát truy cập**
+Kiểm tra và validate dữ liệu trước khi thay đổi.
+
+### 4. **Giảm độ phức tạp**
+Người dùng chỉ cần biết "cái gì" mà không cần biết "như thế nào".
+
+## Ví dụ minh họa
+
+Hãy tưởng tượng một chiếc điện thoại:
+- Bạn chỉ cần nhấn nút để gọi điện (interface công khai)
+- Bạn không cần biết bên trong hoạt động thế nào (chi tiết được che giấu)
+- Bạn không thể trực tiếp can thiệp vào mạch điện (dữ liệu được bảo vệ)
+
+## Access Modifiers trong Python
+
+Python sử dụng quy ước đặt tên để phân biệt mức độ truy cập:
+
+| Loại | Ký hiệu | Truy cập | Ý nghĩa |
+|------|---------|----------|---------|
+| **Public** | `name` | Mọi nơi | Công khai, ai cũng dùng được |
+| **Protected** | `_name` | Trong class và subclass | Bảo vệ, chỉ nên dùng trong class |
+| **Private** | `__name` | Chỉ trong class | Riêng tư, chỉ class đó dùng |
+
+**Lưu ý:** Đây chỉ là quy ước, Python không thực sự ngăn chặn hoàn toàn việc truy cập.
+
+## 1. Public Members (Thành viên công khai)
+
+Có thể truy cập từ mọi nơi.
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Public
+        self.age = age    # Public
+
+    def introduce(self):  # Public method
+        print(f"Tôi là {self.name}, {self.age} tuổi")
+
+person = Person("An", 20)
+print(person.name)  # Truy cập trực tiếp - OK
+person.age = 25     # Thay đổi trực tiếp - OK
+person.introduce()  # Tôi là An, 25 tuổi
+```
+
+## 2. Protected Members (Thành viên bảo vệ)
+
+Sử dụng `_` (một dấu gạch dưới) ở đầu tên.
+
+```python
+class BankAccount:
+    def __init__(self, account_number, balance):
+        self._account_number = account_number  # Protected
+        self._balance = balance                # Protected
+
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+            print(f"Đã nạp {amount:,}đ")
+
+    def _validate_amount(self, amount):  # Protected method
+        return amount > 0
+
+account = BankAccount("123456", 1000000)
+
+# Vẫn có thể truy cập nhưng KHÔNG NÊN
+print(account._balance)  # 1000000 - Không khuyến khích!
+
+# Nên dùng qua method
+account.deposit(500000)
+```
+
+**Quy ước:** `_name` có nghĩa là "Đây là internal, bạn không nên dùng trực tiếp từ bên ngoài".
+
+## 3. Private Members (Thành viên riêng tư)
+
+Sử dụng `__` (hai dấu gạch dưới) ở đầu tên.
+
+```python
+class BankAccount:
+    def __init__(self, account_number, balance):
+        self.__account_number = account_number  # Private
+        self.__balance = balance                # Private
+
+    def deposit(self, amount):
+        if self.__validate_amount(amount):
+            self.__balance += amount
+            print(f"Đã nạp {amount:,}đ. Số dư: {self.__balance:,}đ")
+
+    def withdraw(self, amount):
+        if self.__validate_amount(amount):
+            if amount <= self.__balance:
+                self.__balance -= amount
+                print(f"Đã rút {amount:,}đ. Số dư: {self.__balance:,}đ")
+            else:
+                print("Số dư không đủ!")
+
+    def get_balance(self):  # Public method để truy cập private data
+        return self.__balance
+
+    def __validate_amount(self, amount):  # Private method
+        return amount > 0
+
+account = BankAccount("123456", 1000000)
+
+# Không thể truy cập trực tiếp
+# print(account.__balance)  # Lỗi AttributeError!
+
+# Phải dùng qua public method
+print(account.get_balance())  # 1000000
+account.deposit(500000)       # Đã nạp 500,000đ. Số dư: 1,500,000đ
+```
+
+## Name Mangling
+
+Python thực hiện "name mangling" với private attributes: `__name` → `_ClassName__name`
+
+```python
+class MyClass:
+    def __init__(self):
+        self.__private = "Private value"
+
+obj = MyClass()
+# print(obj.__private)  # Lỗi!
+
+# Vẫn có thể truy cập bằng cách này (nhưng KHÔNG NÊN!)
+print(obj._MyClass__private)  # Private value
+```
+
+## Getter và Setter Methods
+
+Cách truyền thống để truy cập và thay đổi private attributes.
+
+```python
+class Student:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+        self.__gpa = 0.0
+
+    # Getter methods
+    def get_name(self):
+        return self.__name
+
+    def get_age(self):
+        return self.__age
+
+    def get_gpa(self):
+        return self.__gpa
+
+    # Setter methods
+    def set_name(self, name):
+        if len(name) > 0:
+            self.__name = name
+        else:
+            print("Tên không hợp lệ!")
+
+    def set_age(self, age):
+        if 0 < age < 150:
+            self.__age = age
+        else:
+            print("Tuổi không hợp lệ!")
+
+    def set_gpa(self, gpa):
+        if 0.0 <= gpa <= 4.0:
+            self.__gpa = gpa
+        else:
+            print("GPA phải từ 0.0 đến 4.0!")
+
+student = Student("An", 20)
+print(student.get_name())  # An
+
+student.set_gpa(3.5)
+print(student.get_gpa())   # 3.5
+
+student.set_gpa(5.0)       # GPA phải từ 0.0 đến 4.0!
+```
+
+## Property Decorator (Cách Pythonic)
+
+Cách hiện đại và được khuyên dùng trong Python.
+
+```python
+class Student:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+        self.__gpa = 0.0
+
+    @property
+    def name(self):
+        """Getter cho name"""
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        """Setter cho name"""
+        if len(value) > 0:
+            self.__name = value
+        else:
+            raise ValueError("Tên không được rỗng!")
+
+    @property
+    def age(self):
+        """Getter cho age"""
+        return self.__age
+
+    @age.setter
+    def age(self, value):
+        """Setter cho age"""
+        if 0 < value < 150:
+            self.__age = value
+        else:
+            raise ValueError("Tuổi không hợp lệ!")
+
+    @property
+    def gpa(self):
+        """Getter cho gpa"""
+        return self.__gpa
+
+    @gpa.setter
+    def gpa(self, value):
+        """Setter cho gpa"""
+        if 0.0 <= value <= 4.0:
+            self.__gpa = value
+        else:
+            raise ValueError("GPA phải từ 0.0 đến 4.0!")
+
+# Sử dụng như thuộc tính thông thường
+student = Student("An", 20)
+print(student.name)  # An (gọi getter)
+
+student.gpa = 3.5    # Gọi setter
+print(student.gpa)   # 3.5
+
+try:
+    student.gpa = 5.0  # ValueError: GPA phải từ 0.0 đến 4.0!
+except ValueError as e:
+    print(f"Lỗi: {e}")
+```
+
+## Read-only Property
+
+Tạo thuộc tính chỉ đọc (không có setter).
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+
+    @property
+    def radius(self):
+        return self.__radius
+
+    @radius.setter
+    def radius(self, value):
+        if value > 0:
+            self.__radius = value
+        else:
+            raise ValueError("Bán kính phải > 0")
+
+    @property
+    def area(self):
+        """Read-only property - chỉ có getter"""
+        return 3.14159 * self.__radius ** 2
+
+    @property
+    def circumference(self):
+        """Read-only property"""
+        return 2 * 3.14159 * self.__radius
+
+circle = Circle(5)
+print(f"Bán kính: {circle.radius}")           # 5
+print(f"Diện tích: {circle.area:.2f}")        # 78.54
+print(f"Chu vi: {circle.circumference:.2f}")  # 31.42
+
+circle.radius = 10  # OK - có setter
+print(f"Diện tích mới: {circle.area:.2f}")    # 314.16
+
+# circle.area = 100  # Lỗi! area là read-only
+```
+
+## Ví dụ thực tế: Class BankAccount
+
+```python
+class BankAccount:
+    __interest_rate = 0.05  # Private class attribute
+
+    def __init__(self, account_number, owner_name, balance=0):
+        self.__account_number = account_number  # Private
+        self.__owner_name = owner_name          # Private
+        self.__balance = balance                # Private
+        self.__transaction_history = []         # Private
+
+    @property
+    def account_number(self):
+        """Số tài khoản - chỉ đọc"""
+        return self.__account_number
+
+    @property
+    def owner_name(self):
+        """Tên chủ tài khoản"""
+        return self.__owner_name
+
+    @owner_name.setter
+    def owner_name(self, name):
+        if len(name) > 0:
+            self.__owner_name = name
+        else:
+            raise ValueError("Tên không được rỗng!")
+
+    @property
+    def balance(self):
+        """Số dư - chỉ đọc"""
+        return self.__balance
+
+    def deposit(self, amount):
+        """Nạp tiền"""
+        if self.__validate_amount(amount):
+            self.__balance += amount
+            self.__add_transaction("Nạp tiền", amount)
+            print(f"Đã nạp {amount:,}đ. Số dư mới: {self.__balance:,}đ")
+            return True
+        return False
+
+    def withdraw(self, amount):
+        """Rút tiền"""
+        if not self.__validate_amount(amount):
+            return False
+
+        if amount > self.__balance:
+            print("Số dư không đủ!")
+            return False
+
+        self.__balance -= amount
+        self.__add_transaction("Rút tiền", amount)
+        print(f"Đã rút {amount:,}đ. Số dư còn lại: {self.__balance:,}đ")
+        return True
+
+    def transfer(self, other_account, amount):
+        """Chuyển tiền"""
+        if self.withdraw(amount):
+            other_account.deposit(amount)
+            print(f"Đã chuyển {amount:,}đ cho TK {other_account.account_number}")
+            return True
+        return False
+
+    def add_interest(self):
+        """Tính lãi"""
+        interest = self.__balance * BankAccount.__interest_rate
+        self.__balance += interest
+        self.__add_transaction("Lãi suất", interest)
+        print(f"Đã cộng lãi {interest:,}đ. Số dư mới: {self.__balance:,}đ")
+
+    def get_transaction_history(self):
+        """Xem lịch sử giao dịch"""
+        print(f"\n=== LỊCH SỬ GIAO DỊCH - TK {self.__account_number} ===")
+        for transaction in self.__transaction_history:
+            print(f"{transaction['type']}: {transaction['amount']:,}đ")
+
+    def __validate_amount(self, amount):
+        """Private method: Kiểm tra số tiền hợp lệ"""
+        if amount <= 0:
+            print("Số tiền phải lớn hơn 0!")
+            return False
+        return True
+
+    def __add_transaction(self, transaction_type, amount):
+        """Private method: Thêm giao dịch vào lịch sử"""
+        self.__transaction_history.append({
+            'type': transaction_type,
+            'amount': amount
+        })
+
+    @classmethod
+    def set_interest_rate(cls, rate):
+        """Class method: Đặt lãi suất chung"""
+        if 0 <= rate <= 1:
+            cls.__interest_rate = rate
+            print(f"Đã đặt lãi suất mới: {rate*100}%")
+        else:
+            print("Lãi suất không hợp lệ!")
+
+# Sử dụng
+account1 = BankAccount("001", "Nguyễn Văn A", 5000000)
+account2 = BankAccount("002", "Trần Thị B", 3000000)
+
+# Truy cập qua property
+print(f"Số TK: {account1.account_number}")  # 001 - read-only
+print(f"Chủ TK: {account1.owner_name}")     # Nguyễn Văn A
+print(f"Số dư: {account1.balance:,}đ")      # 5,000,000đ - read-only
+
+# Không thể thay đổi trực tiếp
+# account1.balance = 10000000  # Lỗi! balance là read-only
+
+# Phải dùng qua method
+account1.deposit(1000000)
+account1.withdraw(500000)
+account1.transfer(account2, 1000000)
+account1.add_interest()
+
+account1.get_transaction_history()
+```
+
+## Ví dụ: Class Temperature với Validation
+
+```python
+class Temperature:
+    """Class nhiệt độ với validation"""
+    ABSOLUTE_ZERO = -273.15  # Public constant
+
+    def __init__(self, celsius=0):
+        self.__celsius = None
+        self.celsius = celsius  # Dùng setter để validate
+
+    @property
+    def celsius(self):
+        """Nhiệt độ Celsius"""
+        return self.__celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        """Setter với validation"""
+        if value < Temperature.ABSOLUTE_ZERO:
+            raise ValueError(
+                f"Nhiệt độ không thể thấp hơn {Temperature.ABSOLUTE_ZERO}°C"
+            )
+        self.__celsius = value
+
+    @property
+    def fahrenheit(self):
+        """Nhiệt độ Fahrenheit - tính từ Celsius"""
+        return self.__celsius * 9/5 + 32
+
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        """Đặt nhiệt độ từ Fahrenheit"""
+        celsius = (value - 32) * 5/9
+        self.celsius = celsius  # Dùng setter của celsius để validate
+
+    @property
+    def kelvin(self):
+        """Nhiệt độ Kelvin"""
+        return self.__celsius + 273.15
+
+    @kelvin.setter
+    def kelvin(self, value):
+        """Đặt nhiệt độ từ Kelvin"""
+        if value < 0:
+            raise ValueError("Nhiệt độ Kelvin không thể âm!")
+        self.celsius = value - 273.15
+
+    def __str__(self):
+        return (f"{self.celsius:.2f}°C = "
+                f"{self.fahrenheit:.2f}°F = "
+                f"{self.kelvin:.2f}K")
+
+# Sử dụng
+temp = Temperature(25)
+print(temp)  # 25.00°C = 77.00°F = 298.15K
+
+temp.fahrenheit = 98.6
+print(temp)  # 37.00°C = 98.60°F = 310.15K
+
+temp.kelvin = 273.15
+print(temp)  # 0.00°C = 32.00°F = 273.15K
+
+try:
+    temp.celsius = -300  # ValueError!
+except ValueError as e:
+    print(f"Lỗi: {e}")
+```
+
+## Computed Properties
+
+Properties được tính toán từ các thuộc tính khác.
+
+```python
+class Rectangle:
+    def __init__(self, width, height):
+        self.__width = width
+        self.__height = height
+
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        if value > 0:
+            self.__width = value
+        else:
+            raise ValueError("Chiều rộng phải > 0")
+
+    @property
+    def height(self):
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        if value > 0:
+            self.__height = value
+        else:
+            raise ValueError("Chiều cao phải > 0")
+
+    @property
+    def area(self):
+        """Computed property"""
+        return self.__width * self.__height
+
+    @property
+    def perimeter(self):
+        """Computed property"""
+        return 2 * (self.__width + self.__height)
+
+    @property
+    def diagonal(self):
+        """Computed property"""
+        return (self.__width ** 2 + self.__height ** 2) ** 0.5
+
+rect = Rectangle(5, 3)
+print(f"Diện tích: {rect.area}")      # 15
+print(f"Chu vi: {rect.perimeter}")    # 16
+print(f"Đường chéo: {rect.diagonal:.2f}")  # 5.83
+
+# Khi thay đổi width/height, các computed properties tự động cập nhật
+rect.width = 10
+print(f"Diện tích mới: {rect.area}")  # 30
+```
+
+## Tổng kết
+
+- **Encapsulation** giúp bảo vệ dữ liệu và kiểm soát truy cập
+- Python sử dụng quy ước đặt tên:
+  - `name`: Public (công khai)
+  - `_name`: Protected (bảo vệ)
+  - `__name`: Private (riêng tư)
+- **Property decorator** là cách Pythonic để tạo getter/setter
+- Dùng validation trong setter để đảm bảo dữ liệu hợp lệ
+- **Computed properties** tính toán giá trị từ các thuộc tính khác
+- Encapsulation làm code dễ bảo trì và an toàn hơn
+
+Trong bài tiếp theo, chúng ta sẽ tìm hiểu về **Polymorphism** (Đa hình)!

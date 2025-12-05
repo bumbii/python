@@ -1,0 +1,480 @@
+# Constructor và Methods
+
+## Constructor là gì?
+
+**Constructor** (Hàm khởi tạo) là một phương thức đặc biệt được gọi tự động khi tạo một object mới. Trong Python, constructor là phương thức `__init__()`.
+
+### Mục đích của Constructor:
+- Khởi tạo giá trị ban đầu cho các thuộc tính
+- Thực hiện các thiết lập cần thiết khi tạo object
+- Chuẩn bị object để sử dụng
+
+## Cú pháp Constructor
+
+```python
+class ClassName:
+    def __init__(self, parameters):
+        # Khởi tạo thuộc tính
+        self.attribute = value
+```
+
+## Ví dụ cơ bản
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        print(f"Đã tạo object Person: {name}")
+
+# Khi tạo object, __init__() được gọi tự động
+person1 = Person("An", 20)  # Đã tạo object Person: An
+person2 = Person("Bình", 25)  # Đã tạo object Person: Bình
+```
+
+## Constructor với giá trị mặc định
+
+```python
+class Student:
+    def __init__(self, name, grade="10A", gpa=0.0):
+        self.name = name
+        self.grade = grade
+        self.gpa = gpa
+
+# Truyền đầy đủ tham số
+s1 = Student("An", "11B", 8.5)
+
+# Sử dụng giá trị mặc định
+s2 = Student("Bình")  # grade="10A", gpa=0.0
+
+# Truyền một số tham số
+s3 = Student("Cường", gpa=7.5)  # grade="10A"
+
+print(f"{s1.name}: {s1.grade}, GPA: {s1.gpa}")  # An: 11B, GPA: 8.5
+print(f"{s2.name}: {s2.grade}, GPA: {s2.gpa}")  # Bình: 10A, GPA: 0.0
+print(f"{s3.name}: {s3.grade}, GPA: {s3.gpa}")  # Cường: 10A, GPA: 7.5
+```
+
+## Constructor với validation (kiểm tra dữ liệu)
+
+```python
+class BankAccount:
+    def __init__(self, account_number, balance=0):
+        if balance < 0:
+            raise ValueError("Số dư không thể âm!")
+        if len(account_number) < 6:
+            raise ValueError("Số tài khoản phải có ít nhất 6 ký tự!")
+
+        self.account_number = account_number
+        self.balance = balance
+
+# Hợp lệ
+account1 = BankAccount("123456", 1000000)
+
+# Không hợp lệ - sẽ báo lỗi
+try:
+    account2 = BankAccount("123", 500000)  # Lỗi: số TK quá ngắn
+except ValueError as e:
+    print(f"Lỗi: {e}")
+
+try:
+    account3 = BankAccount("123456", -1000)  # Lỗi: số dư âm
+except ValueError as e:
+    print(f"Lỗi: {e}")
+```
+
+## Methods (Phương thức)
+
+Methods là các hàm được định nghĩa bên trong class. Có 3 loại methods chính:
+
+### 1. Instance Methods (Phương thức thể hiện)
+
+Phương thức thường gặp nhất, làm việc với instance (object) cụ thể.
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):  # Instance method
+        return 3.14159 * self.radius ** 2
+
+    def circumference(self):  # Instance method
+        return 2 * 3.14159 * self.radius
+
+    def scale(self, factor):  # Instance method
+        self.radius *= factor
+
+circle = Circle(5)
+print(f"Diện tích: {circle.area()}")  # 78.53975
+print(f"Chu vi: {circle.circumference()}")  # 31.4159
+
+circle.scale(2)  # Tăng bán kính lên 2 lần
+print(f"Bán kính mới: {circle.radius}")  # 10
+```
+
+### 2. Class Methods (Phương thức lớp)
+
+Làm việc với class, không phải với instance cụ thể. Sử dụng decorator `@classmethod`.
+
+```python
+class Employee:
+    company = "Tech Corp"  # Class attribute
+    employee_count = 0
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+        Employee.employee_count += 1
+
+    @classmethod
+    def get_employee_count(cls):
+        return cls.employee_count
+
+    @classmethod
+    def set_company(cls, company_name):
+        cls.company = company_name
+
+# Tạo nhân viên
+emp1 = Employee("An", 10000000)
+emp2 = Employee("Bình", 12000000)
+
+# Gọi class method
+print(Employee.get_employee_count())  # 2
+Employee.set_company("New Tech Corp")
+print(Employee.company)  # New Tech Corp
+```
+
+**Khi nào dùng class method:**
+- Khi cần truy cập/thay đổi class attributes
+- Tạo alternative constructors (hàm khởi tạo thay thế)
+
+### 3. Static Methods (Phương thức tĩnh)
+
+Không truy cập vào instance hay class. Sử dụng decorator `@staticmethod`.
+
+```python
+class MathUtils:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+    @staticmethod
+    def is_even(num):
+        return num % 2 == 0
+
+    @staticmethod
+    def factorial(n):
+        if n <= 1:
+            return 1
+        return n * MathUtils.factorial(n - 1)
+
+# Gọi static method không cần tạo object
+print(MathUtils.add(5, 3))  # 8
+print(MathUtils.is_even(10))  # True
+print(MathUtils.factorial(5))  # 120
+```
+
+**Khi nào dùng static method:**
+- Hàm tiện ích không cần truy cập instance hoặc class
+- Nhóm các hàm liên quan vào một class
+
+## So sánh 3 loại Methods
+
+```python
+class MyClass:
+    class_var = "Class Variable"
+
+    def __init__(self, value):
+        self.instance_var = value
+
+    # Instance Method
+    def instance_method(self):
+        return f"Instance: {self.instance_var}, Class: {self.class_var}"
+
+    # Class Method
+    @classmethod
+    def class_method(cls):
+        return f"Class: {cls.class_var}"
+
+    # Static Method
+    @staticmethod
+    def static_method():
+        return "Static method - không truy cập class hay instance"
+
+obj = MyClass("Instance Value")
+
+print(obj.instance_method())  # Instance: Instance Value, Class: Class Variable
+print(MyClass.class_method())  # Class: Class Variable
+print(MyClass.static_method())  # Static method - không truy cập class hay instance
+```
+
+| Loại Method | Tham số đầu | Truy cập instance? | Truy cập class? | Gọi từ |
+|-------------|-------------|-------------------|-----------------|--------|
+| Instance    | `self`      | ✅ Có             | ✅ Có           | Object |
+| Class       | `cls`       | ❌ Không          | ✅ Có           | Class/Object |
+| Static      | Không       | ❌ Không          | ❌ Không        | Class/Object |
+
+## Alternative Constructor với Class Method
+
+```python
+class Date:
+    def __init__(self, day, month, year):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    @classmethod
+    def from_string(cls, date_string):
+        """Tạo Date từ string định dạng 'dd-mm-yyyy'"""
+        day, month, year = map(int, date_string.split('-'))
+        return cls(day, month, year)
+
+    @classmethod
+    def today(cls):
+        """Tạo Date với ngày hôm nay"""
+        import datetime
+        today = datetime.date.today()
+        return cls(today.day, today.month, today.year)
+
+    def display(self):
+        print(f"{self.day:02d}/{self.month:02d}/{self.year}")
+
+# Cách thông thường
+date1 = Date(25, 12, 2024)
+date1.display()  # 25/12/2024
+
+# Dùng class method
+date2 = Date.from_string("15-08-2024")
+date2.display()  # 15/08/2024
+
+date3 = Date.today()
+date3.display()  # Ngày hôm nay
+```
+
+## Ví dụ thực tế: Class Product
+
+```python
+class Product:
+    # Class attribute
+    tax_rate = 0.1  # 10% VAT
+
+    def __init__(self, name, price, quantity=0):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+    def get_total_price(self):
+        """Instance method: Tính tổng giá trị"""
+        return self.price * self.quantity
+
+    def get_price_with_tax(self):
+        """Instance method: Tính giá có thuế"""
+        return self.price * (1 + Product.tax_rate)
+
+    def add_stock(self, amount):
+        """Instance method: Thêm hàng vào kho"""
+        if amount > 0:
+            self.quantity += amount
+            print(f"Đã thêm {amount} sản phẩm. Tồn kho: {self.quantity}")
+
+    def sell(self, amount):
+        """Instance method: Bán hàng"""
+        if amount > self.quantity:
+            print("Không đủ hàng trong kho!")
+            return False
+        self.quantity -= amount
+        total = amount * self.get_price_with_tax()
+        print(f"Đã bán {amount} sản phẩm. Tổng tiền: {total:,.0f}đ")
+        return True
+
+    @classmethod
+    def set_tax_rate(cls, rate):
+        """Class method: Thay đổi thuế suất cho tất cả sản phẩm"""
+        cls.tax_rate = rate
+        print(f"Đã đổi thuế suất thành {rate*100}%")
+
+    @staticmethod
+    def is_valid_price(price):
+        """Static method: Kiểm tra giá hợp lệ"""
+        return price > 0
+
+    def __str__(self):
+        """Special method: Hiển thị thông tin sản phẩm"""
+        return f"{self.name} - Giá: {self.price:,}đ - Tồn kho: {self.quantity}"
+
+# Sử dụng
+product = Product("Laptop Dell", 15000000, 10)
+print(product)  # Laptop Dell - Giá: 15,000,000đ - Tồn kho: 10
+
+product.add_stock(5)  # Đã thêm 5 sản phẩm. Tồn kho: 15
+product.sell(3)  # Đã bán 3 sản phẩm. Tổng tiền: 49,500,000đ
+
+# Thay đổi thuế suất cho tất cả sản phẩm
+Product.set_tax_rate(0.08)  # Đã đổi thuế suất thành 8.0%
+
+# Kiểm tra giá hợp lệ
+print(Product.is_valid_price(15000000))  # True
+print(Product.is_valid_price(-100))  # False
+```
+
+## Getter và Setter Methods
+
+```python
+class Temperature:
+    def __init__(self, celsius=0):
+        self._celsius = celsius  # Protected attribute
+
+    def get_celsius(self):
+        """Getter method"""
+        return self._celsius
+
+    def set_celsius(self, value):
+        """Setter method"""
+        if value < -273.15:
+            raise ValueError("Nhiệt độ không thể thấp hơn -273.15°C")
+        self._celsius = value
+
+    def get_fahrenheit(self):
+        """Chuyển đổi sang Fahrenheit"""
+        return self._celsius * 9/5 + 32
+
+    def set_fahrenheit(self, value):
+        """Đặt nhiệt độ từ Fahrenheit"""
+        celsius = (value - 32) * 5/9
+        self.set_celsius(celsius)
+
+temp = Temperature(25)
+print(f"Celsius: {temp.get_celsius()}°C")  # 25°C
+print(f"Fahrenheit: {temp.get_fahrenheit()}°F")  # 77.0°F
+
+temp.set_fahrenheit(98.6)  # Đặt theo Fahrenheit
+print(f"Celsius: {temp.get_celsius():.1f}°C")  # 37.0°C
+```
+
+## Property Decorator (Cách Pythonic)
+
+```python
+class Temperature:
+    def __init__(self, celsius=0):
+        self._celsius = celsius
+
+    @property
+    def celsius(self):
+        """Getter"""
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        """Setter"""
+        if value < -273.15:
+            raise ValueError("Nhiệt độ không thể thấp hơn -273.15°C")
+        self._celsius = value
+
+    @property
+    def fahrenheit(self):
+        """Getter cho Fahrenheit"""
+        return self._celsius * 9/5 + 32
+
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        """Setter cho Fahrenheit"""
+        self.celsius = (value - 32) * 5/9
+
+# Sử dụng như thuộc tính thông thường
+temp = Temperature(25)
+print(temp.celsius)  # 25
+print(temp.fahrenheit)  # 77.0
+
+temp.celsius = 30  # Dùng setter
+print(temp.fahrenheit)  # 86.0
+
+temp.fahrenheit = 32  # Dùng setter
+print(temp.celsius)  # 0.0
+```
+
+## Method Chaining
+
+```python
+class Calculator:
+    def __init__(self):
+        self.value = 0
+
+    def add(self, num):
+        self.value += num
+        return self  # Trả về chính object
+
+    def subtract(self, num):
+        self.value -= num
+        return self
+
+    def multiply(self, num):
+        self.value *= num
+        return self
+
+    def divide(self, num):
+        if num != 0:
+            self.value /= num
+        return self
+
+    def result(self):
+        return self.value
+
+# Method chaining
+calc = Calculator()
+result = calc.add(10).multiply(5).subtract(20).divide(3).result()
+print(result)  # 10.0
+# Tương đương: ((10 * 5) - 20) / 3 = 10
+```
+
+## Bài tập thực hành
+
+### Bài 1: Class ShoppingCart
+
+```python
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, name, price, quantity=1):
+        """Thêm sản phẩm vào giỏ"""
+        self.items.append({
+            'name': name,
+            'price': price,
+            'quantity': quantity
+        })
+        return self
+
+    def get_total(self):
+        """Tính tổng tiền"""
+        return sum(item['price'] * item['quantity'] for item in self.items)
+
+    def display_cart(self):
+        """Hiển thị giỏ hàng"""
+        print("=== GIỎ HÀNG ===")
+        for i, item in enumerate(self.items, 1):
+            total = item['price'] * item['quantity']
+            print(f"{i}. {item['name']} x{item['quantity']} = {total:,}đ")
+        print(f"Tổng cộng: {self.get_total():,}đ")
+
+    @staticmethod
+    def format_currency(amount):
+        """Format số tiền"""
+        return f"{amount:,.0f}đ"
+
+# Test
+cart = ShoppingCart()
+cart.add_item("Laptop", 15000000).add_item("Mouse", 200000, 2).add_item("Keyboard", 500000)
+cart.display_cart()
+```
+
+## Tổng kết
+
+- `__init__()` là constructor, được gọi tự động khi tạo object
+- **Instance methods** làm việc với object cụ thể (tham số `self`)
+- **Class methods** làm việc với class (`@classmethod`, tham số `cls`)
+- **Static methods** là hàm tiện ích (`@staticmethod`, không có `self` hay `cls`)
+- **Property decorator** giúp tạo getter/setter theo cách Pythonic
+- **Method chaining** cho phép gọi nhiều method liên tiếp
+
+Trong bài tiếp theo, chúng ta sẽ tìm hiểu về **Inheritance** (Kế thừa)!

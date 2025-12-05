@@ -1,0 +1,448 @@
+# Classes và Objects
+
+## Class là gì?
+
+**Class (Lớp)** là một bản thiết kế (blueprint) hoặc khuôn mẫu để tạo ra các objects. Class định nghĩa:
+- **Thuộc tính (attributes)**: Dữ liệu mà object sẽ có
+- **Phương thức (methods)**: Các hành động mà object có thể thực hiện
+
+## Object là gì?
+
+**Object (Đối tượng)** là một thể hiện cụ thể (instance) được tạo từ class. Mỗi object có:
+- Dữ liệu riêng (giá trị của các thuộc tính)
+- Có thể sử dụng các phương thức của class
+
+## Ví dụ minh họa
+
+Hãy tưởng tượng:
+- **Class** = Bản vẽ thiết kế nhà
+- **Object** = Ngôi nhà thực tế được xây dựng theo bản vẽ
+
+Từ một bản vẽ (class), bạn có thể xây nhiều ngôi nhà (objects), mỗi ngôi có màu sơn, nội thất khác nhau.
+
+## Cú pháp tạo Class
+
+```python
+class TenClass:
+    # Nội dung của class
+    pass
+```
+
+**Quy tắc đặt tên class:**
+- Bắt đầu bằng chữ cái viết hoa
+- Sử dụng PascalCase (VietHoaChuCaiDau)
+- Nên đặt tên có ý nghĩa
+
+```python
+# ✅ Đúng
+class ConNguoi:
+    pass
+
+class HocSinh:
+    pass
+
+class XeHoi:
+    pass
+
+# ❌ Sai
+class connguoi:    # Không viết hoa chữ cái đầu
+    pass
+
+class Xe_Hoi:      # Không dùng dấu gạch dưới
+    pass
+```
+
+## Ví dụ 1: Class đơn giản
+
+```python
+class Dog:
+    # Thuộc tính của class
+    species = "Canis familiaris"
+
+    # Phương thức
+    def bark(self):
+        print("Gâu gâu!")
+
+# Tạo object từ class Dog
+dog1 = Dog()
+dog2 = Dog()
+
+# Truy cập thuộc tính
+print(dog1.species)  # Canis familiaris
+print(dog2.species)  # Canis familiaris
+
+# Gọi phương thức
+dog1.bark()  # Gâu gâu!
+dog2.bark()  # Gâu gâu!
+```
+
+## Thuộc tính (Attributes)
+
+### 1. Class Attributes (Thuộc tính lớp)
+Được chia sẻ bởi tất cả các objects của class.
+
+```python
+class Circle:
+    pi = 3.14159  # Class attribute
+
+c1 = Circle()
+c2 = Circle()
+
+print(c1.pi)  # 3.14159
+print(c2.pi)  # 3.14159
+
+# Thay đổi class attribute
+Circle.pi = 3.14
+print(c1.pi)  # 3.14
+print(c2.pi)  # 3.14
+```
+
+### 2. Instance Attributes (Thuộc tính thể hiện)
+Mỗi object có giá trị riêng. Được định nghĩa trong phương thức `__init__()`.
+
+```python
+class Dog:
+    def __init__(self, name, age):
+        self.name = name  # Instance attribute
+        self.age = age    # Instance attribute
+
+dog1 = Dog("Buddy", 3)
+dog2 = Dog("Max", 5)
+
+print(dog1.name)  # Buddy
+print(dog2.name)  # Max
+print(dog1.age)   # 3
+print(dog2.age)   # 5
+```
+
+## Phương thức `__init__()` (Constructor)
+
+`__init__()` là phương thức đặc biệt được gọi tự động khi tạo object mới.
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        print(f"Đã tạo người mới: {name}")
+
+# Khi tạo object, __init__() được gọi tự động
+person1 = Person("An", 20)  # Đã tạo người mới: An
+```
+
+### Tham số `self`
+
+`self` đại diện cho object hiện tại. Bạn phải đặt `self` làm tham số đầu tiên của mọi phương thức.
+
+```python
+class Cat:
+    def __init__(self, name):
+        self.name = name  # self.name là thuộc tính của object
+
+    def meow(self):
+        print(f"{self.name} nói: Meo meo!")
+
+cat1 = Cat("Kitty")
+cat1.meow()  # Kitty nói: Meo meo!
+```
+
+**Lưu ý:** Khi gọi phương thức, bạn không cần truyền `self`, Python tự động truyền.
+
+## Phương thức (Methods)
+
+Phương thức là hàm được định nghĩa bên trong class.
+
+```python
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+    def display_info(self):
+        print(f"Hình chữ nhật {self.width}x{self.height}")
+        print(f"Diện tích: {self.area()}")
+        print(f"Chu vi: {self.perimeter()}")
+
+# Sử dụng
+rect = Rectangle(5, 3)
+rect.display_info()
+# Hình chữ nhật 5x3
+# Diện tích: 15
+# Chu vi: 16
+```
+
+## Ví dụ thực tế: Class Student
+
+```python
+class Student:
+    # Class attribute
+    school = "Trường THPT ABC"
+
+    def __init__(self, name, student_id, grade):
+        # Instance attributes
+        self.name = name
+        self.student_id = student_id
+        self.grade = grade
+        self.subjects = []
+
+    def add_subject(self, subject):
+        self.subjects.append(subject)
+        print(f"Đã thêm môn {subject} cho {self.name}")
+
+    def show_info(self):
+        print(f"Học sinh: {self.name}")
+        print(f"Mã số: {self.student_id}")
+        print(f"Lớp: {self.grade}")
+        print(f"Trường: {self.school}")
+        if self.subjects:
+            print(f"Môn học: {', '.join(self.subjects)}")
+
+# Tạo học sinh
+student1 = Student("Nguyễn Văn A", "HS001", "10A1")
+student2 = Student("Trần Thị B", "HS002", "10A2")
+
+# Thêm môn học
+student1.add_subject("Toán")
+student1.add_subject("Lý")
+
+student2.add_subject("Văn")
+student2.add_subject("Sử")
+
+# Hiển thị thông tin
+student1.show_info()
+print()
+student2.show_info()
+```
+
+**Kết quả:**
+```
+Đã thêm môn Toán cho Nguyễn Văn A
+Đã thêm môn Lý cho Nguyễn Văn A
+Đã thêm môn Văn cho Trần Thị B
+Đã thêm môn Sử cho Trần Thị B
+
+Học sinh: Nguyễn Văn A
+Mã số: HS001
+Lớp: 10A1
+Trường: Trường THPT ABC
+Môn học: Toán, Lý
+
+Học sinh: Trần Thị B
+Mã số: HS002
+Lớp: 10A2
+Trường: Trường THPT ABC
+Môn học: Văn, Sử
+```
+
+## Truy cập và thay đổi thuộc tính
+
+```python
+class Car:
+    def __init__(self, brand, color):
+        self.brand = brand
+        self.color = color
+        self.speed = 0
+
+car = Car("Toyota", "Đỏ")
+
+# Đọc thuộc tính
+print(car.brand)  # Toyota
+print(car.color)  # Đỏ
+
+# Thay đổi thuộc tính
+car.color = "Xanh"
+car.speed = 60
+
+print(car.color)  # Xanh
+print(car.speed)  # 60
+```
+
+## Kiểm tra kiểu của Object
+
+```python
+class Dog:
+    pass
+
+class Cat:
+    pass
+
+dog = Dog()
+cat = Cat()
+
+# Kiểm tra kiểu
+print(type(dog))  # <class '__main__.Dog'>
+print(type(cat))  # <class '__main__.Cat'>
+
+# Kiểm tra object có phải là instance của class không
+print(isinstance(dog, Dog))   # True
+print(isinstance(dog, Cat))   # False
+print(isinstance(cat, Cat))   # True
+```
+
+## Ví dụ thực tế: Class BankAccount
+
+```python
+class BankAccount:
+    def __init__(self, account_number, owner_name, balance=0):
+        self.account_number = account_number
+        self.owner_name = owner_name
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Đã nạp {amount:,}đ. Số dư mới: {self.balance:,}đ")
+        else:
+            print("Số tiền nạp phải lớn hơn 0!")
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Số dư không đủ!")
+        elif amount <= 0:
+            print("Số tiền rút phải lớn hơn 0!")
+        else:
+            self.balance -= amount
+            print(f"Đã rút {amount:,}đ. Số dư còn lại: {self.balance:,}đ")
+
+    def check_balance(self):
+        print(f"Tài khoản {self.account_number}")
+        print(f"Chủ tài khoản: {self.owner_name}")
+        print(f"Số dư: {self.balance:,}đ")
+
+# Sử dụng
+account = BankAccount("001234567", "Nguyễn Văn A", 1000000)
+
+account.check_balance()
+# Tài khoản 001234567
+# Chủ tài khoản: Nguyễn Văn A
+# Số dư: 1,000,000đ
+
+account.deposit(500000)
+# Đã nạp 500,000đ. Số dư mới: 1,500,000đ
+
+account.withdraw(300000)
+# Đã rút 300,000đ. Số dư còn lại: 1,200,000đ
+
+account.withdraw(2000000)
+# Số dư không đủ!
+```
+
+## Thuộc tính Private và Public
+
+### Public Attributes (Thuộc tính công khai)
+Có thể truy cập từ bên ngoài class.
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name  # Public attribute
+
+person = Person("An")
+print(person.name)  # Có thể truy cập trực tiếp
+```
+
+### Private Attributes (Thuộc tính riêng tư)
+Thêm `__` (hai dấu gạch dưới) trước tên thuộc tính.
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # Private attribute
+
+    def get_balance(self):
+        return self.__balance
+
+    def set_balance(self, amount):
+        if amount >= 0:
+            self.__balance = amount
+
+account = BankAccount(1000)
+# print(account.__balance)  # Lỗi! Không thể truy cập trực tiếp
+print(account.get_balance())  # 1000 - Phải dùng method
+```
+
+## Bài tập thực hành
+
+### Bài 1: Class Book
+Tạo class `Book` với:
+- Thuộc tính: `title`, `author`, `pages`, `current_page`
+- Phương thức: `read(pages)`, `get_info()`
+
+```python
+class Book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+        self.current_page = 0
+
+    def read(self, pages):
+        self.current_page += pages
+        if self.current_page > self.pages:
+            self.current_page = self.pages
+        print(f"Đã đọc đến trang {self.current_page}/{self.pages}")
+
+    def get_info(self):
+        print(f"Sách: {self.title}")
+        print(f"Tác giả: {self.author}")
+        print(f"Tổng số trang: {self.pages}")
+        print(f"Đã đọc: {self.current_page}/{self.pages} trang")
+
+# Test
+book = Book("Python Programming", "Bumbii Academy", 300)
+book.get_info()
+book.read(50)
+book.read(100)
+book.get_info()
+```
+
+### Bài 2: Class Calculator
+Tạo class máy tính với các phép tính cơ bản.
+
+```python
+class Calculator:
+    def __init__(self):
+        self.result = 0
+
+    def add(self, a, b):
+        self.result = a + b
+        return self.result
+
+    def subtract(self, a, b):
+        self.result = a - b
+        return self.result
+
+    def multiply(self, a, b):
+        self.result = a * b
+        return self.result
+
+    def divide(self, a, b):
+        if b == 0:
+            print("Không thể chia cho 0!")
+            return None
+        self.result = a / b
+        return self.result
+
+# Test
+calc = Calculator()
+print(calc.add(10, 5))       # 15
+print(calc.subtract(10, 5))  # 5
+print(calc.multiply(10, 5))  # 50
+print(calc.divide(10, 5))    # 2.0
+```
+
+## Tổng kết
+
+- **Class** là bản thiết kế, **Object** là thực thể cụ thể
+- `__init__()` là phương thức khởi tạo, được gọi khi tạo object
+- `self` đại diện cho object hiện tại
+- Thuộc tính lưu trữ dữ liệu, phương thức thực hiện hành động
+- Có thể tạo nhiều objects từ một class
+
+Trong bài tiếp theo, chúng ta sẽ tìm hiểu chi tiết hơn về Constructor và các loại Methods!

@@ -1,0 +1,581 @@
+# Đa hình (Polymorphism)
+
+## Polymorphism là gì?
+
+**Polymorphism (Đa hình)** có nghĩa là "nhiều hình dạng". Trong OOP, polymorphism cho phép:
+- Cùng một hành động nhưng thể hiện khác nhau ở các đối tượng khác nhau
+- Sử dụng một interface chung cho các kiểu dữ liệu khác nhau
+- Xử lý các objects khác nhau thông qua cùng một interface
+
+## Tại sao cần Polymorphism?
+
+### 1. **Linh hoạt**
+Code có thể làm việc với nhiều kiểu đối tượng khác nhau.
+
+### 2. **Dễ mở rộng**
+Thêm class mới mà không cần thay đổi code hiện tại.
+
+### 3. **Code ngắn gọn**
+Giảm code lặp lại, viết logic chung cho nhiều kiểu dữ liệu.
+
+### 4. **Dễ bảo trì**
+Thay đổi hành vi của một class không ảnh hưởng đến code khác.
+
+## Ví dụ minh họa trong thế giới thực
+
+Hãy tưởng tượng bạn bảo các con vật "phát ra tiếng kêu":
+- Chó → sủa "Gâu gâu"
+- Mèo → kêu "Meo meo"
+- Chim → hót "Chip chip"
+
+Cùng một hành động ("phát ra tiếng kêu") nhưng mỗi con vật thể hiện khác nhau → Đó là polymorphism!
+
+## Các loại Polymorphism trong Python
+
+### 1. Duck Typing
+"If it walks like a duck and quacks like a duck, it must be a duck"
+
+Python không quan tâm object thuộc class nào, chỉ quan tâm object có phương thức cần thiết không.
+
+```python
+class Dog:
+    def speak(self):
+        return "Gâu gâu!"
+
+class Cat:
+    def speak(self):
+        return "Meo meo!"
+
+class Cow:
+    def speak(self):
+        return "Ummm!"
+
+def animal_sound(animal):
+    """Hàm này không quan tâm animal là class gì,
+    chỉ cần có method speak()"""
+    print(animal.speak())
+
+# Sử dụng
+dog = Dog()
+cat = Cat()
+cow = Cow()
+
+animal_sound(dog)  # Gâu gâu!
+animal_sound(cat)  # Meo meo!
+animal_sound(cow)  # Ummm!
+```
+
+### 2. Method Overriding (Ghi đè phương thức)
+
+Class con định nghĩa lại phương thức của class cha.
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} phát ra tiếng kêu"
+
+class Dog(Animal):
+    def speak(self):  # Override
+        return f"{self.name} sủa: Gâu gâu!"
+
+class Cat(Animal):
+    def speak(self):  # Override
+        return f"{self.name} kêu: Meo meo!"
+
+class Bird(Animal):
+    def speak(self):  # Override
+        return f"{self.name} hót: Chip chip!"
+
+# Sử dụng polymorphism
+animals = [
+    Dog("Buddy"),
+    Cat("Kitty"),
+    Bird("Tweety"),
+    Dog("Max")
+]
+
+for animal in animals:
+    print(animal.speak())
+
+# Buddy sủa: Gâu gâu!
+# Kitty kêu: Meo meo!
+# Tweety hót: Chip chip!
+# Max sủa: Gâu gâu!
+```
+
+### 3. Operator Overloading (Nạp chồng toán tử)
+
+Định nghĩa lại cách hoạt động của toán tử (+, -, *, ...) cho class của bạn.
+
+```python
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        """Nạp chồng toán tử +"""
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        """Nạp chồng toán tử -"""
+        return Vector(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, scalar):
+        """Nạp chồng toán tử *"""
+        return Vector(self.x * scalar, self.y * scalar)
+
+    def __str__(self):
+        return f"Vector({self.x}, {self.y})"
+
+# Sử dụng
+v1 = Vector(2, 3)
+v2 = Vector(1, 4)
+
+v3 = v1 + v2  # Gọi __add__
+print(v3)     # Vector(3, 7)
+
+v4 = v1 - v2  # Gọi __sub__
+print(v4)     # Vector(1, -1)
+
+v5 = v1 * 3   # Gọi __mul__
+print(v5)     # Vector(6, 9)
+```
+
+## Polymorphism với Inheritance
+
+```python
+class Shape:
+    """Base class"""
+    def __init__(self, color):
+        self.color = color
+
+    def area(self):
+        """Sẽ được override ở class con"""
+        pass
+
+    def describe(self):
+        return f"Đây là hình {self.color}"
+
+class Rectangle(Shape):
+    def __init__(self, color, width, height):
+        super().__init__(color)
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, color, radius):
+        super().__init__(color)
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+class Triangle(Shape):
+    def __init__(self, color, base, height):
+        super().__init__(color)
+        self.base = base
+        self.height = height
+
+    def area(self):
+        return 0.5 * self.base * self.height
+
+# Polymorphic function
+def print_shape_info(shape):
+    """Hàm này nhận bất kỳ Shape nào"""
+    print(f"{shape.describe()}")
+    print(f"Diện tích: {shape.area():.2f}")
+    print()
+
+# Sử dụng
+shapes = [
+    Rectangle("xanh", 5, 3),
+    Circle("đỏ", 4),
+    Triangle("vàng", 6, 4)
+]
+
+for shape in shapes:
+    print_shape_info(shape)
+
+# Đây là hình xanh
+# Diện tích: 15.00
+#
+# Đây là hình đỏ
+# Diện tích: 50.27
+#
+# Đây là hình vàng
+# Diện tích: 12.00
+```
+
+## Polymorphism với Abstract Base Class
+
+```python
+from abc import ABC, abstractmethod
+
+class Payment(ABC):
+    """Abstract base class cho các phương thức thanh toán"""
+
+    @abstractmethod
+    def process_payment(self, amount):
+        """Phương thức trừu tượng - bắt buộc implement"""
+        pass
+
+    @abstractmethod
+    def get_payment_info(self):
+        pass
+
+class CreditCardPayment(Payment):
+    def __init__(self, card_number, cvv):
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process_payment(self, amount):
+        print(f"Đang xử lý thanh toán {amount:,}đ qua thẻ tín dụng...")
+        print(f"Số thẻ: ****{self.card_number[-4:]}")
+        return True
+
+    def get_payment_info(self):
+        return f"Thẻ tín dụng ****{self.card_number[-4:]}"
+
+class MomoPayment(Payment):
+    def __init__(self, phone_number):
+        self.phone_number = phone_number
+
+    def process_payment(self, amount):
+        print(f"Đang xử lý thanh toán {amount:,}đ qua Momo...")
+        print(f"Số điện thoại: {self.phone_number}")
+        return True
+
+    def get_payment_info(self):
+        return f"Momo - {self.phone_number}"
+
+class BankTransferPayment(Payment):
+    def __init__(self, account_number, bank_name):
+        self.account_number = account_number
+        self.bank_name = bank_name
+
+    def process_payment(self, amount):
+        print(f"Đang xử lý thanh toán {amount:,}đ qua chuyển khoản...")
+        print(f"Ngân hàng: {self.bank_name}")
+        print(f"Số TK: {self.account_number}")
+        return True
+
+    def get_payment_info(self):
+        return f"{self.bank_name} - {self.account_number}"
+
+# Polymorphic function
+def checkout(payment_method, amount):
+    """Hàm thanh toán - nhận bất kỳ Payment nào"""
+    print(f"=== THANH TOÁN ===")
+    print(f"Phương thức: {payment_method.get_payment_info()}")
+    payment_method.process_payment(amount)
+    print("Thanh toán thành công!\n")
+
+# Sử dụng
+payments = [
+    CreditCardPayment("1234567890123456", "123"),
+    MomoPayment("0123456789"),
+    BankTransferPayment("0011223344", "Vietcombank")
+]
+
+for payment in payments:
+    checkout(payment, 500000)
+```
+
+## Ví dụ thực tế: Hệ thống File
+
+```python
+class File:
+    """Base class cho tất cả file types"""
+    def __init__(self, name, size):
+        self.name = name
+        self.size = size
+
+    def open(self):
+        print(f"Đang mở file {self.name}")
+
+    def display_info(self):
+        print(f"File: {self.name}")
+        print(f"Size: {self.size} bytes")
+
+class TextFile(File):
+    def __init__(self, name, size, encoding="utf-8"):
+        super().__init__(name, size)
+        self.encoding = encoding
+
+    def open(self):
+        print(f"Đang mở text file {self.name} với encoding {self.encoding}")
+
+    def read_content(self):
+        print(f"Đọc nội dung text file...")
+
+class ImageFile(File):
+    def __init__(self, name, size, resolution):
+        super().__init__(name, size)
+        self.resolution = resolution
+
+    def open(self):
+        print(f"Đang mở image file {self.name} ({self.resolution})")
+
+    def display_preview(self):
+        print(f"Hiển thị preview hình ảnh...")
+
+class VideoFile(File):
+    def __init__(self, name, size, duration):
+        super().__init__(name, size)
+        self.duration = duration
+
+    def open(self):
+        print(f"Đang mở video file {self.name} (thời lượng: {self.duration}s)")
+
+    def play(self):
+        print(f"Đang phát video...")
+
+# File manager sử dụng polymorphism
+class FileManager:
+    def __init__(self):
+        self.files = []
+
+    def add_file(self, file):
+        self.files.append(file)
+        print(f"Đã thêm {file.name}")
+
+    def open_all_files(self):
+        print("\n=== MỞ TẤT CẢ FILE ===")
+        for file in self.files:
+            file.open()  # Polymorphic call
+            print()
+
+    def show_file_info(self):
+        print("\n=== THÔNG TIN FILE ===")
+        for file in self.files:
+            file.display_info()
+            print()
+
+# Sử dụng
+manager = FileManager()
+manager.add_file(TextFile("readme.txt", 1024, "utf-8"))
+manager.add_file(ImageFile("photo.jpg", 2048000, "1920x1080"))
+manager.add_file(VideoFile("movie.mp4", 50000000, 120))
+
+manager.open_all_files()
+manager.show_file_info()
+```
+
+## Built-in Polymorphism trong Python
+
+Python có nhiều ví dụ về polymorphism tích hợp sẵn.
+
+### 1. `len()` function
+
+```python
+# len() hoạt động với nhiều kiểu dữ liệu khác nhau
+print(len("Hello"))        # 5 (string)
+print(len([1, 2, 3]))      # 3 (list)
+print(len({'a': 1, 'b': 2}))  # 2 (dict)
+print(len({1, 2, 3}))      # 3 (set)
+
+# Tự định nghĩa len() cho class của bạn
+class MyCollection:
+    def __init__(self, items):
+        self.items = items
+
+    def __len__(self):
+        return len(self.items)
+
+collection = MyCollection([1, 2, 3, 4, 5])
+print(len(collection))  # 5
+```
+
+### 2. Toán tử `+`
+
+```python
+# + hoạt động khác nhau với các kiểu dữ liệu
+print(5 + 3)           # 8 (số)
+print("Hello" + " World")  # Hello World (string)
+print([1, 2] + [3, 4])    # [1, 2, 3, 4] (list)
+```
+
+### 3. Iteration
+
+```python
+# Iteration hoạt động với nhiều kiểu dữ liệu
+for item in [1, 2, 3]:  # list
+    print(item)
+
+for char in "Hello":    # string
+    print(char)
+
+for key in {'a': 1, 'b': 2}:  # dict
+    print(key)
+
+# Tự định nghĩa iteration cho class
+class Counter:
+    def __init__(self, max):
+        self.max = max
+
+    def __iter__(self):
+        self.n = 0
+        return self
+
+    def __next__(self):
+        if self.n < self.max:
+            self.n += 1
+            return self.n
+        raise StopIteration
+
+counter = Counter(5)
+for num in counter:
+    print(num)  # 1, 2, 3, 4, 5
+```
+
+## Ví dụ nâng cao: Game với Polymorphism
+
+```python
+from abc import ABC, abstractmethod
+
+class Character(ABC):
+    """Abstract base class cho nhân vật game"""
+    def __init__(self, name, health, attack_power):
+        self.name = name
+        self.health = health
+        self.attack_power = attack_power
+
+    @abstractmethod
+    def attack(self, target):
+        """Phương thức tấn công - mỗi class implement khác nhau"""
+        pass
+
+    @abstractmethod
+    def special_ability(self):
+        """Kỹ năng đặc biệt"""
+        pass
+
+    def take_damage(self, damage):
+        self.health -= damage
+        print(f"{self.name} nhận {damage} sát thương. HP còn: {self.health}")
+
+    def is_alive(self):
+        return self.health > 0
+
+class Warrior(Character):
+    def __init__(self, name):
+        super().__init__(name, health=150, attack_power=25)
+        self.armor = 20
+
+    def attack(self, target):
+        print(f"{self.name} đánh chém {target.name}!")
+        target.take_damage(self.attack_power)
+
+    def special_ability(self):
+        print(f"{self.name} sử dụng Rage! Tăng sức mạnh!")
+        self.attack_power += 10
+
+class Mage(Character):
+    def __init__(self, name):
+        super().__init__(name, health=80, attack_power=35)
+        self.mana = 100
+
+    def attack(self, target):
+        if self.mana >= 10:
+            print(f"{self.name} phóng phép thuật vào {target.name}!")
+            target.take_damage(self.attack_power)
+            self.mana -= 10
+        else:
+            print(f"{self.name} hết mana!")
+
+    def special_ability(self):
+        print(f"{self.name} hồi phục mana!")
+        self.mana = 100
+
+class Archer(Character):
+    def __init__(self, name):
+        super().__init__(name, health=100, attack_power=30)
+        self.arrows = 20
+
+    def attack(self, target):
+        if self.arrows > 0:
+            print(f"{self.name} bắn tên vào {target.name}!")
+            target.take_damage(self.attack_power)
+            self.arrows -= 1
+        else:
+            print(f"{self.name} hết tên!")
+
+    def special_ability(self):
+        print(f"{self.name} bắn mũi tên lửa!")
+        self.attack_power += 15
+
+# Game manager
+class GameArena:
+    def battle(self, char1, char2):
+        print(f"\n=== {char1.name} vs {char2.name} ===\n")
+
+        round_num = 1
+        while char1.is_alive() and char2.is_alive():
+            print(f"--- Round {round_num} ---")
+
+            # Char1 attack
+            char1.attack(char2)
+
+            if not char2.is_alive():
+                print(f"\n{char1.name} thắng!")
+                break
+
+            # Char2 attack
+            char2.attack(char1)
+
+            if not char1.is_alive():
+                print(f"\n{char2.name} thắng!")
+                break
+
+            round_num += 1
+            print()
+
+# Chơi game
+warrior = Warrior("Conan")
+mage = Mage("Gandalf")
+archer = Archer("Legolas")
+
+arena = GameArena()
+arena.battle(warrior, mage)
+```
+
+## Method Overloading (Nạp chồng phương thức)
+
+Python không hỗ trợ method overloading truyền thống, nhưng có thể mô phỏng bằng default parameters hoặc `*args`.
+
+```python
+class Calculator:
+    def add(self, *args):
+        """Có thể cộng 2 số, 3 số, hoặc nhiều số"""
+        return sum(args)
+
+    def multiply(self, a, b=1, c=1):
+        """Có thể nhân 1, 2, hoặc 3 số"""
+        return a * b * c
+
+calc = Calculator()
+print(calc.add(5, 3))           # 8
+print(calc.add(5, 3, 2))        # 10
+print(calc.add(1, 2, 3, 4, 5))  # 15
+
+print(calc.multiply(5))         # 5
+print(calc.multiply(5, 3))      # 15
+print(calc.multiply(5, 3, 2))   # 30
+```
+
+## Tổng kết
+
+- **Polymorphism** cho phép cùng interface nhưng hành vi khác nhau
+- **Duck Typing**: Python không quan tâm kiểu, chỉ quan tâm có method không
+- **Method Overriding**: Class con định nghĩa lại method của class cha
+- **Operator Overloading**: Định nghĩa lại toán tử cho class tùy chỉnh
+- Polymorphism làm code linh hoạt, dễ mở rộng và bảo trì
+
+Trong bài tiếp theo, chúng ta sẽ tìm hiểu về **Special Methods (Magic Methods)**!

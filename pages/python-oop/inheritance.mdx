@@ -1,0 +1,512 @@
+# Kế thừa (Inheritance)
+
+## Inheritance là gì?
+
+**Inheritance (Kế thừa)** là khả năng tạo một class mới (class con) dựa trên class đã có (class cha). Class con sẽ:
+- Thừa hưởng tất cả thuộc tính và phương thức từ class cha
+- Có thể thêm thuộc tính và phương thức mới
+- Có thể ghi đè (override) phương thức của class cha
+
+## Tại sao cần Inheritance?
+
+### 1. **Tái sử dụng code (Code Reusability)**
+Không cần viết lại code đã có, chỉ cần kế thừa.
+
+### 2. **Mở rộng chức năng**
+Dễ dàng thêm tính năng mới mà không làm thay đổi code cũ.
+
+### 3. **Tổ chức code tốt hơn**
+Tạo cấu trúc phân cấp logic, dễ hiểu và bảo trì.
+
+### 4. **Polymorphism**
+Hỗ trợ đa hình - một trong những trụ cột của OOP.
+
+## Cú pháp
+
+```python
+class ParentClass:
+    # Code của class cha
+    pass
+
+class ChildClass(ParentClass):
+    # Class con kế thừa từ class cha
+    pass
+```
+
+## Ví dụ cơ bản
+
+```python
+# Class cha (Parent/Base/Super class)
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} đang phát ra tiếng kêu")
+
+    def move(self):
+        print(f"{self.name} đang di chuyển")
+
+# Class con (Child/Derived/Sub class)
+class Dog(Animal):
+    def bark(self):
+        print(f"{self.name} sủa: Gâu gâu!")
+
+class Cat(Animal):
+    def meow(self):
+        print(f"{self.name} kêu: Meo meo!")
+
+# Sử dụng
+dog = Dog("Buddy")
+dog.speak()  # Kế thừa từ Animal: Buddy đang phát ra tiếng kêu
+dog.move()   # Kế thừa từ Animal: Buddy đang di chuyển
+dog.bark()   # Phương thức riêng: Buddy sủa: Gâu gâu!
+
+cat = Cat("Kitty")
+cat.speak()  # Kitty đang phát ra tiếng kêu
+cat.meow()   # Kitty kêu: Meo meo!
+```
+
+## Kiểm tra quan hệ kế thừa
+
+```python
+class Animal:
+    pass
+
+class Dog(Animal):
+    pass
+
+dog = Dog()
+
+# Kiểm tra instance
+print(isinstance(dog, Dog))     # True
+print(isinstance(dog, Animal))  # True
+
+# Kiểm tra subclass
+print(issubclass(Dog, Animal))  # True
+print(issubclass(Animal, Dog))  # False
+```
+
+## Constructor trong Inheritance
+
+### Cách 1: Không gọi constructor của class cha
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        # Gọi constructor của class cha
+        Person.__init__(self, name, age)
+        # Thêm thuộc tính mới
+        self.student_id = student_id
+
+student = Student("An", 20, "SV001")
+print(f"{student.name}, {student.age} tuổi, MSV: {student.student_id}")
+```
+
+### Cách 2: Dùng `super()` (Khuyến nghị)
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age, student_id, gpa):
+        super().__init__(name, age)  # Gọi constructor của class cha
+        self.student_id = student_id
+        self.gpa = gpa
+
+    def display_info(self):
+        print(f"Sinh viên: {self.name}")
+        print(f"Tuổi: {self.age}")
+        print(f"MSV: {self.student_id}")
+        print(f"GPA: {self.gpa}")
+
+student = Student("Bình", 21, "SV002", 3.5)
+student.display_info()
+```
+
+## Method Overriding (Ghi đè phương thức)
+
+Class con có thể định nghĩa lại phương thức của class cha.
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} phát ra tiếng kêu")
+
+class Dog(Animal):
+    def speak(self):  # Override phương thức speak()
+        print(f"{self.name} sủa: Gâu gâu!")
+
+class Cat(Animal):
+    def speak(self):  # Override phương thức speak()
+        print(f"{self.name} kêu: Meo meo!")
+
+class Bird(Animal):
+    def speak(self):  # Override phương thức speak()
+        print(f"{self.name} hót: Chip chip!")
+
+# Test
+animals = [Dog("Buddy"), Cat("Kitty"), Bird("Tweety")]
+for animal in animals:
+    animal.speak()
+# Buddy sủa: Gâu gâu!
+# Kitty kêu: Meo meo!
+# Tweety hót: Chip chip!
+```
+
+## Gọi phương thức của class cha với `super()`
+
+```python
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def display_info(self):
+        print(f"Nhân viên: {self.name}")
+        print(f"Lương: {self.salary:,}đ")
+
+class Manager(Employee):
+    def __init__(self, name, salary, department):
+        super().__init__(name, salary)
+        self.department = department
+
+    def display_info(self):
+        super().display_info()  # Gọi phương thức của class cha
+        print(f"Bộ phận: {self.department}")
+
+manager = Manager("Nguyễn Văn A", 20000000, "IT")
+manager.display_info()
+# Nhân viên: Nguyễn Văn A
+# Lương: 20,000,000đ
+# Bộ phận: IT
+```
+
+## Multiple Inheritance (Đa kế thừa)
+
+Python cho phép một class kế thừa từ nhiều class cha.
+
+```python
+class Flyable:
+    def fly(self):
+        print("Tôi có thể bay!")
+
+class Swimmable:
+    def swim(self):
+        print("Tôi có thể bơi!")
+
+class Duck(Flyable, Swimmable):
+    def __init__(self, name):
+        self.name = name
+
+    def quack(self):
+        print(f"{self.name}: Quack quack!")
+
+duck = Duck("Donald")
+duck.fly()    # Tôi có thể bay!
+duck.swim()   # Tôi có thể bơi!
+duck.quack()  # Donald: Quack quack!
+```
+
+## Method Resolution Order (MRO)
+
+Khi có đa kế thừa, Python dùng MRO để quyết định thứ tự tìm kiếm phương thức.
+
+```python
+class A:
+    def show(self):
+        print("A")
+
+class B(A):
+    def show(self):
+        print("B")
+
+class C(A):
+    def show(self):
+        print("C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.show()  # B (tìm theo thứ tự: D -> B -> C -> A)
+
+# Xem MRO
+print(D.__mro__)
+# (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>,
+#  <class '__main__.A'>, <class 'object'>)
+```
+
+## Ví dụ thực tế: Hệ thống quản lý phương tiện
+
+```python
+class Vehicle:
+    """Class cha cho tất cả phương tiện"""
+    def __init__(self, brand, model, year):
+        self.brand = brand
+        self.model = model
+        self.year = year
+        self.mileage = 0
+
+    def drive(self, distance):
+        self.mileage += distance
+        print(f"Đã di chuyển {distance}km. Tổng: {self.mileage}km")
+
+    def display_info(self):
+        print(f"{self.year} {self.brand} {self.model}")
+        print(f"Quãng đường: {self.mileage}km")
+
+class Car(Vehicle):
+    """Xe hơi"""
+    def __init__(self, brand, model, year, num_doors):
+        super().__init__(brand, model, year)
+        self.num_doors = num_doors
+
+    def display_info(self):
+        super().display_info()
+        print(f"Số cửa: {self.num_doors}")
+
+class Motorcycle(Vehicle):
+    """Xe máy"""
+    def __init__(self, brand, model, year, engine_cc):
+        super().__init__(brand, model, year)
+        self.engine_cc = engine_cc
+
+    def display_info(self):
+        super().display_info()
+        print(f"Dung tích: {self.engine_cc}cc")
+
+    def wheelie(self):
+        print("Đang bốc đầu!")
+
+class ElectricCar(Car):
+    """Xe điện"""
+    def __init__(self, brand, model, year, num_doors, battery_capacity):
+        super().__init__(brand, model, year, num_doors)
+        self.battery_capacity = battery_capacity
+        self.battery_level = 100
+
+    def charge(self, percent):
+        self.battery_level = min(100, self.battery_level + percent)
+        print(f"Đã sạc. Pin hiện tại: {self.battery_level}%")
+
+    def drive(self, distance):
+        battery_used = distance * 0.2  # Giả sử 1km tốn 0.2% pin
+        if self.battery_level >= battery_used:
+            super().drive(distance)
+            self.battery_level -= battery_used
+            print(f"Pin còn: {self.battery_level:.1f}%")
+        else:
+            print("Pin không đủ!")
+
+    def display_info(self):
+        super().display_info()
+        print(f"Dung lượng pin: {self.battery_capacity}kWh")
+        print(f"Mức pin: {self.battery_level}%")
+
+# Sử dụng
+print("=== XE HƠI ===")
+car = Car("Toyota", "Camry", 2024, 4)
+car.drive(100)
+car.display_info()
+
+print("\n=== XE MÁY ===")
+bike = Motorcycle("Honda", "Wave", 2023, 110)
+bike.drive(50)
+bike.wheelie()
+bike.display_info()
+
+print("\n=== XE ĐIỆN ===")
+tesla = ElectricCar("Tesla", "Model 3", 2024, 4, 75)
+tesla.drive(200)
+tesla.charge(30)
+tesla.display_info()
+```
+
+## Levels of Inheritance (Cấp độ kế thừa)
+
+### Single Inheritance (Đơn kế thừa)
+```python
+class A:
+    pass
+
+class B(A):  # B kế thừa từ A
+    pass
+```
+
+### Multilevel Inheritance (Kế thừa nhiều cấp)
+```python
+class A:
+    pass
+
+class B(A):  # B kế thừa từ A
+    pass
+
+class C(B):  # C kế thừa từ B
+    pass
+```
+
+### Hierarchical Inheritance (Kế thừa phân cấp)
+```python
+class A:
+    pass
+
+class B(A):  # B kế thừa từ A
+    pass
+
+class C(A):  # C kế thừa từ A
+    pass
+```
+
+### Multiple Inheritance (Đa kế thừa)
+```python
+class A:
+    pass
+
+class B:
+    pass
+
+class C(A, B):  # C kế thừa từ cả A và B
+    pass
+```
+
+## Ví dụ: Hệ thống nhân viên
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        print(f"Tôi là {self.name}, {self.age} tuổi")
+
+class Employee(Person):
+    def __init__(self, name, age, employee_id, salary):
+        super().__init__(name, age)
+        self.employee_id = employee_id
+        self.salary = salary
+
+    def work(self):
+        print(f"{self.name} đang làm việc")
+
+    def get_salary(self):
+        return self.salary
+
+class Developer(Employee):
+    def __init__(self, name, age, employee_id, salary, programming_languages):
+        super().__init__(name, age, employee_id, salary)
+        self.programming_languages = programming_languages
+
+    def code(self):
+        langs = ", ".join(self.programming_languages)
+        print(f"{self.name} đang code bằng {langs}")
+
+    def work(self):  # Override
+        self.code()
+
+class Manager(Employee):
+    def __init__(self, name, age, employee_id, salary, team_size):
+        super().__init__(name, age, employee_id, salary)
+        self.team_size = team_size
+
+    def manage(self):
+        print(f"{self.name} đang quản lý {self.team_size} người")
+
+    def work(self):  # Override
+        self.manage()
+
+# Sử dụng
+dev = Developer("An", 25, "DEV001", 15000000, ["Python", "JavaScript"])
+dev.introduce()  # Tôi là An, 25 tuổi
+dev.work()       # An đang code bằng Python, JavaScript
+
+manager = Manager("Bình", 35, "MNG001", 25000000, 10)
+manager.introduce()  # Tôi là Bình, 35 tuổi
+manager.work()       # Bình đang quản lý 10 người
+
+print(f"Lương Dev: {dev.get_salary():,}đ")
+print(f"Lương Manager: {manager.get_salary():,}đ")
+```
+
+## Abstract Base Class (ABC)
+
+Class trừu tượng - class không thể tạo object trực tiếp, chỉ dùng để kế thừa.
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    """Class trừu tượng"""
+    def __init__(self, color):
+        self.color = color
+
+    @abstractmethod
+    def area(self):
+        """Phương thức trừu tượng - bắt buộc class con phải implement"""
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+    def display_color(self):
+        print(f"Màu sắc: {self.color}")
+
+class Rectangle(Shape):
+    def __init__(self, width, height, color):
+        super().__init__(color)
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+class Circle(Shape):
+    def __init__(self, radius, color):
+        super().__init__(color)
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * 3.14159 * self.radius
+
+# shape = Shape("Đỏ")  # Lỗi! Không thể tạo instance của ABC
+
+rect = Rectangle(5, 3, "Xanh")
+print(f"Diện tích: {rect.area()}")  # 15
+print(f"Chu vi: {rect.perimeter()}")  # 16
+rect.display_color()  # Màu sắc: Xanh
+
+circle = Circle(5, "Đỏ")
+print(f"Diện tích: {circle.area():.2f}")  # 78.54
+print(f"Chu vi: {circle.perimeter():.2f}")  # 31.42
+circle.display_color()  # Màu sắc: Đỏ
+```
+
+## Tổng kết
+
+- **Inheritance** cho phép tái sử dụng và mở rộng code
+- Class con thừa hưởng thuộc tính và phương thức từ class cha
+- Dùng `super()` để gọi constructor và phương thức của class cha
+- **Method overriding** cho phép class con định nghĩa lại phương thức
+- Python hỗ trợ **multiple inheritance** (đa kế thừa)
+- **Abstract Base Class** định nghĩa interface bắt buộc các class con phải implement
+
+Trong bài tiếp theo, chúng ta sẽ tìm hiểu về **Encapsulation** (Đóng gói)!

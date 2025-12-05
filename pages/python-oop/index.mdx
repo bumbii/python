@@ -1,0 +1,170 @@
+# Lập trình hướng đối tượng (OOP) trong Python
+
+## OOP là gì?
+
+**Lập trình hướng đối tượng (Object-Oriented Programming - OOP)** là một phương pháp lập trình dựa trên khái niệm "đối tượng" (objects). Đối tượng có thể chứa:
+- **Dữ liệu/Thuộc tính** (properties/attributes)
+- **Phương thức/Hành động** (methods)
+
+OOP giúp tổ chức code theo cách gần gũi với thế giới thực, làm cho chương trình dễ hiểu, dễ bảo trì và tái sử dụng hơn.
+
+## Tại sao nên học OOP?
+
+### 1. **Tổ chức code tốt hơn**
+OOP giúp bạn nhóm dữ liệu và chức năng liên quan lại với nhau, làm cho code dễ quản lý hơn.
+
+### 2. **Tái sử dụng code**
+Bạn có thể tạo ra các class (lớp) và sử dụng lại chúng nhiều lần mà không cần viết lại code.
+
+### 3. **Dễ bảo trì**
+Khi cần thay đổi, bạn chỉ cần sửa ở một nơi thay vì nhiều nơi trong chương trình.
+
+### 4. **Mô hình hóa thế giới thực**
+OOP giúp bạn lập trình theo cách gần với cách ta nhìn nhận thế giới thực.
+
+## Ví dụ minh họa
+
+Hãy tưởng tượng bạn đang làm game về xe hơi:
+
+### Cách lập trình thông thường (Procedural):
+```python
+# Xe 1
+car1_name = "Toyota"
+car1_color = "Red"
+car1_speed = 0
+
+# Xe 2
+car2_name = "Honda"
+car2_color = "Blue"
+car2_speed = 0
+
+def accelerate_car1(acceleration):
+    global car1_speed
+    car1_speed += acceleration
+
+def accelerate_car2(acceleration):
+    global car2_speed
+    car2_speed += acceleration
+```
+
+### Cách lập trình hướng đối tượng (OOP):
+```python
+class Car:
+    def __init__(self, name, color):
+        self.name = name
+        self.color = color
+        self.speed = 0
+
+    def accelerate(self, acceleration):
+        self.speed += acceleration
+
+    def display_info(self):
+        print(f"{self.name} màu {self.color} đang chạy {self.speed} km/h")
+
+# Tạo các đối tượng xe
+car1 = Car("Toyota", "Red")
+car2 = Car("Honda", "Blue")
+
+# Sử dụng
+car1.accelerate(50)
+car2.accelerate(60)
+
+car1.display_info()  # Toyota màu Red đang chạy 50 km/h
+car2.display_info()  # Honda màu Blue đang chạy 60 km/h
+```
+
+**Ưu điểm của OOP:**
+- Code ngắn gọn và rõ ràng hơn
+- Dễ tạo nhiều đối tượng mà không cần viết lại code
+- Dễ thêm tính năng mới cho các đối tượng
+
+## 4 trụ cột của OOP
+
+OOP được xây dựng trên 4 nguyên lý cơ bản:
+
+### 1. **Đóng gói (Encapsulation)**
+- Gom dữ liệu và phương thức liên quan vào một đơn vị (class)
+- Che giấu chi tiết bên trong, chỉ hiển thị những gì cần thiết
+- Ví dụ: Bạn chỉ cần biết cách lái xe, không cần biết động cơ hoạt động như thế nào
+
+### 2. **Kế thừa (Inheritance)**
+- Tạo class mới dựa trên class đã có
+- Class con thừa hưởng thuộc tính và phương thức từ class cha
+- Ví dụ: `Truck` kế thừa từ `Car`, có thêm thuộc tính `cargo_capacity`
+
+### 3. **Đa hình (Polymorphism)**
+- Cùng một hành động nhưng thể hiện khác nhau ở các đối tượng khác nhau
+- Ví dụ: `Motorcycle.accelerate()` và `Truck.accelerate()` hoạt động khác nhau
+
+### 4. **Trừu tượng hóa (Abstraction)**
+- Ẩn đi những chi tiết phức tạp, chỉ hiển thị những gì quan trọng
+- Tập trung vào "cái gì" thay vì "như thế nào"
+- Ví dụ: Người dùng chỉ cần gọi `car.start_engine()`, không cần biết bên trong làm gì
+
+## Thuật ngữ cơ bản trong OOP
+
+| Thuật ngữ | Tiếng Việt | Giải thích |
+|-----------|-----------|------------|
+| **Class** | Lớp | Bản thiết kế/khuôn mẫu để tạo object |
+| **Object** | Đối tượng | Thực thể cụ thể được tạo từ class |
+| **Attribute** | Thuộc tính | Dữ liệu của object (biến) |
+| **Method** | Phương thức | Hàm của object (hành động) |
+| **Instance** | Thể hiện | Một object cụ thể của class |
+| **Constructor** | Hàm khởi tạo | Hàm đặc biệt để khởi tạo object |
+
+## Ví dụ thực tế
+
+```python
+# Class = Bản thiết kế
+class Person:
+    def __init__(self, name, age):
+        self.name = name      # Attribute (thuộc tính)
+        self.age = age        # Attribute (thuộc tính)
+
+    def greet(self):          # Method (phương thức)
+        print(f"Xin chào, tôi là {self.name}, {self.age} tuổi")
+
+# Object = Thực thể cụ thể
+person1 = Person("An", 20)    # Instance 1
+person2 = Person("Bình", 25)   # Instance 2
+
+# Sử dụng
+person1.greet()  # Xin chào, tôi là An, 20 tuổi
+person2.greet()  # Xin chào, tôi là Bình, 25 tuổi
+```
+
+## So sánh Class và Object
+
+| | Class | Object |
+|---|-------|--------|
+| **Khái niệm** | Bản thiết kế/Khuôn mẫu | Sản phẩm cụ thể |
+| **Ví dụ** | Bản vẽ thiết kế nhà | Ngôi nhà thực tế |
+| **Ví dụ code** | `class Car:` | `car1 = Car()` |
+| **Số lượng** | Định nghĩa một lần | Tạo được nhiều object |
+
+## Khi nào nên dùng OOP?
+
+### ✅ Nên dùng OOP khi:
+- Chương trình lớn, phức tạp
+- Có nhiều đối tượng cùng loại
+- Cần tái sử dụng code nhiều lần
+- Làm việc nhóm, nhiều người cùng code
+- Xây dựng thư viện, framework
+
+### ⚠️ Không nhất thiết dùng OOP khi:
+- Script đơn giản, ngắn
+- Chỉ chạy một lần
+- Xử lý dữ liệu đơn giản
+
+## Tổng kết
+
+Lập trình hướng đối tượng là một kỹ năng quan trọng trong Python. Trong các bài tiếp theo, chúng ta sẽ tìm hiểu chi tiết về:
+
+1. **Classes và Objects** - Cách tạo và sử dụng class
+2. **Constructor và Methods** - Khởi tạo object và định nghĩa phương thức
+3. **Inheritance** - Kế thừa từ class khác
+4. **Encapsulation** - Đóng gói và bảo vệ dữ liệu
+5. **Polymorphism** - Đa hình trong Python
+6. **Special Methods** - Các phương thức đặc biệt
+
+Hãy bắt đầu với bài đầu tiên về Classes và Objects!

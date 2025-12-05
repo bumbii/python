@@ -1,0 +1,502 @@
+# Special Methods (Magic Methods)
+
+## Special Methods là gì?
+
+**Special Methods** (còn gọi là **Magic Methods** hoặc **Dunder Methods**) là các phương thức đặc biệt trong Python với tên bắt đầu và kết thúc bằng `__` (double underscore).
+
+Ví dụ: `__init__`, `__str__`, `__add__`, `__len__`
+
+## Tại sao gọi là "Magic"?
+
+Các phương thức này được Python gọi tự động trong một số tình huống đặc biệt:
+- `__init__()` được gọi khi tạo object
+- `__str__()` được gọi khi dùng `print()`
+- `__add__()` được gọi khi dùng toán tử `+`
+- `__len__()` được gọi khi dùng hàm `len()`
+
+## Các Special Methods phổ biến
+
+### 1. Object Initialization và Representation
+
+#### `__init__(self, ...)` - Constructor
+Khởi tạo object khi tạo mới.
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+person = Person("An", 20)  # __init__ được gọi tự động
+```
+
+#### `__str__(self)` - String Representation (cho người dùng)
+Trả về chuỗi khi dùng `print()` hoặc `str()`.
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name}, {self.age} tuổi"
+
+person = Person("An", 20)
+print(person)  # An, 20 tuổi
+```
+
+#### `__repr__(self)` - Official Representation (cho lập trình viên)
+Trả về chuỗi đại diện chính thức của object.
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"Person(name='{self.name}', age={self.age})"
+
+    def __str__(self):
+        return f"{self.name}, {self.age} tuổi"
+
+person = Person("An", 20)
+print(person)      # An, 20 tuổi (__str__)
+print(repr(person))  # Person(name='An', age=20) (__repr__)
+```
+
+### 2. Comparison Operators (Toán tử so sánh)
+
+```python
+class Student:
+    def __init__(self, name, gpa):
+        self.name = name
+        self.gpa = gpa
+
+    def __eq__(self, other):
+        """Equal: =="""
+        return self.gpa == other.gpa
+
+    def __ne__(self, other):
+        """Not equal: !="""
+        return self.gpa != other.gpa
+
+    def __lt__(self, other):
+        """Less than: <"""
+        return self.gpa < other.gpa
+
+    def __le__(self, other):
+        """Less than or equal: <="""
+        return self.gpa <= other.gpa
+
+    def __gt__(self, other):
+        """Greater than: >"""
+        return self.gpa > other.gpa
+
+    def __ge__(self, other):
+        """Greater than or equal: >="""
+        return self.gpa >= other.gpa
+
+    def __str__(self):
+        return f"{self.name} (GPA: {self.gpa})"
+
+s1 = Student("An", 3.5)
+s2 = Student("Bình", 3.2)
+s3 = Student("Cường", 3.5)
+
+print(s1 == s3)  # True (__eq__)
+print(s1 != s2)  # True (__ne__)
+print(s1 > s2)   # True (__gt__)
+print(s1 <= s3)  # True (__le__)
+```
+
+### 3. Arithmetic Operators (Toán tử số học)
+
+```python
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        """Addition: +"""
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        """Subtraction: -"""
+        return Vector(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, scalar):
+        """Multiplication: *"""
+        if isinstance(scalar, (int, float)):
+            return Vector(self.x * scalar, self.y * scalar)
+        raise TypeError("Phải nhân với số")
+
+    def __truediv__(self, scalar):
+        """Division: /"""
+        if isinstance(scalar, (int, float)):
+            return Vector(self.x / scalar, self.y / scalar)
+        raise TypeError("Phải chia cho số")
+
+    def __str__(self):
+        return f"Vector({self.x}, {self.y})"
+
+v1 = Vector(4, 2)
+v2 = Vector(2, 1)
+
+print(v1 + v2)  # Vector(6, 3)
+print(v1 - v2)  # Vector(2, 1)
+print(v1 * 3)   # Vector(12, 6)
+print(v1 / 2)   # Vector(2.0, 1.0)
+```
+
+### 4. Container Methods
+
+#### `__len__(self)` - Length
+```python
+class Playlist:
+    def __init__(self, name):
+        self.name = name
+        self.songs = []
+
+    def add_song(self, song):
+        self.songs.append(song)
+
+    def __len__(self):
+        return len(self.songs)
+
+playlist = Playlist("My Favorites")
+playlist.add_song("Song 1")
+playlist.add_song("Song 2")
+playlist.add_song("Song 3")
+
+print(len(playlist))  # 3
+```
+
+#### `__getitem__(self, key)` và `__setitem__(self, key, value)` - Indexing
+```python
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
+
+    def __getitem__(self, index):
+        """Cho phép cart[index]"""
+        return self.items[index]
+
+    def __setitem__(self, index, value):
+        """Cho phép cart[index] = value"""
+        self.items[index] = value
+
+    def __len__(self):
+        return len(self.items)
+
+cart = ShoppingCart()
+cart.add_item("Laptop")
+cart.add_item("Mouse")
+cart.add_item("Keyboard")
+
+print(cart[0])   # Laptop (__getitem__)
+print(cart[1])   # Mouse
+
+cart[1] = "Gaming Mouse"  # __setitem__
+print(cart[1])   # Gaming Mouse
+
+# Có thể dùng trong vòng lặp
+for item in cart:
+    print(item)
+```
+
+#### `__contains__(self, item)` - Membership Test
+```python
+class Team:
+    def __init__(self, name):
+        self.name = name
+        self.members = []
+
+    def add_member(self, member):
+        self.members.append(member)
+
+    def __contains__(self, member):
+        """Cho phép dùng 'in'"""
+        return member in self.members
+
+team = Team("Dev Team")
+team.add_member("An")
+team.add_member("Bình")
+
+print("An" in team)      # True
+print("Cường" in team)   # False
+```
+
+### 5. Iteration
+
+#### `__iter__(self)` và `__next__(self)` - Iterator Protocol
+```python
+class Countdown:
+    def __init__(self, start):
+        self.start = start
+
+    def __iter__(self):
+        self.current = self.start
+        return self
+
+    def __next__(self):
+        if self.current <= 0:
+            raise StopIteration
+        self.current -= 1
+        return self.current + 1
+
+# Sử dụng
+countdown = Countdown(5)
+for num in countdown:
+    print(num)  # 5, 4, 3, 2, 1
+```
+
+### 6. Context Manager
+
+#### `__enter__(self)` và `__exit__(self)` - Dùng với `with`
+```python
+class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+
+    def __enter__(self):
+        """Được gọi khi vào block with"""
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Được gọi khi ra khỏi block with"""
+        if self.file:
+            self.file.close()
+
+# Sử dụng
+with FileManager('test.txt', 'w') as f:
+    f.write('Hello World')
+# File tự động đóng sau khi ra khỏi block
+```
+
+### 7. Callable Objects
+
+#### `__call__(self)` - Gọi object như hàm
+```python
+class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+
+    def __call__(self, value):
+        """Cho phép gọi object như hàm"""
+        return value * self.factor
+
+double = Multiplier(2)
+triple = Multiplier(3)
+
+print(double(5))  # 10
+print(triple(5))  # 15
+```
+
+## Ví dụ thực tế: Class Money
+
+```python
+class Money:
+    def __init__(self, amount, currency="VND"):
+        self.amount = amount
+        self.currency = currency
+
+    def __str__(self):
+        """String representation"""
+        return f"{self.amount:,.0f} {self.currency}"
+
+    def __repr__(self):
+        """Official representation"""
+        return f"Money({self.amount}, '{self.currency}')"
+
+    def __add__(self, other):
+        """Addition"""
+        if isinstance(other, Money):
+            if self.currency != other.currency:
+                raise ValueError("Không thể cộng hai đơn vị tiền tệ khác nhau!")
+            return Money(self.amount + other.amount, self.currency)
+        elif isinstance(other, (int, float)):
+            return Money(self.amount + other, self.currency)
+        raise TypeError("Không thể cộng Money với kiểu này")
+
+    def __sub__(self, other):
+        """Subtraction"""
+        if isinstance(other, Money):
+            if self.currency != other.currency:
+                raise ValueError("Không thể trừ hai đơn vị tiền tệ khác nhau!")
+            return Money(self.amount - other.amount, self.currency)
+        elif isinstance(other, (int, float)):
+            return Money(self.amount - other, self.currency)
+        raise TypeError("Không thể trừ Money với kiểu này")
+
+    def __mul__(self, scalar):
+        """Multiplication"""
+        if isinstance(scalar, (int, float)):
+            return Money(self.amount * scalar, self.currency)
+        raise TypeError("Chỉ có thể nhân Money với số")
+
+    def __truediv__(self, scalar):
+        """Division"""
+        if isinstance(scalar, (int, float)):
+            return Money(self.amount / scalar, self.currency)
+        raise TypeError("Chỉ có thể chia Money cho số")
+
+    def __eq__(self, other):
+        """Equal"""
+        if isinstance(other, Money):
+            return self.amount == other.amount and self.currency == other.currency
+        return False
+
+    def __lt__(self, other):
+        """Less than"""
+        if isinstance(other, Money):
+            if self.currency != other.currency:
+                raise ValueError("Không thể so sánh hai đơn vị tiền tệ khác nhau!")
+            return self.amount < other.amount
+        raise TypeError("Không thể so sánh Money với kiểu này")
+
+    def __le__(self, other):
+        """Less than or equal"""
+        return self == other or self < other
+
+    def __bool__(self):
+        """Boolean conversion"""
+        return self.amount > 0
+
+# Sử dụng
+m1 = Money(100000)
+m2 = Money(50000)
+
+print(m1)           # 100,000 VND
+print(repr(m1))     # Money(100000, 'VND')
+
+m3 = m1 + m2
+print(m3)           # 150,000 VND
+
+m4 = m1 - m2
+print(m4)           # 50,000 VND
+
+m5 = m1 * 2
+print(m5)           # 200,000 VND
+
+m6 = m1 / 2
+print(m6)           # 50,000 VND
+
+print(m1 > m2)      # True
+print(m1 == m2)     # False
+
+if m1:
+    print("Có tiền!")  # Có tiền!
+```
+
+## Ví dụ: Class Range (tự implement)
+
+```python
+class MyRange:
+    """Tự implement class tương tự range() của Python"""
+    def __init__(self, start, stop=None, step=1):
+        if stop is None:
+            self.start = 0
+            self.stop = start
+        else:
+            self.start = start
+            self.stop = stop
+        self.step = step
+
+    def __iter__(self):
+        self.current = self.start
+        return self
+
+    def __next__(self):
+        if (self.step > 0 and self.current >= self.stop) or \
+           (self.step < 0 and self.current <= self.stop):
+            raise StopIteration
+        value = self.current
+        self.current += self.step
+        return value
+
+    def __len__(self):
+        return max(0, (self.stop - self.start + self.step - 1) // self.step)
+
+    def __getitem__(self, index):
+        if index < 0 or index >= len(self):
+            raise IndexError("Index out of range")
+        return self.start + index * self.step
+
+    def __contains__(self, value):
+        if self.step > 0:
+            return self.start <= value < self.stop and \
+                   (value - self.start) % self.step == 0
+        else:
+            return self.stop < value <= self.start and \
+                   (value - self.start) % self.step == 0
+
+    def __str__(self):
+        return f"MyRange({self.start}, {self.stop}, {self.step})"
+
+# Sử dụng
+r = MyRange(0, 10, 2)
+
+print(r)           # MyRange(0, 10, 2)
+print(len(r))      # 5
+print(r[2])        # 4
+print(4 in r)      # True
+print(5 in r)      # False
+
+for num in r:
+    print(num)     # 0, 2, 4, 6, 8
+```
+
+## Bảng tổng hợp Special Methods
+
+| Loại | Method | Mô tả |
+|------|--------|-------|
+| **Khởi tạo** | `__init__(self, ...)` | Constructor |
+| | `__new__(cls, ...)` | Tạo instance mới |
+| | `__del__(self)` | Destructor |
+| **Representation** | `__str__(self)` | `str()`, `print()` |
+| | `__repr__(self)` | `repr()`, representation chính thức |
+| **So sánh** | `__eq__(self, other)` | `==` |
+| | `__ne__(self, other)` | `!=` |
+| | `__lt__(self, other)` | `<` |
+| | `__le__(self, other)` | `<=` |
+| | `__gt__(self, other)` | `>` |
+| | `__ge__(self, other)` | `>=` |
+| **Toán tử số học** | `__add__(self, other)` | `+` |
+| | `__sub__(self, other)` | `-` |
+| | `__mul__(self, other)` | `*` |
+| | `__truediv__(self, other)` | `/` |
+| | `__floordiv__(self, other)` | `//` |
+| | `__mod__(self, other)` | `%` |
+| | `__pow__(self, other)` | `**` |
+| **Container** | `__len__(self)` | `len()` |
+| | `__getitem__(self, key)` | `obj[key]` |
+| | `__setitem__(self, key, value)` | `obj[key] = value` |
+| | `__delitem__(self, key)` | `del obj[key]` |
+| | `__contains__(self, item)` | `in` |
+| **Iteration** | `__iter__(self)` | Iterator |
+| | `__next__(self)` | Next item |
+| **Callable** | `__call__(self, ...)` | `obj()` |
+| **Context Manager** | `__enter__(self)` | `with` statement entry |
+| | `__exit__(self, ...)` | `with` statement exit |
+| **Attribute Access** | `__getattr__(self, name)` | Get attribute |
+| | `__setattr__(self, name, value)` | Set attribute |
+| | `__delattr__(self, name)` | Delete attribute |
+
+## Tổng kết
+
+- **Special Methods** cho phép class của bạn hoạt động giống built-in types
+- Bắt đầu và kết thúc bằng `__` (dunder - double underscore)
+- Được Python gọi tự động trong các tình huống đặc biệt
+- Giúp code trở nên Pythonic và trực quan hơn
+- Cho phép overload operators và implement protocols
+
+Chúc mừng bạn đã hoàn thành series về OOP trong Python! 🎉
