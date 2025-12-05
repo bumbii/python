@@ -12,7 +12,7 @@ Python cung cấp một hàm gọi là <mark style="color:red;">**`input`**</mar
 
 > **💡 Chú ý: thông tin/dữ liệu nhập vào từ người dùng thông qua hàm input luôn luôn có kiểu dữ liệu là chuỗi ký tự (string), ngay cả khi người dùng nhập số. Do vậy, để dùng giá trị input như một số, phải chuyển đổi kiểu dữ liệu sang loại dữ liệu số.
 
-Thao tác chuyển đổi một giá trị từ kiểu dữ liệu này sang kiểu dữ liệu khác được gọi là [ép kiểu (type casting)](gia-tri-values-va-kieu-du-lieu-data-types.md#id-5.-chuyen-doi-kieu-du-lieu-ep-kieu-type-casting).**
+Thao tác chuyển đổi một giá trị từ kiểu dữ liệu này sang kiểu dữ liệu khác được gọi là [ép kiểu (type casting)](gia-tri-va-kieu-du-lieu.mdx#id-5.-chuyen-doi-kieu-du-lieu-ep-kieu-type-casting).**
 
 Cú pháp (syntax) của hàm <mark style="color:red;">**`input()`**</mark> như sau:
 

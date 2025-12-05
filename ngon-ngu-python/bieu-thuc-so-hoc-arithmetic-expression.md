@@ -4,7 +4,7 @@ icon: calculator-simple
 
 # Biểu thức số học (Arithmetic expression)
 
-Biểu thức số học (hay ngắn gọn là biểu thức) là một tập hợp các [toán tử số học](cac-phep-toan.md) và các chữ số. Một biểu thức có thể chứa một hoặc nhiều toán tử và chữ số. Trong ví dụ dưới, ta có một biểu thức chứa 2 toán tử (<mark style="color:red;">**`*`**</mark> và <mark style="color:red;">**`+`**</mark>) và 3 chữ số:
+Biểu thức số học (hay ngắn gọn là biểu thức) là một tập hợp các [toán tử số học](cac-toan-tu-so-hoc.mdx) và các chữ số. Một biểu thức có thể chứa một hoặc nhiều toán tử và chữ số. Trong ví dụ dưới, ta có một biểu thức chứa 2 toán tử (<mark style="color:red;">**`*`**</mark> và <mark style="color:red;">**`+`**</mark>) và 3 chữ số:
 
 ```python
 7 * 5 + 12
