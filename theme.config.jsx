@@ -9,6 +9,12 @@ export default {
       <span style={{ fontWeight: 600, fontSize: '18px' }}>Lập trình Python</span>
     </div>
   ),
+  project: {
+    link: 'https://www.youtube.com/@bumbii.academy',
+    icon: (
+      <img src="/youtube.svg" alt="YouTube" style={{ width: '48px', height: '48px' }} />
+    )
+  },
   docsRepositoryBase: 'https://github.com/your-username/python_gitbook/tree/main',
   footer: {
     text: 'Lập trình Python - Bumbii Academy'
