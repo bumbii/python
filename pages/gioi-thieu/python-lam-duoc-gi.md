@@ -1,6 +1,6 @@
 # Python làm được gì?
 
-Python là một ngôn ngữ đa dụng, nghĩa là nó được sử dụng trong nhiều lĩnh vực khác nhau. Hãy cùng khám phá các ứng dụng phổ biến của Python trong thực tế!
+Python là một ngôn ngữ đa dụng, nghĩa là nó được sử dụng trong nhiều lĩnh vực khác nhau. Trong bài viết này, chúng ta cùng khám phá các ứng dụng phổ biến của Python trong thực tế!
 
 ## 1. Phát triển Game 🎮
 
@@ -11,40 +11,11 @@ Python có thể được sử dụng để phát triển game 2D và một số
 - **Panda3D**: Engine cho game 3D
 - **Arcade**: Thư viện hiện đại để tạo game 2D
 
-### Ví dụ game được phát triển bằng Python:
-- **Battlefield 2**: Sử dụng Python cho logic game
-- **The Sims 4**: Sử dụng Python cho scripting
-- **Civilization IV**: Sử dụng Python rộng rãi
-- Các game indie trên Steam
-
 ### Ưu điểm:
 - Dễ học và phát triển nhanh
-- Phù hợp để làm prototype game
+- Phù hợp để làm game đơn giản
 - Tốt cho việc học lập trình game
-- Có nhiều tutorial và tài liệu
-
-### Ví dụ code đơn giản với Pygame:
-
-```python
-import pygame
-
-# Khởi tạo game
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Game của tôi")
-
-# Game loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    screen.fill((0, 0, 0))  # Màu đen
-    pygame.display.flip()
-
-pygame.quit()
-```
+- Có nhiều bài hướng dẫn và tài liệu
 
 ## 2. Phát triển Web 🌐
 
@@ -70,31 +41,16 @@ Python là một trong những ngôn ngữ phổ biến nhất cho phát triển
 - Hỗ trợ async/await
 - Phù hợp cho RESTful APIs và Microservices
 
+#### Reflex
+- Là một framework Python mã nguồn mở, giúp xây dựng các ứng dụng web full-stack (cả frontend và backend)
+- Reflex cho phép chúng ta tạo ra web với chỉ ngôn ngữ Python (Tuy nhiên bạn cần có kiến thức web như css để tùy chỉnh giao diện)
+
 ### Các website nổi tiếng dùng Python:
 - **YouTube**: Nhiều phần backend
 - **Instagram**: Toàn bộ backend
 - **Spotify**: Backend và data analysis
 - **Netflix**: Hệ thống recommendation
 - **Dropbox**: Desktop client và backend
-
-### Ví dụ web app đơn giản với Flask:
-
-```python
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Xin chào! Đây là website của tôi"
-
-@app.route('/about')
-def about():
-    return "Trang giới thiệu"
-
-if __name__ == '__main__':
-    app.run(debug=True)
-```
 
 ## 3. Ứng dụng Desktop 💻
 
@@ -117,29 +73,16 @@ Python có thể tạo ứng dụng desktop với giao diện đồ họa đẹp
 - Hỗ trợ touch screen
 - Có thể chạy trên mobile
 
+#### Flet
+- Xây dựng ứng dụng đa nền tảng (mobile, desktop, web)
+- Flet được xây dựng trên Flutter
+- Cung cấp các UI controls (Button, Text...) hiện đại
+
 ### Ứng dụng nổi tiếng dùng Python:
 - **Dropbox**: Client desktop
 - **Blender**: Công cụ 3D modeling (dùng Python cho scripting)
 - **GIMP**: Plugin system
 - **Calibre**: Quản lý ebook
-
-### Ví dụ ứng dụng với Tkinter:
-
-```python
-import tkinter as tk
-
-window = tk.Tk()
-window.title("Ứng dụng của tôi")
-window.geometry("400x300")
-
-label = tk.Label(window, text="Xin chào!", font=("Arial", 20))
-label.pack(pady=20)
-
-button = tk.Button(window, text="Nhấn vào đây", command=lambda: print("Đã nhấn!"))
-button.pack()
-
-window.mainloop()
-```
 
 ## 4. Ứng dụng Mobile 📱
 
@@ -205,25 +148,6 @@ Python là ngôn ngữ số 1 cho Data Analysis và Data Science!
 - Phân tích dữ liệu khoa học
 - Báo cáo và dashboard
 
-### Ví dụ phân tích dữ liệu:
-
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Đọc dữ liệu từ CSV
-df = pd.read_csv('sales.csv')
-
-# Phân tích dữ liệu
-total_sales = df['sales'].sum()
-average_sales = df['sales'].mean()
-
-# Vẽ biểu đồ
-df.groupby('category')['sales'].sum().plot(kind='bar')
-plt.title('Doanh số theo danh mục')
-plt.show()
-```
-
 ## 6. Trí tuệ Nhân tạo (AI) & Machine Learning 🤖
 
 Python là ngôn ngữ thống trị trong lĩnh vực AI và Machine Learning!
@@ -257,31 +181,11 @@ Python là ngôn ngữ thống trị trong lĩnh vực AI và Machine Learning!
 - Chạy trên TensorFlow backend
 
 ### Ứng dụng AI/ML với Python:
-- **Computer Vision**: Nhận diện khuôn mặt, object detection
-- **Natural Language Processing**: Chatbot, dịch ngôn ngữ, sentiment analysis
-- **Recommendation Systems**: Netflix, YouTube, Amazon
-- **Autonomous Vehicles**: Tesla, Waymo
-- **Healthcare**: Chẩn đoán bệnh, phân tích y tế
-
-### Ví dụ Machine Learning đơn giản:
-
-```python
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-
-# Chuẩn bị dữ liệu
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
-# Tạo và train model
-model = LogisticRegression()
-model.fit(X_train, y_train)
-
-# Dự đoán và đánh giá
-predictions = model.predict(X_test)
-accuracy = accuracy_score(y_test, predictions)
-print(f"Độ chính xác: {accuracy * 100}%")
-```
+- **Computer Vision (Thị giác máy tính)**: Nhận diện khuôn mặt, object detection
+- **Natural Language Processing (Xử lý ngôn ngữ tự nhiên)**: Chatbot, dịch ngôn ngữ, sentiment analysis
+- **Recommendation Systems (Hệ thống đề xuất)**: Netflix, YouTube, Amazon
+- **Autonomous Vehicles (Xe tự động/tự lái)**: Tesla, Waymo
+- **Healthcare (Chăm sóc sức khỏe)**: Chẩn đoán bệnh, phân tích y tế
 
 ## 7. Automation & Scripting 🔧
 
@@ -301,24 +205,6 @@ Python xuất sắc trong việc tự động hóa các công việc lặp đi l
 - **Schedule**: Lên lịch chạy task
 - **PyAutoGUI**: Điều khiển chuột và bàn phím
 
-### Ví dụ automation:
-
-```python
-import schedule
-import time
-
-def backup_data():
-    print("Đang backup dữ liệu...")
-    # Code backup ở đây
-
-# Chạy backup mỗi ngày lúc 2 giờ sáng
-schedule.every().day.at("02:00").do(backup_data)
-
-while True:
-    schedule.run_pending()
-    time.sleep(60)
-```
-
 ## 8. Các lĩnh vực khác
 
 ### Blockchain & Cryptocurrency
@@ -337,9 +223,9 @@ while True:
 - Security automation
 
 ### Scientific Computing
-- Physics simulations
-- Bioinformatics
-- Astronomy research
+- Physics simulations (giả lập vật lý)
+- Bioinformatics (phân tích dữ liệu sinh học)
+- Astronomy research (nghiên cứu thiên văn)
 
 ## Kết luận
 
