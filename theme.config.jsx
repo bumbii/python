@@ -36,7 +36,7 @@ export default {
     { locale: 'vi', text: 'Tiếng Việt' }
   ],
   sidebar: {
-    defaultMenuCollapseLevel: 1,
+    defaultMenuCollapseLevel: Infinity,
     toggleButton: true
   },
   toc: {
