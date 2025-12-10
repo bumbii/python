@@ -39,5 +39,10 @@
   "args-kwargs": "*args và **kwargs",
   "recursion": "Đệ quy (Recursion)",
   "scope-namespace": "Scope và Namespace",
-  "memory-management": "Quản lý bộ nhớ (Memory Management)"
+  "memory-management": "Quản lý bộ nhớ (Memory Management)",
+  "context-managers": "Context Managers (with statement)",
+  "regex": "Regular Expressions",
+  "walrus-operator": "Walrus Operator (:=)",
+  "datetime-module": "Date and Time (datetime module)",
+  "math-random": "Math và Random modules"
 }
