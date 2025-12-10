@@ -2,6 +2,573 @@ import YouTube from '../../components/YouTube'
 
 # Cấu trúc rẽ nhánh (Conditional Statement)
 
-
-
 <YouTube id="WQrigka_LyM" title="Cấu trúc rẽ nhánh - if/elif/else" />
+
+Cấu trúc rẽ nhánh cho phép chương trình thực hiện các đoạn code khác nhau dựa trên điều kiện. Python sử dụng các câu lệnh `if`, `elif`, và `else` để tạo ra các nhánh quyết định.
+
+## 1. Câu lệnh if
+
+### Cú pháp cơ bản
+
+```python
+if điều_kiện:
+    # Code thực thi khi điều kiện đúng
+    câu_lệnh_1
+    câu_lệnh_2
+```
+
+**Lưu ý quan trọng:**
+- Sau `if` phải có dấu hai chấm `:`
+- Code bên trong phải **thụt lề** (indent) - thường dùng 4 spaces
+- Python phân biệt khối code bằng thụt lề, không dùng dấu ngoặc nhọn `{}`
+
+### Ví dụ đơn giản
+
+```python
+age = 18
+
+if age >= 18:
+    print("Bạn đã đủ tuổi trưởng thành")
+    print("Chào mừng bạn!")
+
+print("Chương trình kết thúc")
+```
+
+### Điều kiện boolean
+
+```python
+# Điều kiện trả về True/False
+is_student = True
+
+if is_student:
+    print("Bạn là học sinh")
+
+# Tương đương với
+if is_student == True:
+    print("Bạn là học sinh")
+```
+
+### So sánh số
+
+```python
+score = 85
+
+if score >= 80:
+    print("Điểm của bạn: Giỏi")
+
+if score > 90:
+    print("Xuất sắc!")  # Không in vì score = 85
+
+# So sánh nhiều điều kiện
+temperature = 25
+
+if temperature > 30:
+    print("Trời nóng")
+
+if temperature >= 20 and temperature <= 30:
+    print("Thời tiết dễ chịu")  # In ra dòng này
+```
+
+## 2. Câu lệnh if-else
+
+### Cú pháp
+
+```python
+if điều_kiện:
+    # Code khi điều kiện đúng
+    câu_lệnh_1
+else:
+    # Code khi điều kiện sai
+    câu_lệnh_2
+```
+
+### Ví dụ
+
+```python
+age = 15
+
+if age >= 18:
+    print("Bạn đã trưởng thành")
+else:
+    print("Bạn chưa trưởng thành")  # In ra dòng này
+
+# Ví dụ số chẵn/lẻ
+number = 7
+
+if number % 2 == 0:
+    print(f"{number} là số chẵn")
+else:
+    print(f"{number} là số lẻ")  # In ra: 7 là số lẻ
+```
+
+### Lồng if-else
+
+```python
+password = "python123"
+
+if len(password) >= 8:
+    print("Độ dài mật khẩu hợp lệ")
+
+    if password.isalnum():
+        print("Mật khẩu chỉ chứa chữ và số")
+    else:
+        print("Mật khẩu có ký tự đặc biệt")
+else:
+    print("Mật khẩu quá ngắn")
+```
+
+## 3. Câu lệnh if-elif-else
+
+### Cú pháp
+
+```python
+if điều_kiện_1:
+    # Code khi điều_kiện_1 đúng
+    câu_lệnh_1
+elif điều_kiện_2:
+    # Code khi điều_kiện_2 đúng
+    câu_lệnh_2
+elif điều_kiện_3:
+    # Code khi điều_kiện_3 đúng
+    câu_lệnh_3
+else:
+    # Code khi tất cả điều kiện trên đều sai
+    câu_lệnh_4
+```
+
+**Lưu ý:** Python kiểm tra từ trên xuống dưới và **chỉ thực thi khối đầu tiên** có điều kiện đúng.
+
+### Ví dụ xếp loại điểm
+
+```python
+score = 85
+
+if score >= 90:
+    print("Xếp loại: Xuất sắc")
+elif score >= 80:
+    print("Xếp loại: Giỏi")  # In ra dòng này
+elif score >= 70:
+    print("Xếp loại: Khá")
+elif score >= 60:
+    print("Xếp loại: Trung bình")
+else:
+    print("Xếp loại: Yếu")
+```
+
+### Ví dụ phân loại nhiệt độ
+
+```python
+temperature = 15
+
+if temperature > 35:
+    print("Rất nóng")
+elif temperature > 30:
+    print("Nóng")
+elif temperature > 25:
+    print("Ấm")
+elif temperature > 20:
+    print("Mát")  # In ra dòng này
+elif temperature > 15:
+    print("Lạnh")
+else:
+    print("Rất lạnh")
+```
+
+### Nhiều điều kiện với and/or
+
+```python
+age = 20
+has_license = True
+
+if age >= 18 and has_license:
+    print("Bạn có thể lái xe")  # In ra dòng này
+elif age >= 18 and not has_license:
+    print("Bạn cần có bằng lái")
+else:
+    print("Bạn chưa đủ tuổi")
+
+# Ví dụ với or
+day = "Saturday"
+
+if day == "Saturday" or day == "Sunday":
+    print("Cuối tuần!")  # In ra dòng này
+else:
+    print("Ngày trong tuần")
+```
+
+## 4. Toán tử So sánh
+
+```python
+# Bằng: ==
+print(5 == 5)   # True
+print(5 == 3)   # False
+
+# Không bằng: !=
+print(5 != 3)   # True
+print(5 != 5)   # False
+
+# Lớn hơn: >
+print(10 > 5)   # True
+print(5 > 10)   # False
+
+# Nhỏ hơn: <
+print(5 < 10)   # True
+print(10 < 5)   # False
+
+# Lớn hơn hoặc bằng: >=
+print(10 >= 10) # True
+print(10 >= 5)  # True
+
+# Nhỏ hơn hoặc bằng: <=
+print(5 <= 10)  # True
+print(5 <= 5)   # True
+
+# So sánh chuỗi
+print("apple" == "apple")   # True
+print("Apple" == "apple")   # False (phân biệt hoa thường)
+```
+
+## 5. Toán tử Logic
+
+### and - Cả hai điều kiện phải đúng
+
+```python
+age = 25
+has_ticket = True
+
+if age >= 18 and has_ticket:
+    print("Được vào xem phim")  # In ra dòng này
+
+# Bảng chân trị AND
+print(True and True)    # True
+print(True and False)   # False
+print(False and True)   # False
+print(False and False)  # False
+```
+
+### or - Ít nhất một điều kiện đúng
+
+```python
+is_weekend = True
+is_holiday = False
+
+if is_weekend or is_holiday:
+    print("Được nghỉ!")  # In ra dòng này
+
+# Bảng chân trị OR
+print(True or True)     # True
+print(True or False)    # True
+print(False or True)    # True
+print(False or False)   # False
+```
+
+### not - Đảo ngược điều kiện
+
+```python
+is_raining = False
+
+if not is_raining:
+    print("Trời không mưa, đi chơi!")  # In ra dòng này
+
+# Ví dụ khác
+has_permission = False
+
+if not has_permission:
+    print("Bạn không có quyền truy cập")  # In ra dòng này
+```
+
+### Kết hợp nhiều toán tử logic
+
+```python
+age = 20
+is_student = True
+has_id = True
+
+if (age >= 18 and age <= 25) and is_student and has_id:
+    print("Được giảm giá 50%")  # In ra dòng này
+
+# Ví dụ phức tạp hơn
+score = 75
+attendance = 85
+
+if (score >= 80 or attendance >= 80) and score >= 60:
+    print("Đạt yêu cầu")  # In ra dòng này
+```
+
+## 6. Membership Operators (in, not in)
+
+```python
+# Kiểm tra phần tử trong list
+fruits = ["apple", "banana", "orange"]
+
+if "apple" in fruits:
+    print("Có apple trong danh sách")  # In ra dòng này
+
+if "grape" not in fruits:
+    print("Không có grape trong danh sách")  # In ra dòng này
+
+# Kiểm tra ký tự trong chuỗi
+text = "Hello Python"
+
+if "Python" in text:
+    print("Tìm thấy Python")  # In ra dòng này
+
+if "Java" not in text:
+    print("Không tìm thấy Java")  # In ra dòng này
+
+# Kiểm tra key trong dictionary
+user = {"name": "John", "age": 25}
+
+if "name" in user:
+    print(f"Tên: {user['name']}")  # In ra: Tên: John
+```
+
+## 7. Conditional Expression (Toán tử 3 ngôi)
+
+### Cú pháp
+
+```python
+giá_trị_nếu_đúng if điều_kiện else giá_trị_nếu_sai
+```
+
+### Ví dụ
+
+```python
+age = 20
+
+# Cách thông thường
+if age >= 18:
+    status = "Adult"
+else:
+    status = "Minor"
+
+# Cách viết ngắn gọn (ternary operator)
+status = "Adult" if age >= 18 else "Minor"
+print(status)  # Adult
+
+# Ví dụ khác
+score = 85
+result = "Pass" if score >= 60 else "Fail"
+print(result)  # Pass
+
+# Sử dụng trong print
+temperature = 30
+print("Hot" if temperature > 25 else "Cold")  # Hot
+
+# Lồng nhiều điều kiện (không khuyến khích)
+score = 75
+grade = "A" if score >= 90 else "B" if score >= 80 else "C" if score >= 70 else "D"
+print(grade)  # C
+```
+
+## 8. Truthy và Falsy Values
+
+Python coi một số giá trị là "falsy" (tương đương False) trong điều kiện:
+
+```python
+# Falsy values
+if 0:
+    print("Không in")  # 0 là falsy
+
+if "":
+    print("Không in")  # Chuỗi rỗng là falsy
+
+if []:
+    print("Không in")  # List rỗng là falsy
+
+if None:
+    print("Không in")  # None là falsy
+
+# Truthy values
+if 1:
+    print("In ra")  # Số khác 0 là truthy
+
+if "Hello":
+    print("In ra")  # Chuỗi không rỗng là truthy
+
+if [1, 2, 3]:
+    print("In ra")  # List không rỗng là truthy
+
+# Ứng dụng thực tế
+user_input = input("Nhập tên: ")
+
+if user_input:  # Kiểm tra có nhập gì không
+    print(f"Xin chào, {user_input}!")
+else:
+    print("Bạn chưa nhập tên")
+```
+
+## 9. Ví dụ thực tế
+
+### Máy tính BMI
+
+```python
+weight = float(input("Nhập cân nặng (kg): "))
+height = float(input("Nhập chiều cao (m): "))
+
+bmi = weight / (height ** 2)
+
+print(f"BMI của bạn: {bmi:.2f}")
+
+if bmi < 18.5:
+    print("Phân loại: Gầy")
+elif bmi < 25:
+    print("Phân loại: Bình thường")
+elif bmi < 30:
+    print("Phân loại: Thừa cân")
+else:
+    print("Phân loại: Béo phì")
+```
+
+### Kiểm tra năm nhuận
+
+```python
+year = int(input("Nhập năm: "))
+
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(f"{year} là năm nhuận")
+else:
+    print(f"{year} không phải năm nhuận")
+```
+
+### Hệ thống đăng nhập đơn giản
+
+```python
+correct_username = "admin"
+correct_password = "python123"
+
+username = input("Username: ")
+password = input("Password: ")
+
+if username == correct_username and password == correct_password:
+    print("Đăng nhập thành công!")
+    print("Chào mừng bạn đến hệ thống")
+elif username == correct_username:
+    print("Sai mật khẩu!")
+else:
+    print("Tên đăng nhập không tồn tại!")
+```
+
+### Tính giá vé xem phim
+
+```python
+age = int(input("Nhập tuổi: "))
+is_student = input("Bạn có phải học sinh/sinh viên? (yes/no): ").lower() == "yes"
+is_weekend = input("Hôm nay có phải cuối tuần? (yes/no): ").lower() == "yes"
+
+base_price = 100000  # 100k VND
+
+if age < 5:
+    price = 0
+    print("Miễn phí cho trẻ em dưới 5 tuổi")
+elif age < 18:
+    price = base_price * 0.5
+    print("Giảm 50% cho trẻ em từ 5-17 tuổi")
+elif age >= 60:
+    price = base_price * 0.7
+    print("Giảm 30% cho người cao tuổi")
+else:
+    price = base_price
+
+    if is_student:
+        price *= 0.8
+        print("Giảm thêm 20% cho học sinh/sinh viên")
+
+    if is_weekend:
+        price *= 1.2
+        print("Phụ thu 20% cho ngày cuối tuần")
+
+print(f"Giá vé cuối cùng: {price:,.0f} VND")
+```
+
+### Xếp hạng học lực
+
+```python
+math = float(input("Điểm Toán: "))
+literature = float(input("Điểm Văn: "))
+english = float(input("Điểm Anh: "))
+
+average = (math + literature + english) / 3
+
+print(f"Điểm trung bình: {average:.2f}")
+
+# Điều kiện xếp loại giỏi: TB >= 8 và không có môn nào < 6.5
+if average >= 8 and math >= 6.5 and literature >= 6.5 and english >= 6.5:
+    print("Xếp loại: Giỏi")
+# Điều kiện xếp loại khá: TB >= 6.5 và không có môn nào < 5
+elif average >= 6.5 and math >= 5 and literature >= 5 and english >= 5:
+    print("Xếp loại: Khá")
+# Điều kiện xếp loại trung bình: TB >= 5 và không có môn nào < 3.5
+elif average >= 5 and math >= 3.5 and literature >= 3.5 and english >= 3.5:
+    print("Xếp loại: Trung bình")
+else:
+    print("Xếp loại: Yếu")
+```
+
+## 10. Lỗi thường gặp
+
+### Quên dấu hai chấm
+
+```python
+# ❌ SAI
+if age >= 18
+    print("Adult")
+
+# ✅ ĐÚNG
+if age >= 18:
+    print("Adult")
+```
+
+### Sai thụt lề
+
+```python
+# ❌ SAI
+if age >= 18:
+print("Adult")
+
+# ✅ ĐÚNG
+if age >= 18:
+    print("Adult")
+```
+
+### Dùng = thay vì ==
+
+```python
+# ❌ SAI - Gán giá trị, không phải so sánh
+if age = 18:
+    print("Adult")
+
+# ✅ ĐÚNG - So sánh
+if age == 18:
+    print("Adult")
+```
+
+### Nhầm lẫn and/or
+
+```python
+age = 20
+
+# ❌ SAI - Muốn kiểm tra age trong khoảng 18-25
+if age >= 18 or age <= 25:  # Luôn đúng!
+    print("Trong khoảng")
+
+# ✅ ĐÚNG
+if age >= 18 and age <= 25:
+    print("Trong khoảng")
+
+# Hoặc dùng cách viết ngắn gọn
+if 18 <= age <= 25:
+    print("Trong khoảng")
+```
+
+## Tổng kết
+
+- **if**: Kiểm tra một điều kiện
+- **if-else**: Kiểm tra điều kiện với 2 nhánh (đúng/sai)
+- **if-elif-else**: Kiểm tra nhiều điều kiện (chỉ thực thi nhánh đầu tiên đúng)
+- **Toán tử so sánh**: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- **Toán tử logic**: `and`, `or`, `not`
+- **Membership**: `in`, `not in`
+- **Conditional expression**: `giá_trị_nếu_đúng if điều_kiện else giá_trị_nếu_sai`
+- **Truthy/Falsy**: Các giá trị được coi là True/False trong điều kiện
+- **Lưu ý**: Luôn có dấu `:` sau điều kiện và thụt lề đúng cho code bên trong
