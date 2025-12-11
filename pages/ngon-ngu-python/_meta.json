@@ -40,6 +40,8 @@
   "recursion": "Đệ quy (Recursion)",
   "scope-namespace": "Scope và Namespace",
   "memory-management": "Quản lý bộ nhớ (Memory Management)",
+  "decorators": "Decorators (Hàm trang trí)",
+  "generators-iterators": "Generators và Iterators",
   "context-managers": "Context Managers (with statement)",
   "regex": "Regular Expressions",
   "walrus-operator": "Walrus Operator (:=)",
