@@ -237,7 +237,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     minHeight: '100vh',
     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    padding: M3.spacing.lg,
+    padding: M3.spacing.base,
     fontFamily: "'Space Grotesk', sans-serif"
   },
   loadingContainer: {
@@ -259,7 +259,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginTop: M3.spacing.base
   },
   content: {
-    maxWidth: '900px',
+    maxWidth: '920px',
     margin: '0 auto'
   },
   celebrationHeader: {
@@ -284,18 +284,18 @@ const styles: { [key: string]: React.CSSProperties } = {
   scoreCard: {
     backgroundColor: M3.colors.surface,
     borderRadius: M3.radius.xl,
-    padding: M3.spacing['3xl'],
+    padding: M3.spacing['2xl'],
     marginBottom: M3.spacing.xl,
-    boxShadow: M3.elevation.level5,
+    boxShadow: M3.elevation.level4,
     textAlign: 'center'
   },
   performanceBadge: {
     display: 'inline-flex',
     alignItems: 'center',
     gap: M3.spacing.md,
-    padding: `${M3.spacing.md} ${M3.spacing['2xl']}`,
+    padding: `${M3.spacing.sm} ${M3.spacing.lg}`,
     borderRadius: M3.radius.full,
-    marginBottom: M3.spacing['2xl'],
+    marginBottom: M3.spacing.lg,
     boxShadow: M3.elevation.level2
   },
   performanceEmoji: {
@@ -312,10 +312,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: M3.spacing['2xl']
   },
   scoreCircle: {
-    width: '220px',
-    height: '220px',
+    width: '180px',
+    height: '180px',
     borderRadius: M3.radius.full,
-    border: '12px solid',
+    border: '10px solid',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -323,8 +323,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: M3.colors.surfaceVariant
   },
   scorePercentage: {
-    fontSize: '64px',
-    fontWeight: 'bold',
+    fontSize: '48px',
+    fontWeight: '800',
     lineHeight: 1
   },
   scoreSubtext: {
@@ -336,7 +336,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   statsRow: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: M3.spacing.base
+    gap: M3.spacing.sm
   },
   statBox: {
     display: 'flex',
@@ -345,15 +345,15 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: M3.spacing.sm
   },
   statIcon: {
-    width: '48px',
-    height: '48px',
+    width: '44px',
+    height: '44px',
     borderRadius: M3.radius.md,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '24px',
+    fontSize: '20px',
     color: M3.colors.onPrimary,
-    fontWeight: 'bold'
+    fontWeight: '700'
   },
   statValue: {
     ...M3.typography.headlineMedium,
@@ -368,7 +368,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   topicsCard: {
     backgroundColor: M3.colors.surface,
     borderRadius: M3.radius.xl,
-    padding: M3.spacing['2xl'],
+    padding: M3.spacing.lg,
     marginBottom: M3.spacing.xl,
     boxShadow: M3.elevation.level3
   },
@@ -388,38 +388,38 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: 0
   },
   topicsDesc: {
-    ...M3.typography.bodyLarge,
+    ...M3.typography.bodyMedium,
     color: M3.colors.onSurfaceVariant,
-    marginBottom: M3.spacing.xl,
-    lineHeight: '1.6'
+    marginBottom: M3.spacing.md,
+    lineHeight: '1.5'
   },
   topicsList: {
     display: 'flex',
     flexDirection: 'column',
-    gap: M3.spacing.md
+    gap: M3.spacing.sm
   },
   topicItem: {
     display: 'flex',
     alignItems: 'center',
-    gap: '16px',
-    padding: '16px 20px',
-    backgroundColor: '#f9fafb',
-    borderRadius: '12px',
+    gap: M3.spacing.sm,
+    padding: `${M3.spacing.sm} ${M3.spacing.md}`,
+    backgroundColor: M3.colors.surfaceVariant,
+    borderRadius: M3.radius.md,
     textDecoration: 'none',
-    color: '#111827',
-    transition: 'all 0.3s',
-    border: '2px solid transparent'
+    color: M3.colors.onSurface,
+    transition: 'all 0.18s',
+    border: `1px solid ${M3.colors.outlineVariant}`
   },
   topicNumber: {
     width: '36px',
     height: '36px',
     borderRadius: '50%',
-    backgroundColor: '#7c3aed',
-    color: 'white',
+    backgroundColor: M3.colors.primary,
+    color: M3.colors.onPrimary,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '16px',
+    fontSize: '14px',
     fontWeight: '700',
     flexShrink: 0
   },
@@ -434,89 +434,89 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: 'bold'
   },
   perfectCard: {
-    backgroundColor: 'white',
-    borderRadius: '24px',
-    padding: '48px',
-    marginBottom: '24px',
-    boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+    backgroundColor: M3.colors.surface,
+    borderRadius: M3.radius.xl,
+    padding: M3.spacing['2xl'],
+    marginBottom: M3.spacing.md,
+    boxShadow: M3.elevation.level3,
     textAlign: 'center'
   },
   perfectEmoji: {
-    fontSize: '80px',
-    marginBottom: '16px'
+    fontSize: '64px',
+    marginBottom: M3.spacing.sm
   },
   perfectTitle: {
-    fontSize: '32px',
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: '12px'
+    ...M3.typography.headlineSmall,
+    fontWeight: '800',
+    color: M3.colors.onSurface,
+    marginBottom: M3.spacing.sm
   },
   perfectText: {
-    fontSize: '18px',
-    color: '#374151',
-    lineHeight: '1.6',
+    ...M3.typography.bodyMedium,
+    color: M3.colors.onSurfaceVariant,
+    lineHeight: '1.5',
     margin: 0
   },
   actionButtons: {
     display: 'flex',
-    gap: '16px',
-    marginBottom: '24px',
+    gap: M3.spacing.sm,
+    marginBottom: M3.spacing.md,
     flexWrap: 'wrap'
   },
   primaryButton: {
     flex: 1,
     minWidth: '200px',
-    padding: '18px 32px',
-    fontSize: '20px',
-    fontWeight: '700',
-    color: 'white',
-    background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    padding: `${M3.spacing.md} ${M3.spacing['2xl']}`,
+    ...M3.typography.titleSmall,
+    fontWeight: 800,
+    color: M3.colors.onPrimary,
+    background: `linear-gradient(135deg, ${M3.colors.primary} 0%, ${M3.colors.primaryContainer} 100%)`,
     border: 'none',
-    borderRadius: '16px',
+    borderRadius: M3.radius.md,
     cursor: 'pointer',
-    transition: 'all 0.3s',
-    boxShadow: '0 8px 20px rgba(245, 87, 108, 0.4)'
+    transition: 'all 0.22s',
+    boxShadow: `0 12px 30px rgba(124,58,237,0.14)`
   },
   secondaryButton: {
     flex: 1,
     minWidth: '200px',
-    padding: '18px 32px',
-    fontSize: '20px',
-    fontWeight: '700',
-    color: '#7c3aed',
-    backgroundColor: 'white',
-    border: '3px solid #7c3aed',
-    borderRadius: '16px',
+    padding: `${M3.spacing.md} ${M3.spacing.lg}`,
+    ...M3.typography.titleSmall,
+    fontWeight: 700,
+    color: M3.colors.primary,
+    backgroundColor: M3.colors.surface,
+    border: `1px solid ${M3.colors.outlineVariant}`,
+    borderRadius: M3.radius.md,
     cursor: 'pointer',
-    transition: 'all 0.3s',
-    boxShadow: '0 4px 12px rgba(124, 58, 237, 0.2)'
+    transition: 'all 0.22s',
+    boxShadow: M3.elevation.level2
   },
   tipsCard: {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    borderRadius: '20px',
-    padding: '28px',
-    boxShadow: '0 8px 30px rgba(0,0,0,0.15)'
+    backgroundColor: M3.colors.surface,
+    borderRadius: M3.radius.lg,
+    padding: M3.spacing.lg,
+    boxShadow: M3.elevation.level3
   },
   tipsTitle: {
-    fontSize: '22px',
+    ...M3.typography.titleMedium,
     fontWeight: '700',
-    color: '#111827',
-    marginBottom: '20px',
+    color: M3.colors.onSurface,
+    marginBottom: M3.spacing.md,
     display: 'flex',
     alignItems: 'center',
-    gap: '8px'
+    gap: M3.spacing.sm
   },
   tipsList: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px'
+    gap: M3.spacing.sm
   },
   tipItem: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    fontSize: '15px',
-    color: '#374151',
+    gap: M3.spacing.sm,
+    ...M3.typography.bodyMedium,
+    color: M3.colors.onSurfaceVariant,
     lineHeight: '1.6'
   },
   tipBullet: {

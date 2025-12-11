@@ -148,51 +148,51 @@ export default function QuizSetup() {
           </p>
         </div>
 
-        {/* Question Count Selector */}
-        <div style={styles.section}>
-          <h2 style={styles.sectionTitle}>
-            <span style={styles.sectionIcon}>🎯</span>
-            Số câu hỏi
-          </h2>
-          <div style={styles.questionCountGrid}>
-            {[5, 10, 15, 20, 30, 50].map(count => {
-              const isDisabled = count > maxAvailable && maxAvailable > 0;
-              const isSelected = questionCount === count && !isDisabled;
-              return (
-                <button
-                  key={count}
-                  onClick={() => !isDisabled && setQuestionCount(count)}
-                  disabled={isDisabled}
-                  style={{
-                    ...styles.countButton,
-                    ...(isSelected ? styles.countButtonSelected : {}),
-                    ...(isDisabled ? styles.countButtonDisabled : {})
-                  }}
-                >
-                  <div style={styles.countNumber}>{count}</div>
-                  <div style={styles.countLabel}>câu</div>
-                </button>
-              );
-            })}
-          </div>
-          {maxAvailable > 0 && (
-            <div style={styles.availableInfo}>
-              Có <strong>{maxAvailable}</strong> câu hỏi khả dụng với lựa chọn hiện tại
+        {/* Question Count + Level (compact responsive row) */}
+        <div style={styles.twoColumnRow}>
+          <div style={styles.sectionCompact}>
+            <h2 style={styles.sectionTitle}>
+              <span style={styles.sectionIcon}>🎯</span>
+              Số câu hỏi
+            </h2>
+            <div style={styles.questionCountGrid}>
+              {[5, 10, 15, 20, 30, 50].map(count => {
+                const isDisabled = count > maxAvailable && maxAvailable > 0;
+                const isSelected = questionCount === count && !isDisabled;
+                return (
+                  <button
+                    key={count}
+                    onClick={() => !isDisabled && setQuestionCount(count)}
+                    disabled={isDisabled}
+                    style={{
+                      ...styles.countButton,
+                      ...(isSelected ? styles.countButtonSelected : {}),
+                      ...(isDisabled ? styles.countButtonDisabled : {})
+                    }}
+                  >
+                    <div style={styles.countNumber}>{count}</div>
+                    <div style={styles.countLabel}>câu</div>
+                  </button>
+                );
+              })}
             </div>
-          )}
-        </div>
+            {maxAvailable > 0 && (
+              <div style={styles.availableInfo}>
+                Có <strong>{maxAvailable}</strong> câu hỏi khả dụng với lựa chọn hiện tại
+              </div>
+            )}
+          </div>
 
-        {/* Level Selection */}
-        <div style={styles.section}>
-          <h2 style={styles.sectionTitle}>
-            <span style={styles.sectionIcon}>📊</span>
-            Chọn cấp độ
-          </h2>
-          <div style={styles.levelGrid}>
+          <div style={styles.sectionCompact}>
+            <h2 style={styles.sectionTitle}>
+              <span style={styles.sectionIcon}>📊</span>
+              Chọn cấp độ
+            </h2>
+            <div style={styles.levelGrid}>
             {[
-              { id: 'easy', label: 'Dễ', emoji: '😊', color: '#10b981' },
-              { id: 'medium', label: 'Trung bình', emoji: '🤔', color: '#f59e0b' },
-              { id: 'hard', label: 'Khó', emoji: '🔥', color: '#ef4444' }
+              { id: 'easy', label: 'Dễ', color: M3.colors.success },
+              { id: 'medium', label: 'Trung bình', color: M3.colors.warning },
+              { id: 'hard', label: 'Khó', color: M3.colors.error }
             ].map(level => {
               const isSelected = selectedLevels.includes(level.id);
               return (
@@ -201,18 +201,17 @@ export default function QuizSetup() {
                   onClick={() => toggleLevel(level.id)}
                   style={{
                     ...styles.levelButton,
-                    backgroundColor: isSelected ? level.color : '#ffffff',
-                    color: isSelected ? '#ffffff' : level.color,
-                    borderColor: level.color,
-                    transform: isSelected ? 'scale(1.05)' : 'scale(1)'
+                    backgroundColor: isSelected ? level.color : M3.colors.surface,
+                    color: isSelected ? M3.colors.onPrimary : M3.colors.onSurface,
+                    borderColor: isSelected ? level.color : M3.colors.outlineVariant
                   }}
                 >
-                  <div style={styles.levelEmoji}>{level.emoji}</div>
                   <div style={styles.levelLabel}>{level.label}</div>
                   {isSelected && <div style={styles.checkmark}>✓</div>}
                 </button>
               );
             })}
+            </div>
           </div>
         </div>
 
@@ -258,35 +257,7 @@ export default function QuizSetup() {
                     }}>
                       {topic.title}
                     </div>
-                    <div style={styles.topicCount}>
-                      <span style={{
-                        ...styles.miniCountBadge,
-                        backgroundColor: isSelected
-                          ? M3.colors.successContainer
-                          : M3.colors.success,
-                        color: isSelected ? M3.colors.onSuccessContainer : M3.colors.onSuccess
-                      }}>
-                        <span style={styles.badgeIcon}>😊</span> {topic.count.easy}
-                      </span>
-                      <span style={{
-                        ...styles.miniCountBadge,
-                        backgroundColor: isSelected
-                          ? M3.colors.warningContainer
-                          : M3.colors.warning,
-                        color: isSelected ? M3.colors.onWarningContainer : M3.colors.onWarning
-                      }}>
-                        <span style={styles.badgeIcon}>🤔</span> {topic.count.medium}
-                      </span>
-                      <span style={{
-                        ...styles.miniCountBadge,
-                        backgroundColor: isSelected
-                          ? M3.colors.errorContainer
-                          : M3.colors.error,
-                        color: isSelected ? M3.colors.onErrorContainer : M3.colors.onError
-                      }}>
-                        <span style={styles.badgeIcon}>🔥</span> {topic.count.hard}
-                      </span>
-                    </div>
+                    {/* Badges removed for a cleaner topic list per design request */}
                   </div>
                 </label>
               );
@@ -360,6 +331,19 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: M3.spacing.xl,
     boxShadow: M3.elevation.level3
   },
+  sectionCompact: {
+    backgroundColor: M3.colors.surface,
+    borderRadius: M3.radius.lg,
+    padding: M3.spacing.lg,
+    marginBottom: 0,
+    boxShadow: M3.elevation.level2
+  },
+  twoColumnRow: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: M3.spacing.lg,
+    marginBottom: M3.spacing.xl
+  },
   sectionHeader: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -372,6 +356,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     ...M3.typography.headlineSmall,
     color: M3.colors.onSurface,
     margin: 0,
+    marginBottom: M3.spacing.md,
     display: 'flex',
     alignItems: 'center',
     gap: M3.spacing.sm
@@ -394,18 +379,25 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   questionCountGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
-    gap: M3.spacing.base,
-    marginBottom: M3.spacing.base
+    gridTemplateColumns: 'repeat(auto-fit, minmax(64px, 1fr))',
+    gap: M3.spacing.sm,
+    marginBottom: M3.spacing.md,
+    justifyItems: 'center'
   },
   countButton: {
-    padding: M3.spacing.lg,
-    border: '3px solid #e5e7eb',
+    padding: `${M3.spacing.sm} ${M3.spacing.base}`,
+    minWidth: '64px',
+    height: '84px',
+    border: '2px solid #e5e7eb',
     borderRadius: M3.radius.md,
     backgroundColor: '#ffffff',
     cursor: 'pointer',
-    transition: 'all 0.3s',
-    textAlign: 'center'
+    transition: 'all 0.18s ease',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   countButtonSelected: {
     backgroundColor: '#7c3aed',
@@ -420,8 +412,9 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   countNumber: {
     ...M3.typography.headlineMedium,
-    fontWeight: 'bold',
-    marginBottom: M3.spacing.xs
+    fontWeight: '700',
+    marginBottom: M3.spacing.xs,
+    fontSize: '20px'
   },
   countLabel: {
     ...M3.typography.labelMedium
@@ -436,18 +429,21 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   levelGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-    gap: M3.spacing.base
+    gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+    gap: M3.spacing.sm,
+    marginBottom: M3.spacing.md,
+    alignItems: 'center'
   },
   levelButton: {
-    padding: M3.spacing.xl,
-    border: '3px solid',
+    padding: `${M3.spacing.sm} ${M3.spacing.base}`,
+    border: '2px solid',
     borderRadius: M3.radius.md,
     cursor: 'pointer',
     transition: 'all 0.3s',
     textAlign: 'center',
     position: 'relative',
-    ...M3.typography.titleMedium
+    ...M3.typography.titleSmall,
+    fontWeight: 600
   },
   levelEmoji: {
     fontSize: '40px',
@@ -465,12 +461,12 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   topicGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-    gap: M3.spacing.base
+    gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+    gap: M3.spacing.sm
   },
   topicCard: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: M3.spacing.md,
     padding: M3.spacing.base,
     border: '2px solid',
@@ -482,7 +478,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   topicCheckbox: {
     width: '20px',
     height: '20px',
-    marginTop: M3.spacing.xs,
+    marginTop: 0,
     cursor: 'pointer',
     accentColor: M3.colors.primary,
     flexShrink: 0
@@ -531,7 +527,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   startButtonText: {
     display: 'inline-block',
-    textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+    textShadow: '0 2px 4px rgba(0,0,0,0.2)',
+    fontFamily: "'Space Grotesk', sans-serif"
   }
 };
 
@@ -554,6 +551,16 @@ if (typeof window !== 'undefined') {
     styles.topicGrid = {
       ...styles.topicGrid,
       gridTemplateColumns: '1fr'
+    };
+    styles.twoColumnRow = {
+      ...styles.twoColumnRow,
+      gridTemplateColumns: '1fr',
+      gap: M3.spacing.base
+    };
+    styles.sectionCompact = {
+      ...styles.sectionCompact,
+      padding: M3.spacing.base,
+      marginBottom: M3.spacing.base
     };
   }
 }

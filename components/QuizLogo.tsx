@@ -37,14 +37,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: 'center',
     gap: M3.spacing.md,
     padding: M3.spacing.md,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    border: 'none',
+    backgroundColor: M3.colors.surfaceVariant,
+    border: `1px solid ${M3.colors.outlineVariant}`,
     borderRadius: M3.radius.md,
     cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    backdropFilter: 'blur(10px)',
+    transition: 'all 0.18s ease',
     marginBottom: M3.spacing.xl,
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+    boxShadow: M3.elevation.level2
   },
   logo: {
     height: '40px',
@@ -52,7 +51,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   logoText: {
     ...M3.typography.titleLarge,
-    color: 'white',
+    color: M3.colors.onSurface,
     fontFamily: "'Space Grotesk', sans-serif",
     textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
     margin: 0
