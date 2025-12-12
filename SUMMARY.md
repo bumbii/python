@@ -83,6 +83,65 @@
 * [Context Managers (with statement)](ngon-ngu-python/context-managers.md)
 * [Map, Filter, Reduce](ngon-ngu-python/map-filter-reduce.md)
 
+## WHAT THE PYTHON! LẠ THẾ NHỈ?
+
+### Types & Data Structures
+
+* [(5) là int, nhưng (5,) là tuple?!](pages/what-the-python/tuple-parentheses.md)
+* [Trailing comma tạo tuple](pages/what-the-python/trailing-comma.md)
+* [List nhân với số - [[]] * 3 có gì lạ?](pages/what-the-python/list-multiplication.md)
+* [{} là dict, không phải set!](pages/what-the-python/empty-dict-vs-set.md)
+* [String interning - 'a' is 'a' nhưng...](pages/what-the-python/string-interning.md)
+
+### Numbers & Arithmetic
+
+* [Integer caching - 256 is 256 nhưng 257 is not 257?](pages/what-the-python/integer-caching.md)
+* [True + True = 2 - Boolean là int?!](pages/what-the-python/boolean-is-int.md)
+* [0.1 + 0.2 không bằng 0.3](pages/what-the-python/float-precision.md)
+* [Phép chia / vs //](pages/what-the-python/division-operators.md)
+
+### Functions & Scopes
+
+* [Mutable default arguments - Cái bẫy nguy hiểm!](pages/what-the-python/mutable-default-args.md)
+* [Late binding closures trong vòng lặp](pages/what-the-python/late-binding-closures.md)
+* [UnboundLocalError - Biến toàn cục bỗng không tồn tại?](pages/what-the-python/unboundlocalerror.md)
+
+### Operators
+
+* [Chained comparisons - 1 < 2 < 3](pages/what-the-python/chained-comparisons.md)
+* [is vs == - Khi nào dùng cái nào?](pages/what-the-python/is-vs-equals.md)
+* [Operator precedence - not True == False](pages/what-the-python/operator-precedence.md)
+
+### Classes & OOP
+
+* [Class variables vs Instance variables](pages/what-the-python/class-vs-instance-vars.md)
+* [Name mangling với __private](pages/what-the-python/name-mangling.md)
+
+### Iterators & Generators
+
+* [Generator exhaustion - Dùng 1 lần rồi... hết!](pages/what-the-python/generator-exhaustion.md)
+
+### Control Flow
+
+* [for-else và while-else - else khi nào chạy?](pages/what-the-python/for-else.md)
+
+### Copying & References
+
+* [Assignment tạo reference, không phải copy](pages/what-the-python/assignment-reference.md)
+* [Shallow copy vs Deep copy](pages/what-the-python/shallow-vs-deep-copy.md)
+* [Chained assignment - a = b = []](pages/what-the-python/chained-assignment.md)
+
+### Surprising Syntax
+
+* [Ellipsis ... - Không chỉ để slicing](pages/what-the-python/ellipsis.md)
+* [Underscore _ - Nhiều ý nghĩa khác nhau](pages/what-the-python/underscore.md)
+* [Extended unpacking - a, *b, c = [1,2,3,4,5]](pages/what-the-python/extended-unpacking.md)
+
+### Common Pitfalls
+
+* [Sửa list trong khi đang iterate](pages/what-the-python/modify-while-iterating.md)
+* [all([]) = True và any([]) = False](pages/what-the-python/all-any-empty.md)
+
 ### Đồ họa với Python Turtle
 
 * [Giới thiệu Python Turtle](python-turtle/gioi-thieu.md)
