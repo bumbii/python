@@ -12,7 +12,8 @@
       "Bash(node -e:*)",
       "Bash(git log:*)",
       "Bash(grep:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(npm outdated:*)"
     ],
     "deny": [],
     "ask": []

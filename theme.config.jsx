@@ -28,7 +28,14 @@ export default {
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="Lập trình Python" />
-      <meta property="og:description" content="Python Documentation in Vietnamese" />
+      <meta property="og:description" content="Tài liệu & bài tập Python Tiếng Việt" />
+      <meta property="og:image" content="https://python.bumbii.tech/facebook-banner.png" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Lập trình Python - Bumbii Academy" />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="https://python.bumbii.tech/facebook-banner.png" />
       <link rel="icon" href="/logo.svg" type="image/svg+xml" />
     </>
   ),
