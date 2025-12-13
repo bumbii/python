@@ -286,3 +286,12 @@ print(squares1 == squares2 == squares3)  # True
 List comprehension là công cụ mạnh mẽ giúp code Python của bạn ngắn gọn, dễ đọc và hiệu quả hơn. Tuy nhiên, hãy sử dụng chúng một cách hợp lý - khi list comprehension trở nên quá phức tạp, đừng ngần ngại quay lại sử dụng vòng lặp for truyền thống để code dễ hiểu hơn.
 
 Hãy thực hành với các ví dụ trên và dần dần list comprehension sẽ trở thành một phần tự nhiên trong cách viết code Python của bạn!
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập List Comprehension cơ bản](/bai-tap-lap-trinh/bai-tap-list-comprehension-co-ban)**
+- **[Bài tập List Comprehension nâng cao](/bai-tap-lap-trinh/bai-tap-list-comprehension-nang-cao)**

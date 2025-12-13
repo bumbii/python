@@ -411,3 +411,12 @@ else:
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Set cơ bản](/bai-tap-lap-trinh/bai-tap-set-co-ban)**
+- **[Bài tập Set nâng cao](/bai-tap-lap-trinh/bai-tap-set-nang-cao)**

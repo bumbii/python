@@ -686,3 +686,12 @@ if __name__ == "__main__":
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Modules cơ bản](/bai-tap-lap-trinh/bai-tap-modules-co-ban)**
+- **[Bài tập Modules nâng cao](/bai-tap-lap-trinh/bai-tap-modules-nang-cao)**

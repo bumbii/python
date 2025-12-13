@@ -492,3 +492,12 @@ print(create_slug("Hello World Python"))
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập String cơ bản](/bai-tap-lap-trinh/bai-tap-string-co-ban)**
+- **[Bài tập String nâng cao](/bai-tap-lap-trinh/bai-tap-string-nang-cao)**

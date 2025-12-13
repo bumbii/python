@@ -413,3 +413,14 @@ print(expensive)
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Dict Comprehension cơ bản](/bai-tap-lap-trinh/bai-tap-dict-comprehension-co-ban)**
+- **[Bài tập Dict Comprehension nâng cao](/bai-tap-lap-trinh/bai-tap-dict-comprehension-nang-cao)**
+- **[Bài tập Set Comprehension cơ bản](/bai-tap-lap-trinh/bai-tap-set-comprehension-co-ban)**
+- **[Bài tập Set Comprehension nâng cao](/bai-tap-lap-trinh/bai-tap-set-comprehension-nang-cao)**

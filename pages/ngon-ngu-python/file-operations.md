@@ -533,3 +533,12 @@ with open(path, "r", encoding="utf-8") as file:
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập File Operations cơ bản](/bai-tap-lap-trinh/bai-tap-file-co-ban)**
+- **[Bài tập File Operations nâng cao](/bai-tap-lap-trinh/bai-tap-file-nang-cao)**

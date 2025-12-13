@@ -401,3 +401,12 @@ except csv.Error as e:
 | Dễ đọc | Ít hơn | Nhiều hơn |
 
 **Khuyến nghị:** Dùng DictReader/DictWriter cho hầu hết trường hợp vì code dễ đọc và bảo trì.
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập CSV cơ bản](/bai-tap-lap-trinh/bai-tap-csv-co-ban)**
+- **[Bài tập CSV nâng cao](/bai-tap-lap-trinh/bai-tap-csv-nang-cao)**

@@ -562,3 +562,12 @@ for rank, (student, score) in enumerate(zip(students, scores), start=1):
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Enumerate & Zip cơ bản](/bai-tap-lap-trinh/bai-tap-enumerate-zip-co-ban)**
+- **[Bài tập Enumerate & Zip nâng cao](/bai-tap-lap-trinh/bai-tap-enumerate-zip-nang-cao)**

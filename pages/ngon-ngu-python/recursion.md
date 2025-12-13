@@ -481,3 +481,12 @@ def fib(n):
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Recursion cơ bản](/bai-tap-lap-trinh/bai-tap-recursion-co-ban)**
+- **[Bài tập Recursion nâng cao](/bai-tap-lap-trinh/bai-tap-recursion-nang-cao)**

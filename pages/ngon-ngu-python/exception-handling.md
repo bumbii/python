@@ -467,3 +467,12 @@ except FileNotFoundError:
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Exception Handling cơ bản](/bai-tap-lap-trinh/bai-tap-exception-co-ban)**
+- **[Bài tập Exception Handling nâng cao](/bai-tap-lap-trinh/bai-tap-exception-nang-cao)**

@@ -76,3 +76,10 @@ for i in range(3):
 # Do flush = True nên chương trình đẩy ngay giá trị ra màn hình
 ```
 
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập về hàm print()](/bai-tap-lap-trinh/bai-tap-su-dung-ham-print)**

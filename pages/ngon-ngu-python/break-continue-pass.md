@@ -410,3 +410,12 @@ while True:
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Break & Continue cơ bản](/bai-tap-lap-trinh/bai-tap-break-continue-co-ban)**
+- **[Bài tập Break & Continue nâng cao](/bai-tap-lap-trinh/bai-tap-break-continue-nang-cao)**

@@ -452,3 +452,12 @@ advanced_logger("WARNING", "Low memory", timestamp=False, format="[{level}] {mes
 ## Bài giảng trên YouTube
 
 Cập nhật sau
+
+---
+
+## 📝 Bài tập thực hành
+
+Sau khi học xong bài này, hãy thực hành với các bài tập sau:
+
+- **[Bài tập Args & Kwargs cơ bản](/bai-tap-lap-trinh/bai-tap-args-kwargs-co-ban)**
+- **[Bài tập Args & Kwargs nâng cao](/bai-tap-lap-trinh/bai-tap-args-kwargs-nang-cao)**
